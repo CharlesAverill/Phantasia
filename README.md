@@ -7,3 +7,4 @@ FF1 Remake in Unity
 
 ## Tips
 - Pressing "escape" will unlock the mouse
+- Don't be surprised if it crashes if you have a random encounter far away from Corneria, I haven't added in those monster parties yet
