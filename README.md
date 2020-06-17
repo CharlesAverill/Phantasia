@@ -2,4 +2,5 @@
 FF1 Remake in Unity
 
 ## Installation
-I've only built it for Mac right now so just download the executable. Or download the entire project, open it in Unity, and build it for Windows/Linux.
+- Mac - Download the Phantasia.app folder and run it as an application
+- Windows - Download the "Windows Build" folder and run the .exe inside
