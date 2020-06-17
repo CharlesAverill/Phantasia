@@ -15,12 +15,15 @@ FF1 Remake in Unity
 - Monsters
   - Bone
   - Creep
+  - Ghoul
   - GrImp
   - GrWolf
   - Imp
   - MadPony
   - Spider
   - Wolf
+  - WrWolf
+  - Zombie
 - Maps
   - Overworld
   - Corneria + Corneria Castle
