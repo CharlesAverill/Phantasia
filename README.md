@@ -1,5 +1,5 @@
 # Phantasia
-FF1 Remake in Unity
+Multiplatform Final Fantasy 1 port in Unity
 
 ## Installation
 Download the repo as a zip file (green button at the top right)
