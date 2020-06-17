@@ -10,6 +10,7 @@ Download the repo as a zip file (green button at the top right)
 ## Tips
 - Pressing "escape" will unlock the mouse
 - Don't be surprised if it crashes when you have a random encounter far away from Corneria, I haven't added in those monster parties yet
+- Damge IS happening when you're battling, both to you and the monsters. I just haven't messed around with the UI yet.
 
 ## What's Supported
 - Classes
