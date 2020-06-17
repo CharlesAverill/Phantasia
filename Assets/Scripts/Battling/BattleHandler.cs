@@ -17,6 +17,7 @@ public class BattleHandler : MonoBehaviour
     public CursorController monster_cursor;
     public CursorController menu_cursor;
     public EventSystem es;
+    public Canvas c;
     
     public AudioSource battle_music;
     public AudioSource victory_music;

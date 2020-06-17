@@ -50,7 +50,7 @@ public class CursorController : MonoBehaviour
         
         event_system.SetSelectedGameObject(active_list[active]);
         frame = frame + 1;
-        if(frame >= 30){
+        if(frame >= 20){
         
             float ver = Input.GetAxisRaw("Vertical");
             

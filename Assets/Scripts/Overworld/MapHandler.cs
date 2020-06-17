@@ -20,7 +20,7 @@ public class MapHandler : MonoBehaviour
     void Start()
     {
         deactivate_maps_except(active_map);
-        done_changing = false;
+        done_changing = true;
         active_map.SetActive(true);
     }
 
@@ -36,6 +36,9 @@ public class MapHandler : MonoBehaviour
     void deactivate_maps_except(GameObject map){
         Map[] maps = grids.GetComponentsInChildren<Map>();
         foreach(Map m in maps){
+            if(m.enabled == false){
+                continue;
+            }
             if(m.gameObject.GetInstanceID() != map.GetInstanceID()){
                 m.gameObject.SetActive(false);
             }
@@ -45,17 +48,23 @@ public class MapHandler : MonoBehaviour
     }
     
     public void change_maps(GameObject map){
-        StartCoroutine(change(map));
+        if(done_changing)
+            StartCoroutine(change(map));
     }
     
     IEnumerator change(GameObject map){
         done_changing = false;
+        
         active_map.GetComponent<AudioSource>().Stop();
+        active_map.GetComponent<AudioSource>().volume = 0f;
+        
         player.warp_sound.Play();
+        
         st.transition();
         while(st.filling){
             yield return null;
         }
+        
         deactivate_maps_except(map);
         Map active = active_map.GetComponent<Map>();
         
@@ -65,18 +74,22 @@ public class MapHandler : MonoBehaviour
         else{
             player.transform.position = new Vector3(overworldX, overworldY, 0f);
         }
+        
         player.move_point.position = player.transform.position;
         player.map_just_changed = true;
         
         active_map.GetComponent<AudioSource>().playOnAwake = false;
         active_map.SetActive(true);
+        active_map.GetComponent<AudioSource>().volume = 0f;
         
         st.unfilling = true;
         
         while(player.warp_sound.isPlaying){
             yield return null;
         }
+        
         active_map.GetComponent<AudioSource>().Play();
+        active_map.GetComponent<AudioSource>().volume = 1f;
         
         done_changing = true;
     }

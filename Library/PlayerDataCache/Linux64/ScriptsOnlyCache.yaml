@@ -102,6 +102,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 14282}
     - Class: 115
       Script: {instanceID: 0}
+    - Class: 128
+      Script: {instanceID: 0}
     - Class: 157
       Script: {instanceID: 0}
     - Class: 196
@@ -675,7 +677,7 @@ ScriptsOnlyBuild:
     className: Physics2DRaycaster
   - hash:
       serializedVersion: 2
-      Hash: a8aadc7a587cc1c07e94d9b7914a68c0
+      Hash: f6612a67aad63ded4af3491263fb9e7b
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: BattleHandler
@@ -876,4 +878,4 @@ ScriptsOnlyBuild:
   - Assets/Scenes/Title Screen.unity
   - Assets/Scenes/Overworld.unity
   - Assets/Scenes/Battle.unity
-  playerPath: /Users/matthewaverill/UnityProjects/Phantasia/Linux Build/Phantasia.x86_64
+  playerPath: /Users/matthewaverill/UnityProjects/Phantasia/Builds/Linux/Phantasia.x86_64
