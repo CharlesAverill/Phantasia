@@ -2,8 +2,10 @@
 FF1 Remake in Unity
 
 ## Installation
-- Mac - Download the Phantasia.app folder and run it as an application
-- Windows - Download the "Windows Build" folder and run the .exe inside
+Download the repo as a zip file (green button at the top right)
+- Mac - Run Phantasia.app
+- Windows - Run Phantasia.exe inside of "Windows Build"
+- Linux - Run "Phantasia.x86_64" inside of "Linux Build"
 
 ## Tips
 - Pressing "escape" will unlock the mouse
