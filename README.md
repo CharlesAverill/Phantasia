@@ -13,6 +13,15 @@ Download the repo as a zip file (green button at the top right)
 - Damge IS happening when you're battling, both to you and the monsters. I just haven't messed around with the UI yet.
 
 ## What's Supported
+
+### Overworld
+- Corneria, Corneria Castle (Downstairs)
+- Temple of Fiends
+
+### Battling
+- Actions
+  - Fight
+  - Run
 - Classes
   - Black Mage
 - Monsters
@@ -27,10 +36,6 @@ Download the repo as a zip file (green button at the top right)
   - Wolf
   - WrWolf
   - Zombie
-- Maps
-  - Overworld
-  - Corneria + Corneria Castle
-  - Temple of Fiends
 - Misc
   - Screen transitions
   - Enter/Exit battle
