@@ -17,6 +17,24 @@ TextureImporter:
   - first:
       213: -2658868259114192933
     second: MadPony
+  - first:
+      213: -5099675088665252913
+    second: Bone
+  - first:
+      213: 9001568371343310336
+    second: Creep
+  - first:
+      213: -2086191518149510023
+    second: Spider
+  - first:
+      213: -3398425601533472082
+    second: Zombie
+  - first:
+      213: 3499036745522295064
+    second: WrWolf
+  - first:
+      213: -6546070771089995561
+    second: Ghoul
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -202,6 +220,132 @@ TextureImporter:
       bones: []
       spriteID: bdfefe6d76dc91bd0800000000000000
       internalID: -2658868259114192933
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bone
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 1530
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fcbe23ea6805a39b0800000000000000
+      internalID: -5099675088665252913
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Creep
+      rect:
+        serializedVersion: 2
+        x: 39
+        y: 1529
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 00e3f4bcdbefbec70800000000000000
+      internalID: 9001568371343310336
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spider
+      rect:
+        serializedVersion: 2
+        x: 141
+        y: 1523
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 97cf34b0edb5c03e0800000000000000
+      internalID: -2086191518149510023
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zombie
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 1527
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ea21109cbed56d0d0800000000000000
+      internalID: -3398425601533472082
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WrWolf
+      rect:
+        serializedVersion: 2
+        x: 177
+        y: 1523
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 81135e0a1631f8030800000000000000
+      internalID: 3499036745522295064
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ghoul
+      rect:
+        serializedVersion: 2
+        x: 75
+        y: 1528
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7d80d96f05fa725a0800000000000000
+      internalID: -6546070771089995561
       vertices: []
       indices: 
       edges: []

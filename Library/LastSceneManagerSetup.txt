@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/Scenes/test_overworld.unity
+- path: Assets/Scenes/Overworld.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0

@@ -15,6 +15,8 @@ public class Monster : Battler
     public float crit_percent;
     public string[] family;
     public int morale;
+    public string attack_status;
+    public string attack_element;
     public string[] weaknesses;
     public string[] resistances;
     

@@ -27,8 +27,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 818630816237256490}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.8980951, y: 1.1994888, z: -1}
-  m_LocalScale: {x: 11.25, y: 11.25, z: 12}
+  m_LocalPosition: {x: 0, y: 0, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 12}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -108,10 +108,15 @@ MonoBehaviour:
   damage_high: 0
   multihit: 0
   crit_percent: 0
-  family: 
+  family: []
   morale: 0
   weaknesses: []
   resistances: []
+  spells: []
+  specials: []
+  action: 
+  target: {fileID: 0}
+  bh: {fileID: 0}
 --- !u!61 &158400546119084124
 BoxCollider2D:
   m_ObjectHideFlags: 0
