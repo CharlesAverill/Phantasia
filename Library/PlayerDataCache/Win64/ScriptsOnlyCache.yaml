@@ -790,4 +790,4 @@ ScriptsOnlyBuild:
   scenePathNames:
   - Assets/Scenes/Overworld.unity
   - Assets/Scenes/Battle.unity
-  playerPath: /Users/matthewaverill/UnityProjects/Phantasia/Phantasia.exe/Phantasia.exe
+  playerPath: /Users/matthewaverill/UnityProjects/Phantasia/Windows Build/Phantasia.exe
