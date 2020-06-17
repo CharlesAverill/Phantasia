@@ -21,6 +21,7 @@ ScriptsOnlyBuild:
     - UnityEditor.U2D.Animation.BoneGizmo
     Unity.2D.Tilemap.Editor.dll:
     - UnityEditor.Tilemaps.GridBrush
+    - UnityEditor.Tilemaps.GridBrushEditor
     - UnityEditor.Tilemaps.GridPaintPaletteClipboard
     - UnityEditor.Tilemaps.GridPaintPaletteWindow
     - UnityEditor.Tilemaps.GridPaintingState
@@ -677,7 +678,7 @@ ScriptsOnlyBuild:
     className: WarpTiles
   - hash:
       serializedVersion: 2
-      Hash: afbe64ae5c63e797dab4c4d0f8a3110b
+      Hash: 989d2b9819422b31d5de25d10eedc15b
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PartyMember

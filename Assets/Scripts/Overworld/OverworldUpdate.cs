@@ -14,11 +14,9 @@ public class OverworldUpdate : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        old.SetActive(true);
-        updated.SetActive(false);
+        date_map();
         if(start_with_update){
-            old.SetActive(false);
-            updated.SetActive(true);
+            update_map();
         }
     }
 
@@ -28,8 +26,13 @@ public class OverworldUpdate : MonoBehaviour
         
     }
     
-    void UpdateMap(){
+    public void update_map(){
         old.SetActive(false);
         updated.SetActive(true);
+    }
+    
+    public void date_map(){
+        old.SetActive(true);
+        updated.SetActive(false);
     }
 }

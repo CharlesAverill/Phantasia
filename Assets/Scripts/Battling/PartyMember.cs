@@ -13,6 +13,8 @@ public class PartyMember : Battler
     public int luck;
     public int level;
     
+    public bool can_run;
+    
     public BattleHandler bh;
     
     public Vector3 move_point;
@@ -39,12 +41,16 @@ public class PartyMember : Battler
         target = monster_cursor.get_monster().gameObject;
         
         anim.SetTrigger("walk");
-        move_point = new Vector3(3.66f, transform.position.y, transform.position.z);
+        walk_back();
         while(is_moving()){
             yield return null;
         }
         
         action = act;
+    }
+    
+    public void walk_back(){
+        move_point = new Vector3(3.66f, transform.position.y, transform.position.z);
     }
     
     public bool is_moving(){

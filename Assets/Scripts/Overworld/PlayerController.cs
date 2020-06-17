@@ -128,7 +128,6 @@ public class PlayerController : MonoBehaviour
         }
         else if(c.gameObject.GetComponent<OverworldGrid>()){
             og = c.gameObject.GetComponent<OverworldGrid>();
-            Debug.Log(og);
         }
     }
     

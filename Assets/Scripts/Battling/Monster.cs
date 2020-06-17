@@ -74,7 +74,6 @@ public class Monster : Battler
         
         action = actions[Random.Range(0, actions.Count)];
         
-        Debug.Log(bh);
         PartyMember leader = bh.party[0];
         if(morale - (2 * leader.level) + Random.Range(0, 50) < 80){
             action = "run";

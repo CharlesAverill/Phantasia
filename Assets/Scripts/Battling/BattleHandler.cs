@@ -76,9 +76,16 @@ public class BattleHandler : MonoBehaviour
                     p.turn();
                     
                     while(p.action == "" || p.target == null){
+                        if(p.action == "run")
+                            break;
                         yield return null;
                     }
-                    Debug.Log(p.name + " " + p.action + " -> " + p.target.name);
+                    if(p.target){
+                        Debug.Log(p.name + " " + p.action + " -> " + p.target.name);
+                    }
+                    else{
+                        Debug.Log(p.name + " -> " + p.action);
+                    }
                 }
             }
             
@@ -144,7 +151,11 @@ public class BattleHandler : MonoBehaviour
                 if(x >= 80){
                     PartyMember p = party[x - 80];
                     
-                    if(p.action == "fight" && p.HP > 0){
+                    if(p.HP <= 0){
+                        continue;
+                    }
+                    
+                    if(p.action == "fight"){
                         StartCoroutine(p.show_battle());
                         while(!p.done_showing){
                             yield return null;
@@ -155,6 +166,23 @@ public class BattleHandler : MonoBehaviour
                         }
                         
                         p.GetComponent<Battler>().fight(p, p.target.GetComponent<Monster>());
+                    }
+                    
+                    if(p.action == "run"){
+                        if(!p.can_run){
+                            Debug.Log("Can't run!");
+                        }
+                        else{
+                            int run_seed = UnityEngine.Random.Range(0, p.level + 15);
+                            if(p.luck > run_seed){
+                                battle_complete = true;
+                                stalemate = true;
+                                break;
+                            }
+                            else{
+                                Debug.Log("Running was unsuccessful...");
+                            }
+                        }
                     }
                 }
                 else{
@@ -224,6 +252,11 @@ public class BattleHandler : MonoBehaviour
     
     public void fight_choose(){
         StartCoroutine(active_party_member.choose_monster("fight"));
+    }
+    
+    public void player_run(){
+        active_party_member.action = "run";
+        active_party_member.walk_back();
     }
     
     private GameObject monster_party;
