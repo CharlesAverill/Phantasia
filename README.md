@@ -2,14 +2,13 @@
 Multiplatform Final Fantasy 1 port in Unity
 
 ## Installation
-Download the repo as a zip file (green button at the top right)
+Download the repo as a zip file (green button at the top right). Open the "Builds" folder.
 - Mac - Run Phantasia.app
-- Windows - Run Phantasia.exe inside of "Windows Build"
-- Linux - Run "Phantasia.x86_64" inside of "Linux Build"
+- Windows - Run Phantasia.exe inside of "Windows"
+- Linux - Run "Phantasia.x86_64" inside of "Linux"
 
 ## Tips
 - Pressing "escape" will unlock the mouse
-- Don't be surprised if it crashes when you have a random encounter far away from Corneria, I haven't added in those monster parties yet
 - Damge IS happening when you're battling, both to you and the monsters. I just haven't messed around with the UI yet.
 
 ## What's Supported
@@ -37,6 +36,7 @@ Download the repo as a zip file (green button at the top right)
   - WrWolf
   - Zombie
 - Misc
+  - Title screen
   - Screen transitions
   - Enter/Exit battle
   - Music
