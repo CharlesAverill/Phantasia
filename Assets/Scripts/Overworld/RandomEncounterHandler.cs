@@ -32,7 +32,7 @@ public class RandomEncounterHandler : MonoBehaviour
     IEnumerator initiate_encounter(){
     
         string monster_party = player.og.get_monster_party().name;
-        string path = "Assets/Resources/encounter.txt";
+        string path = "./Assets/Resources/encounter.txt";
         
         File.Delete(path);
         
