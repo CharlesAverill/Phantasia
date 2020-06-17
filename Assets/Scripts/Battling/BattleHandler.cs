@@ -214,6 +214,10 @@ public class BattleHandler : MonoBehaviour
             }
         }
         
+        Destroy(monster_party);
+        
+        GlobalControl.instance.monster_party = null;
+        
         SceneManager.UnloadScene("Battle");
         
     }
@@ -222,16 +226,12 @@ public class BattleHandler : MonoBehaviour
         StartCoroutine(active_party_member.choose_monster("fight"));
     }
     
+    private GameObject monster_party;
+    
     // Start is called before the first frame update
     void Awake()
     {
-    
-        StreamReader reader = new StreamReader("Assets/Resources/encounter.txt");
-        string path = reader.ReadToEnd().Trim();
-        reader.Close();
-        
-        UnityEngine.Object mp_prefab = Resources.Load(path, typeof(GameObject));
-        GameObject monster_party = (GameObject)Instantiate(mp_prefab, new Vector3(0f, 0f, 1f), Quaternion.identity);
+        monster_party = (GameObject)Instantiate(GlobalControl.instance.monster_party, new Vector3(0f, 0f, 1f), Quaternion.identity);
         Debug.Log(monster_party);
         monster_party.SetActive(true);
         

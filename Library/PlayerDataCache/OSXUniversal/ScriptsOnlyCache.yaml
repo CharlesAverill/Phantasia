@@ -4,6 +4,7 @@ ScriptsOnlyBuild:
     - BattleHandler
     - CameraController
     - CursorController
+    - GlobalControl
     - IntroLoop
     - Map
     - MapHandler
@@ -181,6 +182,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 13736}
     - Class: 114
       Script: {instanceID: 14282}
+    - Class: 114
+      Script: {instanceID: 27446}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 157
@@ -470,7 +473,7 @@ ScriptsOnlyBuild:
     className: Selectable
   - hash:
       serializedVersion: 2
-      Hash: 3fdc326ca30a47257927aedda6b1f61d
+      Hash: 4d149515a12667baa93fb1d2334e8f2f
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Monster
@@ -786,6 +789,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
+  - hash:
+      serializedVersion: 2
+      Hash: f54e60eb0dc8f10e1c3c2106605280ca
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: GlobalControl
   platform: 2
   scenePathNames:
   - Assets/Scenes/Overworld.unity
