@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7082451750510773360}
   m_Layer: 0
-  m_Name: Grimp-3
+  m_Name: Grimp_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

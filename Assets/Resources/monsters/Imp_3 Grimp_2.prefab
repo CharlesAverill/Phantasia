@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4480001472811054676}
   m_Layer: 0
-  m_Name: Imp-3 Grimp-2
+  m_Name: Imp_3 Grimp_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
