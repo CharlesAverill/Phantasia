@@ -791,4 +791,4 @@ ScriptsOnlyBuild:
   scenePathNames:
   - Assets/Scenes/Overworld.unity
   - Assets/Scenes/Battle.unity
-  playerPath: /Users/matthewaverill/UnityProjects/Phantasia/Linux Build/Linux Build.x86_64
+  playerPath: /Users/matthewaverill/UnityProjects/Phantasia/Linux Build/Phantasia.x86_64
