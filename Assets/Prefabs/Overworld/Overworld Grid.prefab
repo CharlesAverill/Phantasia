@@ -707,6 +707,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7617323718737129511}
   - component: {fileID: 1661342613839104595}
+  - component: {fileID: 396179920636841985}
   m_Layer: 0
   m_Name: Overworld Grid
   m_TagString: Untagged
@@ -746,12 +747,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monster_encounters:
-  - monsters:
-    - monster: {fileID: 2260551969657668562, guid: bb6438c78f8a144cca0d76d1852fc57d,
-        type: 3}
-      encounter_num_low: 3
-      encounter_num_high: 5
+  - monster_party: {fileID: 0}
     encounter_rate: 1
+--- !u!61 &396179920636841985
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4994805501919195774}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 64, y: 64}
+  m_EdgeRadius: 0
 --- !u!1 &5606208580683961026
 GameObject:
   m_ObjectHideFlags: 0
