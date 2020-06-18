@@ -47,4 +47,4 @@ Download the repo as a zip file (green button at the top right). Open the "Build
   - Collision
   - NPC Movement, Dialogue
   - Indoor rooms
-  - Multiple classes in the Overworld
+  - All classes in the Overworld
