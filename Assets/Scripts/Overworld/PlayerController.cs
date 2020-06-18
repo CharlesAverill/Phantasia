@@ -167,7 +167,11 @@ public class PlayerController : MonoBehaviour
     }
     
     void OnTriggerEnter2D(Collider2D c){
-        if(c.gameObject.GetComponent<TilemapRenderer>() && !map_just_changed){
+        if(c.gameObject.GetComponent<RoomHandler>()){
+            c.gameObject.GetComponent<RoomHandler>().change();
+        }
+        else if(c.gameObject.GetComponent<TilemapRenderer>() && !map_just_changed){
+            reh.gameObject.SetActive(false);
             GameObject map = c.gameObject.GetComponent<WarpTiles>().warp_to;
             reh.set_encounters(map.GetComponent<Map>().encounters);
             StartCoroutine(change_map(map));
@@ -179,6 +183,7 @@ public class PlayerController : MonoBehaviour
     
     void OnTriggerExit2D(Collider2D c){
         map_just_changed = false;
+        reh.gameObject.SetActive(true);
     }
     
     IEnumerator change_map(GameObject map){

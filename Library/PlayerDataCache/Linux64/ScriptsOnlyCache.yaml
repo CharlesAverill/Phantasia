@@ -17,6 +17,7 @@ ScriptsOnlyBuild:
     - PartyMember
     - PlayerController
     - RandomEncounterHandler
+    - RoomHandler
     - ScreenTransition
     - TitleScreenHandler
     - WarpTiles
@@ -190,6 +191,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 27446}
     - Class: 114
       Script: {instanceID: 162588}
+    - Class: 114
+      Script: {instanceID: 186748}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -894,6 +897,12 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: NPCHandler
+  - hash:
+      serializedVersion: 2
+      Hash: caaa8ac7a45b6d75c717bc8e54bca21d
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: RoomHandler
   platform: 24
   scenePathNames:
   - Assets/Scenes/Title Screen.unity
