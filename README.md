@@ -4,8 +4,8 @@ Multiplatform Final Fantasy 1 port in Unity
 ## Installation
 Download the repo as a zip file (green button at the top right). Open the "Builds" folder.
 - Mac - Run Phantasia.app
-- Windows - Run Phantasia.exe inside of "Windows"
-- Linux - Run "Phantasia.x86_64" inside of "Linux"
+- Windows - Run Phantasia.exe
+- Linux - Run Phantasia.x86_64
 
 ## Tips
 - Pressing "m" on the title screen will switch between classic/remastered music. This will carry across sessions.
