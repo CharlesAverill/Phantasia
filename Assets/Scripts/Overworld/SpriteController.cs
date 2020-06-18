@@ -56,6 +56,8 @@ public class SpriteController : MonoBehaviour
             character_index = characters.Length - 1;
         }
         
+        frames_since_last_increment = 0;
+        
         SaveSystem.SetInt("character_index", character_index);
     }
     

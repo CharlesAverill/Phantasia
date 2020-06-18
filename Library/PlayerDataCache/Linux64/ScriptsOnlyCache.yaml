@@ -1,8 +1,5 @@
 ScriptsOnlyBuild:
   usedScripts:
-    Assembly-CSharp-Editor.dll:
-    - MultiBuild.Settings
-    - MultiBuild.SettingsWindow
     Assembly-CSharp.dll:
     - BattleHandler
     - CameraController

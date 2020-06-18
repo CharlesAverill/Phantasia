@@ -45,6 +45,8 @@ public class TitleScreenHandler : MonoBehaviour
         SaveSystem.SetBool("inside_of_room", false);
         
         SaveSystem.SetInt("reh_seed", 255);
+        
+        SaveSystem.SetInt("character_index", 0);
     
         SaveSystem.SetFloat("overworldX", -1f);
         SaveSystem.SetFloat("overworldY", -5f);
