@@ -9,6 +9,7 @@ Download the repo as a zip file (green button at the top right). Open the "Build
 
 ## Tips
 - Pressing "m" on the title screen will switch between classic/remastered music. This will carry across sessions.
+- Pressing "c" in-game will change your overworld sprite. All 12 classes are supported.
 - Pressing "escape" will unlock the mouse
 - Damge IS happening when you're battling, both to you and the monsters. I just haven't messed around with the UI yet
 - The game autosaves your party's HP, EXP, and conditions at the end of each battle. If you want to save your overworld/subword position, press "i".
@@ -41,7 +42,8 @@ Download the repo as a zip file (green button at the top right). Open the "Build
   - Title screen
   - Screen transitions
   - Enter/Exit battle
-  - Music
+  - Music (Classic + remastered)
   - Collision
   - NPC Movement, Dialogue
   - Indoor rooms
+  - Multiple classes in the Overworld
