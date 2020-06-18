@@ -8,6 +8,7 @@ Download the repo as a zip file (green button at the top right). Open the "Build
 - Linux - Run "Phantasia.x86_64" inside of "Linux"
 
 ## Tips
+- Pressing "m" on the title screen will switch between classic/remastered music. This will carry across sessions.
 - Pressing "escape" will unlock the mouse
 - Damge IS happening when you're battling, both to you and the monsters. I just haven't messed around with the UI yet
 - The game autosaves your party's HP, EXP, and conditions at the end of each battle. If you want to save your overworld/subword position, press "i".
