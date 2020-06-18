@@ -11,6 +11,7 @@ ScriptsOnlyBuild:
     - MapHandler
     - Monster
     - NPC
+    - NPCHandler
     - OverworldGrid
     - OverworldUpdate
     - PartyMember
@@ -23,6 +24,7 @@ ScriptsOnlyBuild:
     - UnityEditor.U2D.Animation.BoneGizmo
     Unity.2D.Tilemap.Editor.dll:
     - UnityEditor.Tilemaps.GridBrush
+    - UnityEditor.Tilemaps.GridBrushEditor
     - UnityEditor.Tilemaps.GridPaintPaletteClipboard
     - UnityEditor.Tilemaps.GridPaintPaletteWindow
     - UnityEditor.Tilemaps.GridPaintingState
@@ -153,6 +155,8 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11182}
     - Class: 114
+      Script: {instanceID: 11470}
+    - Class: 114
       Script: {instanceID: 11564}
     - Class: 114
       Script: {instanceID: 11624}
@@ -184,7 +188,11 @@ ScriptsOnlyBuild:
       Script: {instanceID: 14282}
     - Class: 114
       Script: {instanceID: 27446}
+    - Class: 114
+      Script: {instanceID: 162588}
     - Class: 115
+      Script: {instanceID: 0}
+    - Class: 128
       Script: {instanceID: 0}
     - Class: 157
       Script: {instanceID: 0}
@@ -193,6 +201,8 @@ ScriptsOnlyBuild:
     - Class: 212
       Script: {instanceID: 0}
     - Class: 213
+      Script: {instanceID: 0}
+    - Class: 222
       Script: {instanceID: 0}
     - Class: 223
       Script: {instanceID: 0}
@@ -604,7 +614,7 @@ ScriptsOnlyBuild:
     className: RawImage
   - hash:
       serializedVersion: 2
-      Hash: 257d92a143c122e1e330e900036c77c5
+      Hash: cad137844d635c4600fa23b34040f055
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PlayerController
@@ -682,7 +692,7 @@ ScriptsOnlyBuild:
     className: BattleHandler
   - hash:
       serializedVersion: 2
-      Hash: 4c3836ad35a59789e6d6f4fc5076cb48
+      Hash: 5b37313c4f506fb2d2e0339f1a437d97
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: NPC
@@ -872,6 +882,18 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: LoadingCircle
+  - hash:
+      serializedVersion: 2
+      Hash: e223c2fc83d1d98b31eeba84e933c5cb
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Interactable
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: NPCHandler
   platform: 24
   scenePathNames:
   - Assets/Scenes/Title Screen.unity

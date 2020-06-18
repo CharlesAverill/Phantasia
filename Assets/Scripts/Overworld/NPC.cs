@@ -2,11 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NPC : MonoBehaviour
+public class NPC : Interactable
 {
     // Start is called before the first frame update
-    
-    public string dialogue;
     
     public Transform move_point;
     
@@ -23,19 +21,27 @@ public class NPC : MonoBehaviour
     private int frames_until_move;
     private int frame_count;
     
-    private SpriteRenderer sr;
+    private SpriteRenderer child_sr;
     
     private float last_direction;
+    
+    private bool can_move;
+    
+    private BoxCollider2D cld;
     
     void Awake()
     {
         move_point.parent = transform.parent;
         
+        cld = GetComponent<BoxCollider2D>();
+        
         frames_until_move = Random.Range(30, 300);
         frame_count = 0;
         last_direction = 1f;
         
-        sr = GetComponent<SpriteRenderer>();
+        child_sr = GetComponent<SpriteRenderer>();
+        
+        can_move = true;
     }
 
     // Update is called once per frame
@@ -47,7 +53,7 @@ public class NPC : MonoBehaviour
         float hor = 0f;
         float ver = 0f;
         
-        if(frame_count >= frames_until_move){
+        if(frame_count >= frames_until_move && can_move){
             float direction = Random.Range(0, 3);
             
             float continue_from_last_direction = Random.Range(0, 3);
@@ -82,13 +88,13 @@ public class NPC : MonoBehaviour
             RaycastHit2D hit = Physics2D.Raycast(transform.position, new Vector3(hor, 0f, 0f), multiplier, collision | water | river);
             if(hor == multiplier){
                  //anim.SetTrigger("right");
-                sr.flipX = true;
-                sr.sprite = left;
+                child_sr.flipX = true;
+                child_sr.sprite = left;
             }
             if(hor == -1f * multiplier){
                 //anim.SetTrigger("left");
-                sr.flipX = false;
-                sr.sprite = left;
+                child_sr.flipX = false;
+                child_sr.sprite = left;
             }
             if(hit.collider == null || hit.collider.gameObject.layer == 0){
                 move_point.position += new Vector3(hor, 0f, 0f);
@@ -102,11 +108,11 @@ public class NPC : MonoBehaviour
             RaycastHit2D hit = Physics2D.Raycast(transform.position, new Vector3(0f, ver, 0f), 1f * multiplier, collision | water | river);
             if(ver == multiplier){
                  //anim.SetTrigger("up");
-                sr.sprite = up;
+                child_sr.sprite = up;
             }
             if(ver == -1f * multiplier){
                 //anim.SetTrigger("down");
-                sr.sprite = down;
+                child_sr.sprite = down;
             }
             if(hit.collider == null || hit.collider.gameObject.layer == 0){
                 move_point.position += new Vector3(0f, ver, 0f);
@@ -115,7 +121,86 @@ public class NPC : MonoBehaviour
                 last_direction = Random.Range(0, 3);
             }
         }
-        
+        /*
+        if(transform.position != move_point.position){
+            float h = 0f;
+            float v = 0f;
+            
+            float h_size = 2f;
+            float v_size = 2f;
+            
+            switch(last_direction){
+                case 0:
+                    v = 1f;
+                    break;
+                case 1:
+                    v = -1f;
+                    break;
+                case 2:
+                    h = 1f;
+                    break;
+                case 3:
+                    h = -1f;
+                    break;
+            }
+            
+            if(v != 0f){
+                v_size = 4f;
+            }
+            if(h != 0f){
+                h_size = 4f;
+            }
+            
+            cld.offset = new Vector2(h, v);
+            cld.size = new Vector2(h_size, v_size);
+        }
+        else{
+            cld.offset = new Vector2(0f, 0f);
+            cld.size = new Vector2(2f, 2f);
+        }
+        */
         transform.position = Vector3.MoveTowards(transform.position, move_point.position, move_speed * Time.deltaTime);
+    }
+    
+    public IEnumerator interact(PlayerController p){
+        can_move = false;
+        
+        if(p.sr.sprite == p.up){
+            child_sr.sprite = down;
+        }
+        if(p.sr.sprite == p.down){
+            child_sr.sprite = up;
+        }
+        if(p.sr.sprite == p.left){
+            if(p.sr.flipX){
+                child_sr.sprite = left;
+                child_sr.flipX = false;
+            }
+            else{
+                child_sr.sprite = left;
+                child_sr.flipX = true;
+            }
+        }
+    
+        Vector3 p_pos = p.gameObject.transform.position;
+    
+        Vector3 location = new Vector3(p_pos.x, p_pos.y - 7.5f, p_pos.z);
+    
+        display_textbox(location);
+        
+        yield return new WaitForSeconds(.2f);
+        while(Input.GetAxisRaw("Submit") == 0){
+            yield return null;
+        }
+        
+        hide_textbox();
+        p.can_move = true;
+        can_move = true;
+        
+        p.frames_since_last_interact = 0;
+    }
+    
+    void OnCollisionEnter2D(Collision2D c){
+        gameObject.SetActive(false);
     }
 }
