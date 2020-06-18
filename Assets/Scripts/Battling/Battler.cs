@@ -8,9 +8,12 @@ public class Battler : MonoBehaviour
     public int HP;
     public float hit;
     public float magic_defense;
-    public string[] conditions;
+    public List<String> conditions;
     
     public void fight(Monster attack, PartyMember defend){
+    
+        string[] conditions_array = conditions.ToArray();
+    
         float damage_rating = UnityEngine.Random.Range((float)attack.damage_low, (float)attack.damage_high);
         
         int absorb_rating = 0;
@@ -34,10 +37,10 @@ public class Battler : MonoBehaviour
         
         float chance_to_hit = 168f + attack.hit - (48 + defend.agility);
         
-        if(Array.Exists(conditions, condition => condition=="blind")){
+        if(Array.Exists(conditions_array, condition => condition=="blind")){
             chance_to_hit -= 40f;
         }
-        if(Array.Exists(conditions, condition => condition=="blind")){
+        if(Array.Exists(conditions_array, condition => condition=="blind")){
             chance_to_hit += 40f;
         }
         
@@ -55,6 +58,8 @@ public class Battler : MonoBehaviour
     }
     
     public void fight(PartyMember attack, Monster defend){
+    
+        string[] conditions_array = conditions.ToArray();
     
         float damage_rating = 0;
         if(attack.job == "black_mage" || attack.job == "black_wizard"){
@@ -84,10 +89,10 @@ public class Battler : MonoBehaviour
         
         float chance_to_hit = 168f + attack.hit - defend.evade;
         
-        if(Array.Exists(conditions, condition => condition=="blind")){
+        if(Array.Exists(conditions_array, condition => condition=="blind")){
             chance_to_hit -= 40f;
         }
-        if(Array.Exists(conditions, condition => condition=="blind")){
+        if(Array.Exists(conditions_array, condition => condition=="blind")){
             chance_to_hit += 40f;
         }
         

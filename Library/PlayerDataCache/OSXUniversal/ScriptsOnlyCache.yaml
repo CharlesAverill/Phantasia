@@ -21,6 +21,7 @@ ScriptsOnlyBuild:
     - PlayerController
     - RandomEncounterHandler
     - RoomHandler
+    - SaveSystemSetup
     - ScreenTransition
     - TitleScreenHandler
     - WarpTiles
@@ -268,6 +269,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 77330}
     - Class: 114
       Script: {instanceID: 78468}
+    - Class: 114
+      Script: {instanceID: 246590}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -715,7 +718,7 @@ ScriptsOnlyBuild:
     className: Map
   - hash:
       serializedVersion: 2
-      Hash: f0c9242e2a3da763acc3538883638f7f
+      Hash: 19dae06549eda5476852848a8d00e644
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: MapHandler
@@ -757,7 +760,7 @@ ScriptsOnlyBuild:
     className: WarpTiles
   - hash:
       serializedVersion: 2
-      Hash: 989d2b9819422b31d5de25d10eedc15b
+      Hash: f2eaf6b7dd4bd3ad8f61f6a32b3bf509
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PartyMember
@@ -905,6 +908,18 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: RoomHandler
+  - hash:
+      serializedVersion: 2
+      Hash: e10399c253af45db3853ac1e92b8b834
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: TestSaveGame
+  - hash:
+      serializedVersion: 2
+      Hash: 70fe7c0f211ddde3eaf57c80ac1d477a
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: SaveSystemSetup
   platform: 2
   scenePathNames:
   - Assets/Scenes/Title Screen.unity

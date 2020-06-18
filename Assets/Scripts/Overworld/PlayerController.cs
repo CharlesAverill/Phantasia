@@ -37,7 +37,7 @@ public class PlayerController : MonoBehaviour
     public int frames_since_last_interact;
     
     // Start is called before the first frame update
-    void Awake()
+    void Start()
     {
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
@@ -49,12 +49,23 @@ public class PlayerController : MonoBehaviour
         
         frames_since_last_interact = 0;
         
-        reh.gen_seed();
+        reh.gameObject.SetActive(true);
+        reh.seed = SaveSystem.GetInt("reh_seed");
     }
 
     // Update is called once per frame
     void Update()
     {
+        
+        if(reh.gameObject.active == false){
+            reh.gameObject.SetActive(true);
+        }
+        
+        if(Input.GetKeyDown("i") && can_move && reh.seed > 0){
+            Debug.Log("Saving...");
+            map_handler.save_position();
+        }
+    
         //Movement
         transform.rotation = Quaternion.identity;
         
@@ -178,6 +189,8 @@ public class PlayerController : MonoBehaviour
         }
         else if(c.gameObject.GetComponent<OverworldGrid>()){
             og = c.gameObject.GetComponent<OverworldGrid>();
+            //SaveSystem.SetString("player_og", og.gameObject.name);
+            //SaveSystem.SaveToDisk();
         }
     }
     

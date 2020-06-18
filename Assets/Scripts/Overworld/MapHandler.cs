@@ -7,21 +7,49 @@ public class MapHandler : MonoBehaviour
     
     public PlayerController player;
     public ScreenTransition st;
-    public string[] map_names;
     public GameObject grids;
     public GameObject active_map;
     
     float overworldX;
     float overworldY;
     
+    float submapX;
+    float submapY;
+    
     public bool done_changing;
     
     // Start is called before the first frame update
     void Start()
     {
+        overworldX = SaveSystem.GetFloat("overworldX");
+        overworldY = SaveSystem.GetFloat("overworldY");
+        
+        submapX = SaveSystem.GetFloat("submapX");
+        submapY = SaveSystem.GetFloat("submapY");
+    
+        if(SaveSystem.GetBool("in_submap")){
+            Map[] maps = grids.GetComponentsInChildren<Map>(true);
+            foreach(Map m in maps){
+                if(m.gameObject.name == SaveSystem.GetString("submap_name")){
+                    active_map = m.gameObject;
+                    break;
+                }
+            }
+            
+            player.move_point.position = new Vector3(submapX, submapY, 0f);
+            player.gameObject.transform.position = new Vector3(submapX, submapY, 0f);
+        }
+        else{
+            
+            player.move_point.position = new Vector3(overworldX, overworldY, 0f);
+            player.gameObject.transform.position = new Vector3(overworldX, overworldY, 0f);
+        }
+    
         deactivate_maps_except(active_map);
         done_changing = true;
         active_map.SetActive(true);
+        
+        player.reh.encounters = active_map.GetComponent<Map>().encounters;
     }
 
     // Update is called once per frame
@@ -30,6 +58,25 @@ public class MapHandler : MonoBehaviour
         if(active_map.name == "Overworld"){
             overworldX = player.transform.position.x;
             overworldY = player.transform.position.y;
+        }
+        else{
+            submapX = player.transform.position.x;
+            submapY = player.transform.position.y;
+        }
+    }
+    
+    public void save_position(){
+        SaveSystem.SetFloat("overworldX", overworldX);
+        SaveSystem.SetFloat("overworldY", overworldY);
+        SaveSystem.SetFloat("submapX", submapX);
+        SaveSystem.SetFloat("submapY", submapY);
+        
+        if(active_map.name == "Overworld"){
+            SaveSystem.SetBool("in_submap", false);
+        }
+        else{
+            SaveSystem.SetBool("in_submap", true);
+            SaveSystem.SetString("submap_name", active_map.name);
         }
     }
     

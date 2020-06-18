@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,6 +12,8 @@ public class PartyMember : Battler
     public int intelligence;
     public int vitality;
     public int luck;
+    
+    public int experience;
     public int level;
     
     public bool can_run;
@@ -26,6 +29,25 @@ public class PartyMember : Battler
     
     public string action;
     public GameObject target;
+    
+    public void load_player(){
+        gameObject.name = SaveSystem.GetString("Player" + (Array.IndexOf(bh.party, this) + 1) + "_name");
+        HP = SaveSystem.GetInt(gameObject.name + "_HP");
+        experience = SaveSystem.GetInt(gameObject.name + "_exp");
+        if(SaveSystem.GetBool(gameObject.name + "_poison")){
+            conditions.Add("poison");
+        }
+        if(SaveSystem.GetBool(gameObject.name + "_stone")){
+            conditions.Add("stone");
+        }
+    }
+        
+    public void save_player(){
+        SaveSystem.SetInt(gameObject.name + "_HP", HP);
+        SaveSystem.SetInt(gameObject.name + "_exp", experience);
+        SaveSystem.SetBool(gameObject.name + "_poison", conditions.Contains("poison"));
+        SaveSystem.SetBool(gameObject.name + "_stone", conditions.Contains("stone"));
+    }
     
     public IEnumerator choose_monster(string act){
     
@@ -114,6 +136,8 @@ public class PartyMember : Battler
     {
         done_set_up = false;
         
+        load_player();
+        
         move_point = transform.position;
         monster_cursor = bh.monster_cursor;
         menu_cursor = bh.menu_cursor;
@@ -123,6 +147,8 @@ public class PartyMember : Battler
         
         anim = GetComponent<Animator>();
         anim.speed = 3f;
+        
+        save_player();
         
         done_set_up = true;
     }

@@ -7,17 +7,51 @@ public class TitleScreenHandler : MonoBehaviour
 {
     
     public LoadingCircle loading_circle;
+    
+    private string[] names;
 
     // Start is called before the first frame update
     void Start()
     {
+    
+        string bin_path = Application.persistentDataPath + "/party.bin";
         
+        names = new string[]{"Matt", "Alta", "Ivan", "Cora"};
+        
+        if(!System.IO.File.Exists(bin_path)){
+        
+            SaveSystem.SetBool("in_submap", false);
+            
+            SaveSystem.SetInt("reh_seed", 255);
+        
+            SaveSystem.SetFloat("overworldX", -1f);
+            SaveSystem.SetFloat("overworldY", -5f);
+            
+            SaveSystem.SetString("Player1_name", names[0]);
+            SaveSystem.SetString("Player2_name", names[1]);
+            SaveSystem.SetString("Player3_name", names[2]);
+            SaveSystem.SetString("Player4_name", names[3]);
+            
+            foreach(string name in names){
+                SaveSystem.SetInt(name + "_HP", 100);
+                SaveSystem.SetInt(name + "_exp", 0);
+                SaveSystem.SetBool(name + "_poison", false);
+                SaveSystem.SetBool(name + "_stone", false);
+            }
+            SaveSystem.SaveToDisk();
+            Debug.Log("Done initializing");
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if(Input.GetKeyDown("h") && names.Length > 0){
+            foreach(string name in names){
+                SaveSystem.SetInt(name + "_HP", 100);
+            }
+            Debug.Log("Healed your party");
+        }
     }
     
     public void exit(){
@@ -37,6 +71,7 @@ public class TitleScreenHandler : MonoBehaviour
     IEnumerator load(){
         loading_circle.start_loading_circle();
         yield return new WaitForSeconds(.75f);
+        Cursor.lockState = CursorLockMode.Locked;
         SceneManager.LoadSceneAsync("Overworld");
     }
 }

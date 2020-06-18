@@ -58,6 +58,8 @@ public class BattleHandler : MonoBehaviour
                 yield return null;
             }
         }
+        
+        SaveSystem.SaveToDisk();
     
         battlers = new List<GameObject>();
         
@@ -223,6 +225,9 @@ public class BattleHandler : MonoBehaviour
                     break;
                 }
             }
+            
+            SaveSystem.SaveToDisk();
+            
             if(stalemate || win){
                 break;
             }
@@ -241,6 +246,10 @@ public class BattleHandler : MonoBehaviour
             while(Input.GetAxis("Submit") == 0){
                 yield return null;
             }
+        }
+            
+        foreach(PartyMember p in party){
+            p.save_player();
         }
         
         Destroy(monster_party);
@@ -265,6 +274,8 @@ public class BattleHandler : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        active_party_member = party[0];
+        
         monster_party = (GameObject)Instantiate(GlobalControl.instance.monster_party, new Vector3(0f, 0f, 1f), Quaternion.identity);
         Debug.Log(monster_party);
         monster_party.SetActive(true);
@@ -274,7 +285,6 @@ public class BattleHandler : MonoBehaviour
     
         battle_complete = false;
         win = false;
-        active_party_member = party[0];
         
         monsters = (from m in monster_cursor.monsters select m.GetComponent<Monster>()).ToArray();
         

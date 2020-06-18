@@ -27,10 +27,15 @@ public class RandomEncounterHandler : MonoBehaviour
         if(encounters){
             seed -= d;
         }
+        SaveSystem.SetInt("reh_seed", seed);
+        SaveSystem.SaveToDisk();
     }
     
     IEnumerator initiate_encounter(){
     
+        Debug.Log(GlobalControl.instance.monster_party);
+        Debug.Log(player.og);
+        
         GlobalControl.instance.monster_party = player.og.get_monster_party();
     
         int countLoaded = SceneManager.sceneCount;
@@ -78,12 +83,14 @@ public class RandomEncounterHandler : MonoBehaviour
     void Awake()
     {
         encounters = player.map_handler.active_map.GetComponent<Map>().encounters;
+        seed = SaveSystem.GetInt("reh_seed");
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(seed <= 0){
+        
+        if(seed <= 0 && SceneManager.sceneCount == 1){
             Debug.Log("Random encounter initiated");
             StartCoroutine(initiate_encounter());
             gen_seed();
