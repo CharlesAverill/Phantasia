@@ -31,10 +31,11 @@ public class RandomEncounterHandler : MonoBehaviour
         SaveSystem.SaveToDisk();
     }
     
+    private bool battling;
+    
     IEnumerator initiate_encounter(){
     
-        Debug.Log(GlobalControl.instance.monster_party);
-        Debug.Log(player.og);
+        battling = true;
         
         GlobalControl.instance.monster_party = player.og.get_monster_party();
     
@@ -70,11 +71,21 @@ public class RandomEncounterHandler : MonoBehaviour
         }
         
         countLoaded = SceneManager.sceneCount;
+        
         while(countLoaded > 1){
             countLoaded = SceneManager.sceneCount;
             yield return null;
         }
+        
         player.can_move = true;
+            
+        player.map_handler.save_position();
+        
+        gen_seed();
+        SaveSystem.SetInt("reh_seed", seed);
+        SaveSystem.SaveToDisk();
+        
+        battling = false;
         
         yield return null;
     }
@@ -90,10 +101,9 @@ public class RandomEncounterHandler : MonoBehaviour
     void Update()
     {
         
-        if(seed <= 0 && SceneManager.sceneCount == 1){
+        if(seed <= 0 && !battling){
             Debug.Log("Random encounter initiated");
             StartCoroutine(initiate_encounter());
-            gen_seed();
         }
         
         if(Input.GetKeyDown("escape")){
