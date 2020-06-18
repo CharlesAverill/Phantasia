@@ -57,7 +57,7 @@ public class TitleScreenHandler : MonoBehaviour
         }
     }
     
-    int frames_since_music_switch;
+    int frames_since_music_switch = 15;
 
     // Update is called once per frame
     void Update()

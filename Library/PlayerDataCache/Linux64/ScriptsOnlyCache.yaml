@@ -21,6 +21,7 @@ ScriptsOnlyBuild:
     - RoomHandler
     - SaveSystemSetup
     - ScreenTransition
+    - SpriteController
     - TitleScreenHandler
     - WarpTiles
     Unity.2D.Animation.Editor.dll:
@@ -199,6 +200,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 186748}
     - Class: 114
       Script: {instanceID: 395798}
+    - Class: 114
+      Script: {instanceID: 482526}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -625,7 +628,7 @@ ScriptsOnlyBuild:
     className: RawImage
   - hash:
       serializedVersion: 2
-      Hash: cad137844d635c4600fa23b34040f055
+      Hash: 2500c0fc60fb1e6b07eca6d4d1e7345d
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PlayerController
@@ -929,6 +932,12 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: MusicHandler
+  - hash:
+      serializedVersion: 2
+      Hash: 21adf8c54e86ca15f5d1a0f52b0e5e12
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: SpriteController
   platform: 24
   scenePathNames:
   - Assets/Scenes/Title Screen.unity

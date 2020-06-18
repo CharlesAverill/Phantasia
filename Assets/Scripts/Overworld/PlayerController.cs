@@ -18,11 +18,7 @@ public class PlayerController : MonoBehaviour
     public LayerMask river;
     public LayerMask NPC;
     
-    public SpriteRenderer sr;
-    
-    public Sprite up;
-    public Sprite down;
-    public Sprite left;
+    public SpriteController sc;
     
     public MapHandler map_handler;
     
@@ -66,6 +62,10 @@ public class PlayerController : MonoBehaviour
             SaveSystem.SetInt("reh_seed", reh.seed);
             map_handler.save_position();
         }
+        
+        if(Input.GetKeyDown("c") && can_move && reh.seed > 0){
+            sc.increment_character();
+        }
     
         //Movement
         transform.rotation = Quaternion.identity;
@@ -83,14 +83,10 @@ public class PlayerController : MonoBehaviour
                 if(Mathf.Abs(hor) == 1f * multiplier){
                     RaycastHit2D hit = Physics2D.Raycast(transform.position, new Vector3(hor, 0f, 0f), 1f * multiplier, collision | water | river);
                     if(hor == 1f * multiplier){
-                         //anim.SetTrigger("right");
-                        sr.flipX = true;
-                        sr.sprite = left;
+                         sc.change_direction("right");
                     }
                     if(hor == -1f * multiplier){
-                        //anim.SetTrigger("left");
-                        sr.flipX = false;
-                        sr.sprite = left;
+                        sc.change_direction("left");
                     }
                     if(hit.collider == null || hit.collider.gameObject.layer == 0){
                         move_point.position += new Vector3(hor, 0f, 0f);
@@ -111,12 +107,10 @@ public class PlayerController : MonoBehaviour
                 else if(Mathf.Abs(ver) == 1f * multiplier){
                     RaycastHit2D hit = Physics2D.Raycast(transform.position, new Vector3(0f, ver, 0f), 1f * multiplier, collision | water | river);
                     if(ver == 1f * multiplier){
-                         //anim.SetTrigger("up");
-                        sr.sprite = up;
+                        sc.change_direction("up");
                     }
                     if(ver == -1f * multiplier){
-                        //anim.SetTrigger("down");
-                        sr.sprite = down;
+                        sc.change_direction("down");
                     }
                     if(hit.collider == null || hit.collider.gameObject.layer == 0){
                         move_point.position += new Vector3(0f, ver, 0f);
@@ -161,19 +155,17 @@ public class PlayerController : MonoBehaviour
     
     public Vector3 get_direction_facing(){
         Vector3 direction = Vector3.zero;
-        if(sr.sprite == up){
+        if(sc.get_direction() == "up"){
             direction = new Vector3(0f, 1f, 0f);
         }
-        else if(sr.sprite == down){
+        else if(sc.get_direction() == "down"){
             direction = new Vector3(0f, -1f, 0f);
         }
-        else if(sr.sprite == left){
-            if(sr.flipX){
-                direction = new Vector3(1f, 0f, 0f);
-            }
-            else{
-                direction = new Vector3(-1f, 0f, 0f);
-            }
+        else if(sc.get_direction() == "left"){
+            direction = new Vector3(-1f, 0f, 0f);
+        }
+        else if(sc.get_direction() == "right"){
+            direction = new Vector3(1f, 0f, 0f);
         }
         return direction;
     }

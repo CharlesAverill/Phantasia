@@ -121,65 +121,25 @@ public class NPC : Interactable
                 last_direction = Random.Range(0, 3);
             }
         }
-        /*
-        if(transform.position != move_point.position){
-            float h = 0f;
-            float v = 0f;
-            
-            float h_size = 2f;
-            float v_size = 2f;
-            
-            switch(last_direction){
-                case 0:
-                    v = 1f;
-                    break;
-                case 1:
-                    v = -1f;
-                    break;
-                case 2:
-                    h = 1f;
-                    break;
-                case 3:
-                    h = -1f;
-                    break;
-            }
-            
-            if(v != 0f){
-                v_size = 4f;
-            }
-            if(h != 0f){
-                h_size = 4f;
-            }
-            
-            cld.offset = new Vector2(h, v);
-            cld.size = new Vector2(h_size, v_size);
-        }
-        else{
-            cld.offset = new Vector2(0f, 0f);
-            cld.size = new Vector2(2f, 2f);
-        }
-        */
         transform.position = Vector3.MoveTowards(transform.position, move_point.position, move_speed * Time.deltaTime);
     }
     
     public IEnumerator interact(PlayerController p){
         can_move = false;
         
-        if(p.sr.sprite == p.up){
+        if(p.sc.get_direction() == "down"){
             child_sr.sprite = down;
         }
-        if(p.sr.sprite == p.down){
+        if(p.sc.get_direction() == "up"){
             child_sr.sprite = up;
         }
-        if(p.sr.sprite == p.left){
-            if(p.sr.flipX){
-                child_sr.sprite = left;
-                child_sr.flipX = false;
-            }
-            else{
-                child_sr.sprite = left;
-                child_sr.flipX = true;
-            }
+        if(p.sc.get_direction() == "left"){
+            child_sr.sprite = left;
+            child_sr.flipX = false;
+        }
+        else if(p.sc.get_direction() == "right"){
+            child_sr.sprite = left;
+            child_sr.flipX = true;
         }
     
         Vector3 p_pos = p.gameObject.transform.position;

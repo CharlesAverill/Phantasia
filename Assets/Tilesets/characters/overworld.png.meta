@@ -4,109 +4,109 @@ TextureImporter:
   internalIDToNameTable:
   - first:
       213: 1354875658779561504
-    second: overworld_0
+    second: ma_down
   - first:
       213: 93419480468473589
-    second: overworld_1
+    second: ma_up
   - first:
       213: 7763350980288678063
-    second: overworld_2
+    second: ma_step1
   - first:
       213: -725840958583950985
-    second: overworld_3
+    second: ma_step2
   - first:
       213: 1508907952123479184
-    second: overworld_4
+    second: th_down
   - first:
       213: -8513729419774231368
-    second: overworld_5
+    second: th_up
   - first:
       213: 8960421833988930334
-    second: overworld_6
+    second: th_step1
   - first:
       213: -6042558719246366898
-    second: overworld_7
+    second: th_step2
   - first:
       213: -3077691454763529442
-    second: overworld_8
+    second: ww_down
   - first:
       213: 5445513934105861695
-    second: overworld_9
+    second: ww_up
   - first:
       213: -9062093603636991699
-    second: overworld_10
+    second: ww_step1
   - first:
       213: 6308679712954100753
-    second: overworld_11
+    second: ww_step2
   - first:
       213: 1380262791903993407
-    second: overworld_12
+    second: bb_down
   - first:
       213: -5575194074474450752
-    second: overworld_13
+    second: bb_up
   - first:
       213: -7967888570296149083
-    second: overworld_14
+    second: bb_step1
   - first:
       213: -3574767100692832850
-    second: overworld_15
+    second: bb_step2
   - first:
       213: -491000806372484911
-    second: overworld_16
+    second: rw_down
   - first:
       213: 5595352399046787725
-    second: overworld_17
+    second: rw_up
   - first:
       213: -7835426637077157406
-    second: overworld_18
+    second: rw_step1
   - first:
       213: 1246585378779764407
-    second: overworld_19
+    second: rw_step2
   - first:
       213: 6060710151819978638
-    second: overworld_20
+    second: ni_down
   - first:
       213: -4972226628038765506
-    second: overworld_21
+    second: ni_up
   - first:
       213: 7320203173012758695
-    second: overworld_22
+    second: ni_step1
   - first:
       213: 7919352031153013493
-    second: overworld_23
+    second: ni_step2
   - first:
       213: 4141115616514778644
-    second: overworld_24
+    second: fi_down
   - first:
       213: -7984298072881630020
-    second: overworld_25
+    second: fi_up
   - first:
       213: 38893693419060046
-    second: overworld_26
+    second: fi_step1
   - first:
       213: 3572099638692472051
-    second: overworld_27
+    second: fi_step2
   - first:
       213: -8670126318083050102
-    second: overworld_28
+    second: rm_down
   - first:
       213: 6869820286880595507
-    second: overworld_29
+    second: rm_up
   - first:
       213: -4955240747007715266
-    second: overworld_30
+    second: rm_step1
   - first:
       213: -7702168438591223781
-    second: overworld_31
+    second: rm_step2
   - first:
       213: -7615061755745106011
-    second: overworld_32
+    second: kn_down
   - first:
       213: -3607323694121600593
-    second: overworld_33
+    second: kn_up
   - first:
       213: 3680697718910198415
-    second: overworld_34
+    second: kn_step1
   - first:
       213: -3175454871485622038
     second: bm_down
@@ -121,133 +121,133 @@ TextureImporter:
     second: bm_step2
   - first:
       213: -5267659379174455672
-    second: overworld_39
+    second: bm_step2
   - first:
       213: 6124985722230701105
-    second: overworld_40
+    second: bw_down
   - first:
       213: 3094083173204426950
-    second: overworld_41
+    second: bw_up
   - first:
       213: -355992245417735950
-    second: overworld_42
+    second: bw_step1
   - first:
       213: -1306240177765529932
-    second: overworld_43
+    second: bw_step2
   - first:
       213: -7225898147436198081
-    second: overworld_44
+    second: wm_down
   - first:
       213: 363120452229777094
-    second: overworld_45
+    second: wm_up
   - first:
       213: 6724175098447589929
-    second: overworld_46
+    second: wm_step1
   - first:
       213: -7251622691593491319
-    second: overworld_0
+    second: ma_down
   - first:
       213: 5843354302450243670
-    second: overworld_1
+    second: ma_up
   - first:
       213: 9124569435868477103
-    second: overworld_2
+    second: ma_step1
   - first:
       213: -2931650171395410378
-    second: overworld_3
+    second: ma_step2
   - first:
       213: 6628575059090811027
-    second: overworld_4
+    second: th_down
   - first:
       213: -8757018550357378196
-    second: overworld_5
+    second: th_up
   - first:
       213: -4757438362359496849
-    second: overworld_6
+    second: th_step1
   - first:
       213: 792611169134385958
-    second: overworld_7
+    second: th_step2
   - first:
       213: 8432922085750492281
-    second: overworld_8
+    second: ww_down
   - first:
       213: 6706007819743119453
-    second: overworld_9
+    second: ww_up
   - first:
       213: 1590020199769335943
-    second: overworld_10
+    second: ww_step1
   - first:
       213: -1091374211285141166
-    second: overworld_11
+    second: ww_step2
   - first:
       213: 2994787611992331984
-    second: overworld_12
+    second: bb_down
   - first:
       213: 1624941072931510010
-    second: overworld_13
+    second: bb_up
   - first:
       213: -5928075372267380924
-    second: overworld_14
+    second: bb_step1
   - first:
       213: 4613966046051808473
-    second: overworld_15
+    second: bb_step2
   - first:
       213: -661275491383293797
-    second: overworld_16
+    second: rw_down
   - first:
       213: 6055033340775373413
-    second: overworld_17
+    second: rw_up
   - first:
       213: -622769283291272828
-    second: overworld_18
+    second: rw_step1
   - first:
       213: 1097932736580611523
-    second: overworld_19
+    second: rw_step2
   - first:
       213: -6273896354135146466
-    second: overworld_20
+    second: ni_down
   - first:
       213: 3249190771240367328
-    second: overworld_21
+    second: ni_up
   - first:
       213: -3868297040346792782
-    second: overworld_22
+    second: ni_step1
   - first:
       213: 8657626009635573938
-    second: overworld_23
+    second: ni_step2
   - first:
       213: -4956075920844563722
-    second: overworld_24
+    second: fi_down
   - first:
       213: 4979582352824741480
-    second: overworld_25
+    second: fi_up
   - first:
       213: 8047374379492320522
-    second: overworld_26
+    second: fi_step1
   - first:
       213: 7072307369695465089
-    second: overworld_27
+    second: fi_step2
   - first:
       213: -594000518390929632
-    second: overworld_28
+    second: rm_down
   - first:
       213: 5438159544038059991
-    second: overworld_29
+    second: rm_up
   - first:
       213: 4311332194990201418
-    second: overworld_30
+    second: rm_step1
   - first:
       213: 8788366079458852230
-    second: overworld_31
+    second: rm_step2
   - first:
       213: 2402587949265953196
-    second: overworld_32
+    second: kn_down
   - first:
       213: 7389980318787973239
-    second: overworld_33
+    second: kn_up
   - first:
       213: 5659134709355256720
-    second: overworld_34
+    second: kn_step1
   - first:
       213: 4475815355564963143
     second: bm_down
@@ -262,25 +262,40 @@ TextureImporter:
     second: bm_step2
   - first:
       213: -6934053018057040726
-    second: overworld_39
+    second: bm_step2
   - first:
       213: 7891866210610574303
-    second: overworld_40
+    second: bw_down
   - first:
       213: -352014050901045218
-    second: overworld_41
+    second: bw_up
   - first:
       213: 5572372389195498197
-    second: overworld_42
+    second: bw_step1
   - first:
       213: 5348427638927809954
-    second: overworld_43
+    second: bw_step2
   - first:
       213: 513365977363574863
-    second: overworld_44
+    second: wm_down
   - first:
       213: -8866795375694486061
-    second: overworld_45
+    second: wm_up
+  - first:
+      213: 4475815355564963143
+    second: kn_step2
+  - first:
+      213: -5155729497130469658
+    second: bm_down
+  - first:
+      213: 2249204553793192497
+    second: bm_up
+  - first:
+      213: 1290198411352175672
+    second: bm_step1
+  - first:
+      213: -3437611254022390577
+    second: wm_step2
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -366,7 +381,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: overworld_0
+      name: ma_down
       rect:
         serializedVersion: 2
         x: 3
@@ -374,7 +389,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -387,15 +402,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: overworld_1
+      name: ma_up
       rect:
         serializedVersion: 2
         x: 20
         y: 113
-        width: 15
+        width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -408,7 +423,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: overworld_2
+      name: ma_step1
       rect:
         serializedVersion: 2
         x: 37
@@ -416,7 +431,7 @@ TextureImporter:
         width: 13
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -429,7 +444,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: overworld_3
+      name: ma_step2
       rect:
         serializedVersion: 2
         x: 54
@@ -437,7 +452,7 @@ TextureImporter:
         width: 11
         height: 15
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -450,7 +465,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: overworld_4
+      name: th_down
       rect:
         serializedVersion: 2
         x: 81
@@ -458,7 +473,7 @@ TextureImporter:
         width: 15
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -471,7 +486,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: overworld_5
+      name: th_up
       rect:
         serializedVersion: 2
         x: 97
@@ -479,7 +494,7 @@ TextureImporter:
         width: 14
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -492,7 +507,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: overworld_6
+      name: th_step1
       rect:
         serializedVersion: 2
         x: 113
@@ -500,7 +515,7 @@ TextureImporter:
         width: 12
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -513,7 +528,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: overworld_7
+      name: th_step2
       rect:
         serializedVersion: 2
         x: 129
@@ -521,7 +536,7 @@ TextureImporter:
         width: 14
         height: 15
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -534,7 +549,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: overworld_8
+      name: ww_down
       rect:
         serializedVersion: 2
         x: 3
@@ -542,7 +557,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -555,7 +570,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: overworld_9
+      name: ww_up
       rect:
         serializedVersion: 2
         x: 21
@@ -563,7 +578,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -576,7 +591,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: overworld_10
+      name: ww_step1
       rect:
         serializedVersion: 2
         x: 39
@@ -584,7 +599,7 @@ TextureImporter:
         width: 12
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -597,7 +612,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: overworld_11
+      name: ww_step2
       rect:
         serializedVersion: 2
         x: 55
@@ -605,7 +620,7 @@ TextureImporter:
         width: 13
         height: 15
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -618,7 +633,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: overworld_12
+      name: bb_down
       rect:
         serializedVersion: 2
         x: 81
@@ -626,7 +641,7 @@ TextureImporter:
         width: 15
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -639,7 +654,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: overworld_13
+      name: bb_up
       rect:
         serializedVersion: 2
         x: 97
@@ -647,7 +662,7 @@ TextureImporter:
         width: 15
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -660,7 +675,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: overworld_14
+      name: bb_step1
       rect:
         serializedVersion: 2
         x: 114
@@ -668,7 +683,7 @@ TextureImporter:
         width: 11
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -681,7 +696,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: overworld_15
+      name: bb_step2
       rect:
         serializedVersion: 2
         x: 130
@@ -689,7 +704,7 @@ TextureImporter:
         width: 12
         height: 15
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -702,7 +717,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: overworld_16
+      name: rw_down
       rect:
         serializedVersion: 2
         x: 1
@@ -710,7 +725,7 @@ TextureImporter:
         width: 18
         height: 17
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -723,7 +738,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: overworld_17
+      name: rw_up
       rect:
         serializedVersion: 2
         x: 22
@@ -731,7 +746,7 @@ TextureImporter:
         width: 16
         height: 17
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -744,7 +759,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: overworld_18
+      name: rw_step1
       rect:
         serializedVersion: 2
         x: 40
@@ -752,7 +767,7 @@ TextureImporter:
         width: 16
         height: 17
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -765,7 +780,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: overworld_19
+      name: rw_step2
       rect:
         serializedVersion: 2
         x: 56
@@ -773,7 +788,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -786,7 +801,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: overworld_20
+      name: ni_down
       rect:
         serializedVersion: 2
         x: 77
@@ -794,7 +809,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -807,7 +822,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: overworld_21
+      name: ni_up
       rect:
         serializedVersion: 2
         x: 94
@@ -815,7 +830,7 @@ TextureImporter:
         width: 15
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -828,7 +843,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: overworld_22
+      name: ni_step1
       rect:
         serializedVersion: 2
         x: 112
@@ -836,7 +851,7 @@ TextureImporter:
         width: 13
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -849,7 +864,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: overworld_23
+      name: ni_step2
       rect:
         serializedVersion: 2
         x: 128
@@ -857,7 +872,7 @@ TextureImporter:
         width: 13
         height: 15
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -870,7 +885,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: overworld_24
+      name: fi_down
       rect:
         serializedVersion: 2
         x: 5
@@ -878,7 +893,7 @@ TextureImporter:
         width: 14
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -891,7 +906,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: overworld_25
+      name: fi_up
       rect:
         serializedVersion: 2
         x: 21
@@ -899,7 +914,7 @@ TextureImporter:
         width: 14
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -912,7 +927,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: overworld_26
+      name: fi_step1
       rect:
         serializedVersion: 2
         x: 38
@@ -920,7 +935,7 @@ TextureImporter:
         width: 12
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -933,7 +948,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: overworld_27
+      name: fi_step2
       rect:
         serializedVersion: 2
         x: 54
@@ -941,7 +956,7 @@ TextureImporter:
         width: 13
         height: 15
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -954,7 +969,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: overworld_28
+      name: rm_down
       rect:
         serializedVersion: 2
         x: 78
@@ -962,7 +977,7 @@ TextureImporter:
         width: 16
         height: 17
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -975,7 +990,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: overworld_29
+      name: rm_up
       rect:
         serializedVersion: 2
         x: 96
@@ -983,7 +998,7 @@ TextureImporter:
         width: 16
         height: 17
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -996,7 +1011,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: overworld_30
+      name: rm_step1
       rect:
         serializedVersion: 2
         x: 114
@@ -1004,7 +1019,7 @@ TextureImporter:
         width: 16
         height: 17
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1017,7 +1032,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: overworld_31
+      name: rm_step2
       rect:
         serializedVersion: 2
         x: 130
@@ -1025,7 +1040,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1038,15 +1053,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: overworld_32
+      name: kn_down
       rect:
         serializedVersion: 2
         x: 4
         y: 25
-        width: 32
+        width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1059,15 +1074,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: overworld_33
+      name: kn_up
       rect:
         serializedVersion: 2
-        x: 39
+        x: 22
         y: 25
-        width: 11
+        width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1080,15 +1095,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: overworld_34
+      name: kn_step1
       rect:
         serializedVersion: 2
-        x: 55
+        x: 39
         y: 25
         width: 11
-        height: 15
+        height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1096,6 +1111,27 @@ TextureImporter:
       bones: []
       spriteID: 09b1437e809498e40800000000000000
       internalID: 5659134709355256720
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kn_step2
+      rect:
+        serializedVersion: 2
+        x: 55
+        y: 25
+        width: 11
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 74530bc1a5a4d1e30800000000000000
+      internalID: 4475815355564963143
       vertices: []
       indices: 
       edges: []
@@ -1109,14 +1145,14 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 74530bc1a5a4d1e30800000000000000
-      internalID: 4475815355564963143
+      spriteID: 6e6f88da65b2378b0800000000000000
+      internalID: -5155729497130469658
       vertices: []
       indices: 
       edges: []
@@ -1130,14 +1166,14 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6e6f88da65b2378b0800000000000000
-      internalID: -5155729497130469658
+      spriteID: 132c808ff97c63f10800000000000000
+      internalID: 2249204553793192497
       vertices: []
       indices: 
       edges: []
@@ -1151,14 +1187,14 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 132c808ff97c63f10800000000000000
-      internalID: 2249204553793192497
+      spriteID: 8347b6e8e94b7e110800000000000000
+      internalID: 1290198411352175672
       vertices: []
       indices: 
       edges: []
@@ -1172,28 +1208,7 @@ TextureImporter:
         width: 16
         height: 15
       alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8347b6e8e94b7e110800000000000000
-      internalID: 1290198411352175672
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: overworld_39
-      rect:
-        serializedVersion: 2
-        x: 6
-        y: 4
-        width: 32
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1206,15 +1221,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: overworld_40
+      name: bw_down
       rect:
         serializedVersion: 2
-        x: 39
+        x: 6
         y: 4
-        width: 12
+        width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1227,15 +1242,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: overworld_41
+      name: bw_up
       rect:
         serializedVersion: 2
-        x: 55
+        x: 23
         y: 4
-        width: 13
-        height: 15
+        width: 16
+        height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1248,15 +1263,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: overworld_42
+      name: bw_step1
       rect:
         serializedVersion: 2
-        x: 77
-        y: 5
-        width: 16
+        x: 39
+        y: 4
+        width: 12
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1269,15 +1284,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: overworld_43
+      name: bw_step2
       rect:
         serializedVersion: 2
-        x: 94
-        y: 5
-        width: 16
-        height: 16
+        x: 55
+        y: 4
+        width: 13
+        height: 15
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1290,15 +1305,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: overworld_44
+      name: wm_down
       rect:
         serializedVersion: 2
-        x: 113
+        x: 77
         y: 5
-        width: 13
+        width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1311,15 +1326,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: overworld_45
+      name: wm_up
       rect:
         serializedVersion: 2
-        x: 129
+        x: 94
         y: 5
-        width: 13
-        height: 15
+        width: 16
+        height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1327,6 +1342,48 @@ TextureImporter:
       bones: []
       spriteID: 3d567a78590d2f480800000000000000
       internalID: -8866795375694486061
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wm_step1
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 5
+        width: 13
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 922fe7630a1115d50800000000000000
+      internalID: 6724175098447589929
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wm_step2
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 5
+        width: 13
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fcc3c1817c62b40d0800000000000000
+      internalID: -3437611254022390577
       vertices: []
       indices: 
       edges: []
