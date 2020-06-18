@@ -35,10 +35,10 @@ Download the repo as a zip file (green button at the top right). Open the "Build
   - Wolf
   - WrWolf
   - Zombie
-- Misc
+### Misc
   - Title screen
   - Screen transitions
   - Enter/Exit battle
   - Music
   - Collision
-  - NPC Movement
+  - NPC Movement, Dialogue
