@@ -81,6 +81,12 @@ public class MapHandler : MonoBehaviour
             SaveSystem.SetBool("in_submap", true);
             SaveSystem.SetString("submap_name", active_map.name);
         }
+        
+        RoomHandler rh = active_map.GetComponentInChildren<RoomHandler>();
+        
+        SaveSystem.SetBool("inside_of_room", rh.rooms.active);
+        
+        SaveSystem.SaveToDisk();
     }
     
     void deactivate_maps_except(GameObject map){

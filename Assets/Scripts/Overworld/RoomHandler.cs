@@ -13,8 +13,13 @@ public class RoomHandler : MonoBehaviour
     void Start()
     {
         if(SaveSystem.GetBool("inside_of_room")){
+            Debug.Log(SaveSystem.GetBool("inside_of_room"));
             rooms.SetActive(true);
             outside_collision.SetActive(false);
+        }
+        else{
+            rooms.SetActive(false);
+            outside_collision.SetActive(true);
         }
         GetComponent<TilemapRenderer>().enabled = false;
     }
@@ -22,8 +27,6 @@ public class RoomHandler : MonoBehaviour
     public void change(){
         rooms.SetActive(!rooms.active);
         outside_collision.SetActive(!outside_collision.active);
-        
-        SaveSystem.SetBool("inside_of_room", rooms.active);
     }
 
     // Update is called once per frame

@@ -29,6 +29,8 @@ public class SpriteController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        character_index = SaveSystem.GetInt("character_index");
+    
         active_character = characters[character_index];
         
         direction = "down";

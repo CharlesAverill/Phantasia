@@ -1,5 +1,8 @@
 ScriptsOnlyBuild:
   usedScripts:
+    Assembly-CSharp-Editor.dll:
+    - MultiBuild.Settings
+    - MultiBuild.SettingsWindow
     Assembly-CSharp.dll:
     - BattleHandler
     - CameraController
@@ -886,7 +889,7 @@ ScriptsOnlyBuild:
     className: GlobalControl
   - hash:
       serializedVersion: 2
-      Hash: 5973ec8e24e3b03543a8a9040ba4dc0e
+      Hash: 82992ea2f09206a68a952916bc6c2152
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: TitleScreenHandler
