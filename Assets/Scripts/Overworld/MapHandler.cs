@@ -40,7 +40,6 @@ public class MapHandler : MonoBehaviour
             player.gameObject.transform.position = new Vector3(submapX, submapY, 0f);
         }
         else{
-            
             player.move_point.position = new Vector3(overworldX, overworldY, 0f);
             player.gameObject.transform.position = new Vector3(overworldX, overworldY, 0f);
         }
@@ -48,6 +47,7 @@ public class MapHandler : MonoBehaviour
         deactivate_maps_except(active_map);
         done_changing = true;
         active_map.SetActive(true);
+        active_map.GetComponent<Map>().play_music = true;
         
         player.reh.encounters = active_map.GetComponent<Map>().encounters;
     }
@@ -58,6 +58,9 @@ public class MapHandler : MonoBehaviour
         if(active_map.name == "Overworld"){
             overworldX = player.transform.position.x;
             overworldY = player.transform.position.y;
+            if(!active_map.GetComponent<Map>().play_music && done_changing){
+                active_map.GetComponent<Map>().play_music = true;
+            }
         }
         else{
             submapX = player.transform.position.x;
@@ -84,9 +87,11 @@ public class MapHandler : MonoBehaviour
         Map[] maps = grids.GetComponentsInChildren<Map>();
         foreach(Map m in maps){
             if(m.enabled == false){
+                m.play_music = false;
                 continue;
             }
             if(m.gameObject.GetInstanceID() != map.GetInstanceID()){
+                m.play_music = false;
                 m.gameObject.SetActive(false);
             }
         }
@@ -102,8 +107,12 @@ public class MapHandler : MonoBehaviour
     IEnumerator change(GameObject map){
         done_changing = false;
         
-        active_map.GetComponent<AudioSource>().Stop();
-        active_map.GetComponent<AudioSource>().volume = 0f;
+        Map active = active_map.GetComponent<Map>();
+        active.play_music = false;
+        
+        AudioSource am_as = active_map.GetComponentInChildren<MusicHandler>().get_active();
+        am_as.Stop();
+        am_as.volume = 0f;
         
         player.warp_sound.Play();
         
@@ -113,7 +122,7 @@ public class MapHandler : MonoBehaviour
         }
         
         deactivate_maps_except(map);
-        Map active = active_map.GetComponent<Map>();
+        active = active_map.GetComponent<Map>();
         
         if(active.name != "Overworld"){
             player.transform.position = active.entry_position.position;
@@ -125,9 +134,7 @@ public class MapHandler : MonoBehaviour
         player.move_point.position = player.transform.position;
         player.map_just_changed = true;
         
-        active_map.GetComponent<AudioSource>().playOnAwake = false;
         active_map.SetActive(true);
-        active_map.GetComponent<AudioSource>().volume = 0f;
         
         st.unfilling = true;
         
@@ -135,8 +142,7 @@ public class MapHandler : MonoBehaviour
             yield return null;
         }
         
-        active_map.GetComponent<AudioSource>().Play();
-        active_map.GetComponent<AudioSource>().volume = 1f;
+        active.play_music = true;
         
         done_changing = true;
     }

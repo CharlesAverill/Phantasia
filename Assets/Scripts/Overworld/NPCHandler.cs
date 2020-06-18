@@ -9,7 +9,6 @@ public class NPCHandler : MonoBehaviour
     {
         foreach(Transform c in transform){
             c.gameObject.SetActive(true);
-            Debug.Log(c);
         }
     }
 

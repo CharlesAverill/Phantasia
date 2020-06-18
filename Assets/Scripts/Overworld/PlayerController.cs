@@ -63,6 +63,7 @@ public class PlayerController : MonoBehaviour
         
         if(Input.GetKeyDown("i") && can_move && reh.seed > 0){
             Debug.Log("Saving...");
+            SaveSystem.SetInt("reh_seed", reh.seed);
             map_handler.save_position();
         }
     

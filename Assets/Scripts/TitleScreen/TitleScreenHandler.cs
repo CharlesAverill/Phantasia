@@ -8,6 +8,9 @@ public class TitleScreenHandler : MonoBehaviour
     
     public LoadingCircle loading_circle;
     
+    public AudioSource classic;
+    public AudioSource remaster;
+    
     private string[] names;
 
     // Start is called before the first frame update
@@ -19,6 +22,8 @@ public class TitleScreenHandler : MonoBehaviour
         names = new string[]{"Matt", "Alta", "Ivan", "Cora"};
         
         if(!System.IO.File.Exists(bin_path)){
+        
+            SaveSystem.SetBool("classic_music", true);
         
             SaveSystem.SetBool("in_submap", false);
             
@@ -41,16 +46,44 @@ public class TitleScreenHandler : MonoBehaviour
             SaveSystem.SaveToDisk();
             Debug.Log("Done initializing");
         }
+        
+        if(SaveSystem.GetBool("classic_music")){
+             classic.volume = 1f;
+            remaster.volume = 0f;
+        }
+        else{
+            remaster.volume = 1f;
+            classic.volume = 0f;
+        }
     }
+    
+    int frames_since_music_switch;
 
     // Update is called once per frame
     void Update()
     {
+        
+        frames_since_music_switch += 1;
+    
         if(Input.GetKeyDown("h") && names.Length > 0){
             foreach(string name in names){
                 SaveSystem.SetInt(name + "_HP", 100);
             }
             Debug.Log("Healed your party");
+        }
+        
+        if(Input.GetKeyDown("m") && frames_since_music_switch >= 15){
+            SaveSystem.SetBool("classic_music", !SaveSystem.GetBool("classic_music"));
+            if(SaveSystem.GetBool("classic_music")){
+                classic.volume = 1f;
+                remaster.volume = 0f;
+            }
+            else{
+                remaster.volume = 1f;
+                classic.volume = 0f;
+            }
+            
+            frames_since_music_switch = 0;
         }
     }
     

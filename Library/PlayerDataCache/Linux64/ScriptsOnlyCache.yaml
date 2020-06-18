@@ -1,8 +1,5 @@
 ScriptsOnlyBuild:
   usedScripts:
-    Assembly-CSharp-Editor.dll:
-    - MultiBuild.Settings
-    - MultiBuild.SettingsWindow
     Assembly-CSharp.dll:
     - BattleHandler
     - CameraController
@@ -13,6 +10,7 @@ ScriptsOnlyBuild:
     - Map
     - MapHandler
     - Monster
+    - MusicHandler
     - NPC
     - NPCHandler
     - OverworldGrid
@@ -106,6 +104,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 13826}
     - Class: 114
       Script: {instanceID: 14282}
+    - Class: 114
+      Script: {instanceID: 395798}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -197,6 +197,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 162588}
     - Class: 114
       Script: {instanceID: 186748}
+    - Class: 114
+      Script: {instanceID: 395798}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -695,7 +697,7 @@ ScriptsOnlyBuild:
     className: Physics2DRaycaster
   - hash:
       serializedVersion: 2
-      Hash: f6612a67aad63ded4af3491263fb9e7b
+      Hash: f3d73d737c2a05bf68eb1483a4ea30b3
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: BattleHandler
@@ -713,7 +715,7 @@ ScriptsOnlyBuild:
     className: TimelineAsset
   - hash:
       serializedVersion: 2
-      Hash: f9b722705398ba064666e96d3f2c907b
+      Hash: 99392cccb24f0639ac2bf3f8a3967ecf
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Map
@@ -881,7 +883,7 @@ ScriptsOnlyBuild:
     className: GlobalControl
   - hash:
       serializedVersion: 2
-      Hash: 57edfca5e3e24ec68bdaa99c1c2cf20f
+      Hash: 5973ec8e24e3b03543a8a9040ba4dc0e
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: TitleScreenHandler
@@ -921,6 +923,12 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: SaveSystemSetup
+  - hash:
+      serializedVersion: 2
+      Hash: b009f520fad5c8644bcf74b41e871bef
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: MusicHandler
   platform: 24
   scenePathNames:
   - Assets/Scenes/Title Screen.unity

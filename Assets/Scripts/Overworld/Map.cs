@@ -13,14 +13,16 @@ public class Map : MonoBehaviour
     
     public bool encounters;
     
-    private AudioSource a_s;
+    private MusicHandler a_s;
+    
+    public bool play_music;
     
     void Awake(){
         p = GameObject.FindGameObjectsWithTag("Player")[0].GetComponent<PlayerController>();
         if(suppress_map_just_changed){
             p.map_just_changed = false;
         }
-        a_s = GetComponent<AudioSource>();
+        a_s = GetComponentInChildren<MusicHandler>();
     }
     
     // Start is called before the first frame update
@@ -32,9 +34,11 @@ public class Map : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-        if(!a_s.isPlaying){
-            a_s.Play();
+        AudioSource active = a_s.get_active();
+        if(!active.isPlaying && play_music){
+            active.enabled = true;
+            active.volume = 1f;
+            active.Play();
         }
     
         if(suppress_map_just_changed){

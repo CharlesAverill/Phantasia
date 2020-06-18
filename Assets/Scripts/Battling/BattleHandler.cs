@@ -19,8 +19,8 @@ public class BattleHandler : MonoBehaviour
     public EventSystem es;
     public Canvas c;
     
-    public AudioSource battle_music;
-    public AudioSource victory_music;
+    public MusicHandler battle_music;
+    public MusicHandler victory_music;
     
     public PartyMember active_party_member;
     
@@ -234,10 +234,11 @@ public class BattleHandler : MonoBehaviour
         }
         
         if(win){
-            battle_music.Stop();
+            battle_music.get_active().Stop();
             victory_music.gameObject.SetActive(true);
+            Debug.Log(victory_music.gameObject.active);
             
-            while(victory_music.time <= victory_music.gameObject.GetComponent<IntroLoop>().loop_start_seconds){
+            while(victory_music.get_active().time <= victory_music.get_active().gameObject.GetComponent<IntroLoop>().loop_start_seconds){
                 yield return null;
             }
             

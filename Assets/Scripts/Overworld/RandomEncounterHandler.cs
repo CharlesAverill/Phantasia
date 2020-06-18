@@ -27,8 +27,6 @@ public class RandomEncounterHandler : MonoBehaviour
         if(encounters){
             seed -= d;
         }
-        SaveSystem.SetInt("reh_seed", seed);
-        SaveSystem.SaveToDisk();
     }
     
     private bool battling;
