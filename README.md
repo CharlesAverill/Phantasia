@@ -42,3 +42,4 @@ Download the repo as a zip file (green button at the top right). Open the "Build
   - Music
   - Collision
   - NPC Movement, Dialogue
+  - Indoor rooms
