@@ -13,10 +13,8 @@ public class NPC : Interactable
     public LayerMask river;
     
     public float move_speed;
-    
-    public Sprite down;
-    public Sprite left;
-    public Sprite up;
+
+    public SpriteController sc;
     
     private int frames_until_move;
     private int frame_count;
@@ -54,31 +52,36 @@ public class NPC : Interactable
         float ver = 0f;
         
         if(frame_count >= frames_until_move && can_move){
-            float direction = Random.Range(0, 3);
-            
-            float continue_from_last_direction = Random.Range(0, 3);
-            if(continue_from_last_direction == 1f){
-                direction = last_direction;
+            if (!is_player_within_radius())
+            {
+                float direction = Random.Range(0, 3);
+
+                float continue_from_last_direction = Random.Range(0, 3);
+                if (continue_from_last_direction == 1f)
+                {
+                    direction = last_direction;
+                }
+
+                switch (direction)
+                {
+                    case 0:
+                        ver = 1f;
+                        break;
+                    case 1:
+                        ver = -1f;
+                        break;
+                    case 2:
+                        hor = 1f;
+                        break;
+                    case 3:
+                        hor = -1f;
+                        break;
+                }
+                frame_count = 0;
+                frames_until_move = Random.Range(120, 300);
+
+                last_direction = direction;
             }
-            
-            switch(direction){
-                case 0:
-                    ver = 1f;
-                    break;
-                case 1:
-                    ver = -1f;
-                    break;
-                case 2:
-                    hor = 1f;
-                    break;
-                case 3:
-                    hor = -1f;
-                    break;
-            }
-            frame_count = 0;
-            frames_until_move = Random.Range(120, 300);
-            
-            last_direction = direction;
         }
         
         hor *= multiplier;
@@ -87,14 +90,10 @@ public class NPC : Interactable
         if(Mathf.Abs(hor) == multiplier){
             RaycastHit2D hit = Physics2D.Raycast(transform.position, new Vector3(hor, 0f, 0f), multiplier, collision | water | river);
             if(hor == multiplier){
-                 //anim.SetTrigger("right");
-                child_sr.flipX = true;
-                child_sr.sprite = left;
+                sc.change_direction("right");
             }
             if(hor == -1f * multiplier){
-                //anim.SetTrigger("left");
-                child_sr.flipX = false;
-                child_sr.sprite = left;
+                sc.change_direction("left");
             }
             if(hit.collider == null || hit.collider.gameObject.layer == 0){
                 move_point.position += new Vector3(hor, 0f, 0f);
@@ -107,12 +106,11 @@ public class NPC : Interactable
         else if(Mathf.Abs(ver) == multiplier){
             RaycastHit2D hit = Physics2D.Raycast(transform.position, new Vector3(0f, ver, 0f), 1f * multiplier, collision | water | river);
             if(ver == multiplier){
-                 //anim.SetTrigger("up");
-                child_sr.sprite = up;
+                sc.change_direction("up");
             }
             if(ver == -1f * multiplier){
                 //anim.SetTrigger("down");
-                child_sr.sprite = down;
+                sc.change_direction("down");
             }
             if(hit.collider == null || hit.collider.gameObject.layer == 0){
                 move_point.position += new Vector3(0f, ver, 0f);
@@ -128,18 +126,16 @@ public class NPC : Interactable
         can_move = false;
         
         if(p.sc.get_direction() == "down"){
-            child_sr.sprite = down;
+            sc.change_direction("up");
         }
         if(p.sc.get_direction() == "up"){
-            child_sr.sprite = up;
+            sc.change_direction("down");
         }
         if(p.sc.get_direction() == "left"){
-            child_sr.sprite = left;
-            child_sr.flipX = false;
+            sc.change_direction("right");
         }
         else if(p.sc.get_direction() == "right"){
-            child_sr.sprite = left;
-            child_sr.flipX = true;
+            sc.change_direction("left");
         }
     
         Vector3 p_pos = p.gameObject.transform.position;
@@ -159,8 +155,21 @@ public class NPC : Interactable
         
         p.frames_since_last_interact = 0;
     }
+
+    bool is_player_within_radius()
+    {
+        float radius = 4f;
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, radius, 1 << LayerMask.NameToLayer("Player"));
+        return colliders.Length > 0;
+    }
     
     void OnCollisionEnter2D(Collision2D c){
-        gameObject.SetActive(false);
+        GetComponent<BoxCollider2D>().enabled = false;
+        can_move = false;
+    }
+
+    void OnCollisionExit2D(Collision2D c)
+    {
+        can_move = true;
     }
 }

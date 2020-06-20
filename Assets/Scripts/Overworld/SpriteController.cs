@@ -24,12 +24,18 @@ public class SpriteController : MonoBehaviour
     
     private string direction;
     
-    private SpriteRenderer sr;
+    public SpriteRenderer sr;
+    
+    public bool title_screen_mode;
+
+    public bool display;
 
     // Start is called before the first frame update
     void Start()
     {
-        character_index = SaveSystem.GetInt("character_index");
+        if(!title_screen_mode){
+            character_index = SaveSystem.GetInt("character_index");
+        }
     
         active_character = characters[character_index];
         
@@ -39,6 +45,8 @@ public class SpriteController : MonoBehaviour
         sr.sprite = active_character.down;
         
         frames_since_last_increment = 15;
+
+        display = true;
     }
     
     private int frames_since_last_increment;
@@ -52,13 +60,29 @@ public class SpriteController : MonoBehaviour
         if(character_index >= characters.Length){
             character_index = 0;
         }
+        
+        frames_since_last_increment = 0;
+        
+        if(!title_screen_mode){
+            SaveSystem.SetInt("character_index", character_index);
+        }
+    }
+    
+    public void decrement_character(){
+        if(frames_since_last_increment < 15){
+            return;
+        }
+        
+        character_index -= 1;
         if(character_index < 0){
             character_index = characters.Length - 1;
         }
         
         frames_since_last_increment = 0;
         
-        SaveSystem.SetInt("character_index", character_index);
+        if(!title_screen_mode){
+            SaveSystem.SetInt("character_index", character_index);
+        }
     }
     
     public void change_direction(string dir){
@@ -66,12 +90,27 @@ public class SpriteController : MonoBehaviour
     }
     
     public string get_direction(){
+        Debug.Log(direction);
         return direction;
+    }
+    
+    public string get_class(){
+        return active_character.name;
     }
 
     // Update is called once per frame
     void Update()
     {
+
+        if(display && sr.enabled == false)
+        {
+            sr.enabled = true;
+        }
+        else if(!display)
+        {
+            sr.enabled = false;
+        }
+
         frames_since_last_increment += 1;
         
         if(active_character != characters[character_index]){

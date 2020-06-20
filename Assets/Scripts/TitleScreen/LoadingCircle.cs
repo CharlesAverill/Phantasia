@@ -21,6 +21,11 @@ public class LoadingCircle : MonoBehaviour
         progress.SetActive(true);
         turning = true;
     }
+    
+    public void stop_loading_circle(){
+        progress.SetActive(false);
+        turning = false;
+    }
 
     private void Update()
     {

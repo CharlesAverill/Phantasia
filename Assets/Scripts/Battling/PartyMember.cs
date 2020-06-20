@@ -26,21 +26,10 @@ public class PartyMember : Battler
     private CursorController menu_cursor;
     
     private Animator anim;
+    public Sprite dead;
     
     public string action;
     public GameObject target;
-    
-    public void load_player(){
-        gameObject.name = SaveSystem.GetString("Player" + (Array.IndexOf(bh.party, this) + 1) + "_name");
-        HP = SaveSystem.GetInt(gameObject.name + "_HP");
-        experience = SaveSystem.GetInt(gameObject.name + "_exp");
-        if(SaveSystem.GetBool(gameObject.name + "_poison")){
-            conditions.Add("poison");
-        }
-        if(SaveSystem.GetBool(gameObject.name + "_stone")){
-            conditions.Add("stone");
-        }
-    }
         
     public void save_player(){
         SaveSystem.SetInt(gameObject.name + "_HP", HP);
@@ -136,8 +125,6 @@ public class PartyMember : Battler
     {
         done_set_up = false;
         
-        load_player();
-        
         move_point = transform.position;
         monster_cursor = bh.monster_cursor;
         menu_cursor = bh.menu_cursor;
@@ -156,6 +143,10 @@ public class PartyMember : Battler
     // Update is called once per frame
     void Update()
     {
+        if(HP <= 0 && GetComponent<SpriteRenderer>().sprite != dead)
+        {
+            GetComponent<SpriteRenderer>().sprite = dead;
+        }
         transform.position = Vector3.MoveTowards(transform.position, move_point, 8 * Time.deltaTime);
     }
 }

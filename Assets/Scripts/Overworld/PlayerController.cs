@@ -62,10 +62,12 @@ public class PlayerController : MonoBehaviour
             SaveSystem.SetInt("reh_seed", reh.seed);
             map_handler.save_position();
         }
-        
+
+        /*
         if(Input.GetKeyDown("c") && can_move && reh.seed > 0){
             sc.increment_character();
         }
+        */
     
         //Movement
         transform.rotation = Quaternion.identity;
@@ -88,7 +90,7 @@ public class PlayerController : MonoBehaviour
                     if(hor == -1f * multiplier){
                         sc.change_direction("left");
                     }
-                    if(hit.collider == null || hit.collider.gameObject.layer == 0){
+                    if(hit.collider == null || hit.collider.gameObject.layer == 0 || hit.collider.isTrigger){
                         move_point.position += new Vector3(hor, 0f, 0f);
                         switch(travel_mode){
                             case "walking":
@@ -142,7 +144,8 @@ public class PlayerController : MonoBehaviour
                 NPC inter_npc = obj.GetComponent<NPC>();
                 
                 if(inter_npc){
-                    StartCoroutine(inter_npc.interact(this));
+                    if(inter_npc.move_point.position == inter_npc.transform.position)
+                        StartCoroutine(inter_npc.interact(this));
                 }
             }
             else{

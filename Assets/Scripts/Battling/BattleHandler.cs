@@ -11,6 +11,8 @@ public class BattleHandler : MonoBehaviour
 {
     private Monster[] monsters;
     public PartyMember[] party;
+
+    public Transform[] party_placement;
     
     private List<GameObject> battlers;
     
@@ -27,6 +29,65 @@ public class BattleHandler : MonoBehaviour
     public bool battle_complete;
     public bool win;
     public bool stalemate;
+
+    private Dictionary<int, int> level_up_chart;
+
+    public Dictionary<int, int> get_level_chart()
+    {
+        Dictionary<int, int> level_chart = new Dictionary<int, int>();
+
+        level_chart.Add(2, 40);
+        level_chart.Add(3, 196);
+        level_chart.Add(4, 547);
+        level_chart.Add(5, 1171);
+        level_chart.Add(6, 2146);
+        level_chart.Add(7, 3550);
+        level_chart.Add(8, 5461);
+        level_chart.Add(9, 7957);
+        level_chart.Add(10, 11116);
+        level_chart.Add(11, 15016);
+        level_chart.Add(12, 19753);
+        level_chart.Add(13, 25351);
+        level_chart.Add(14, 31942);
+        level_chart.Add(15, 39586);
+        level_chart.Add(16, 48361);
+        level_chart.Add(17, 58345);
+        level_chart.Add(18, 69617);
+        level_chart.Add(19, 82253);
+        level_chart.Add(20, 96332);
+        level_chart.Add(21, 111932);
+        level_chart.Add(22, 129131);
+        level_chart.Add(23, 148008);
+        level_chart.Add(24, 168639);
+        level_chart.Add(25, 191103);
+        level_chart.Add(26, 215479);
+        level_chart.Add(27, 241843);
+        level_chart.Add(28, 270275);
+        level_chart.Add(29, 300851);
+        level_chart.Add(30, 333651);
+        level_chart.Add(31, 366450);
+        level_chart.Add(32, 399250);
+        level_chart.Add(33, 432049);
+        level_chart.Add(34, 464849);
+        level_chart.Add(35, 497648);
+        level_chart.Add(36, 530448);
+        level_chart.Add(37, 563247);
+        level_chart.Add(38, 596047);
+        level_chart.Add(39, 628846);
+        level_chart.Add(40, 661646);
+        level_chart.Add(41, 694445);
+        level_chart.Add(42, 727245);
+        level_chart.Add(43, 760044);
+        level_chart.Add(44, 792844);
+        level_chart.Add(45, 825643);
+        level_chart.Add(46, 858443);
+        level_chart.Add(47, 891242);
+        level_chart.Add(48, 924042);
+        level_chart.Add(49, 956841);
+        level_chart.Add(50, 989641);
+
+        return level_chart;
+    }
     
     public float party_average_level(){
         float level = 0;
@@ -58,8 +119,6 @@ public class BattleHandler : MonoBehaviour
                 yield return null;
             }
         }
-        
-        SaveSystem.SaveToDisk();
     
         battlers = new List<GameObject>();
         
@@ -226,17 +285,17 @@ public class BattleHandler : MonoBehaviour
                 }
             }
             
-            SaveSystem.SaveToDisk();
-            
             if(stalemate || win){
                 break;
             }
         }
         
-        if(win){
+        if(win)
+        {
+
             battle_music.get_active().Stop();
             victory_music.gameObject.SetActive(true);
-            Debug.Log(victory_music.gameObject.active);
+            victory_music.get_active().Play();
             
             while(victory_music.get_active().time <= victory_music.get_active().gameObject.GetComponent<IntroLoop>().loop_start_seconds){
                 yield return null;
@@ -248,16 +307,33 @@ public class BattleHandler : MonoBehaviour
                 yield return null;
             }
         }
-            
-        foreach(PartyMember p in party){
-            p.save_player();
+
+        bool lose = true;
+        foreach(PartyMember p in party)
+        {
+            if (p.HP > 0)
+                lose = false;
         }
-        
-        Destroy(monster_party);
-        
-        GlobalControl.instance.monster_party = null;
-        
-        SceneManager.UnloadScene("Battle");
+
+        if (lose)
+        {
+            Debug.Log("Game over!");
+            SceneManager.LoadSceneAsync("Overworld");
+        }
+
+        else
+        {
+            foreach (PartyMember p in party)
+            {
+                p.save_player();
+            }
+
+            Destroy(monster_party);
+
+            GlobalControl.instance.monster_party = null;
+
+            SceneManager.UnloadScene("Battle");
+        }
         
     }
     
@@ -271,11 +347,67 @@ public class BattleHandler : MonoBehaviour
     }
     
     private GameObject monster_party;
+
+    public void load_party()
+    {
+        for(int i = 0; i < 4; i++)
+        {
+            string player_n = "player" + (i + 1) + "_";
+            string job = SaveSystem.GetString("player" + (i + 1) + "_class");
+            Debug.Log(job);
+            switch (job)
+            {
+                case "fighter":
+                    party[i] = Instantiate(Resources.Load<GameObject>("party/fighter"), party_placement[i].position, Quaternion.identity).GetComponent<PartyMember>();
+                    break;
+                case "black_belt":
+                    party[i] = Instantiate(Resources.Load<GameObject>("party/black_belt"), party_placement[i].position, Quaternion.identity).GetComponent<PartyMember>();
+                    break;
+                case "red_mage":
+                    party[i] = Instantiate(Resources.Load<GameObject>("party/red_mage"), party_placement[i].position, Quaternion.identity).GetComponent<PartyMember>();
+                    break;
+                case "thief":
+                    party[i] = Instantiate(Resources.Load<GameObject>("party/thief"), party_placement[i].position, Quaternion.identity).GetComponent<PartyMember>();
+                    break;
+                case "white_mage":
+                    party[i] = Instantiate(Resources.Load<GameObject>("party/white_mage"), party_placement[i].position, Quaternion.identity).GetComponent<PartyMember>();
+                    break;
+                case "black_mage":
+                    party[i] = Instantiate(Resources.Load<GameObject>("party/black_mage"), party_placement[i].position, Quaternion.identity).GetComponent<PartyMember>();
+                    break;
+            }
+
+            party[i].gameObject.name = SaveSystem.GetString(player_n + "name");
+            party[i].bh = this;
+
+            party[i].strength = SaveSystem.GetInt(player_n + "strength");
+            party[i].agility = SaveSystem.GetInt(player_n + "agility");
+            party[i].intelligence = SaveSystem.GetInt(player_n + "intelligence");
+            party[i].vitality = SaveSystem.GetInt(player_n + "vitality");
+            party[i].luck = SaveSystem.GetInt(player_n + "luck");
+            party[i].HP = SaveSystem.GetInt(player_n + "HP");
+            party[i].hit = SaveSystem.GetFloat(player_n + "hit_percent");
+            party[i].magic_defense = SaveSystem.GetFloat(player_n + "magic_defense");
+
+            if(SaveSystem.GetBool(player_n + "poison"))
+            {
+                party[i].conditions.Add("poison");
+            }
+            if (SaveSystem.GetBool(player_n + "stone"))
+            {
+                party[i].conditions.Add("stone");
+            }
+        }
+    }
     
     // Start is called before the first frame update
     void Awake()
     {
+        load_party();
+
         active_party_member = party[0];
+
+        level_up_chart = get_level_chart();
         
         monster_party = (GameObject)Instantiate(GlobalControl.instance.monster_party, new Vector3(0f, 0f, 1f), Quaternion.identity);
         Debug.Log(monster_party);

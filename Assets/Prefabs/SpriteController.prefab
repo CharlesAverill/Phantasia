@@ -1,0 +1,169 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3711603809744901655
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3711603809744901654}
+  - component: {fileID: 3711603809744901652}
+  - component: {fileID: 3711603809744901653}
+  m_Layer: 8
+  m_Name: SpriteController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3711603809744901654
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3711603809744901655}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &3711603809744901652
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3711603809744901655}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 100
+  m_Sprite: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 0
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+--- !u!114 &3711603809744901653
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3711603809744901655}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f86ecda7564a4426aba216498d9b497d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characters:
+  - name: black_belt
+    up: {fileID: -5575194074474450752, guid: b864c2dcd50194c618f6630ebb9536fe, type: 3}
+    down: {fileID: 1380262791903993407, guid: b864c2dcd50194c618f6630ebb9536fe, type: 3}
+    step1: {fileID: -7967888570296149083, guid: b864c2dcd50194c618f6630ebb9536fe,
+      type: 3}
+    step2: {fileID: -3574767100692832850, guid: b864c2dcd50194c618f6630ebb9536fe,
+      type: 3}
+  - name: black_mage
+    up: {fileID: 6413080911030750064, guid: b864c2dcd50194c618f6630ebb9536fe, type: 3}
+    down: {fileID: -3175454871485622038, guid: b864c2dcd50194c618f6630ebb9536fe, type: 3}
+    step1: {fileID: 3266278018585858669, guid: b864c2dcd50194c618f6630ebb9536fe, type: 3}
+    step2: {fileID: -7541094296270104148, guid: b864c2dcd50194c618f6630ebb9536fe,
+      type: 3}
+  - name: black_wizard
+    up: {fileID: 3094083173204426950, guid: b864c2dcd50194c618f6630ebb9536fe, type: 3}
+    down: {fileID: 6124985722230701105, guid: b864c2dcd50194c618f6630ebb9536fe, type: 3}
+    step1: {fileID: -355992245417735950, guid: b864c2dcd50194c618f6630ebb9536fe, type: 3}
+    step2: {fileID: -1306240177765529932, guid: b864c2dcd50194c618f6630ebb9536fe,
+      type: 3}
+  - name: fighter
+    up: {fileID: -7984298072881630020, guid: b864c2dcd50194c618f6630ebb9536fe, type: 3}
+    down: {fileID: 4141115616514778644, guid: b864c2dcd50194c618f6630ebb9536fe, type: 3}
+    step1: {fileID: 38893693419060046, guid: b864c2dcd50194c618f6630ebb9536fe, type: 3}
+    step2: {fileID: 3572099638692472051, guid: b864c2dcd50194c618f6630ebb9536fe, type: 3}
+  - name: knight
+    up: {fileID: -3607323694121600593, guid: b864c2dcd50194c618f6630ebb9536fe, type: 3}
+    down: {fileID: -7615061755745106011, guid: b864c2dcd50194c618f6630ebb9536fe, type: 3}
+    step1: {fileID: 3680697718910198415, guid: b864c2dcd50194c618f6630ebb9536fe, type: 3}
+    step2: {fileID: 4475815355564963143, guid: b864c2dcd50194c618f6630ebb9536fe, type: 3}
+  - name: master
+    up: {fileID: 93419480468473589, guid: b864c2dcd50194c618f6630ebb9536fe, type: 3}
+    down: {fileID: 1354875658779561504, guid: b864c2dcd50194c618f6630ebb9536fe, type: 3}
+    step1: {fileID: 7763350980288678063, guid: b864c2dcd50194c618f6630ebb9536fe, type: 3}
+    step2: {fileID: -725840958583950985, guid: b864c2dcd50194c618f6630ebb9536fe, type: 3}
+  - name: ninja
+    up: {fileID: -4972226628038765506, guid: b864c2dcd50194c618f6630ebb9536fe, type: 3}
+    down: {fileID: 6060710151819978638, guid: b864c2dcd50194c618f6630ebb9536fe, type: 3}
+    step1: {fileID: 7320203173012758695, guid: b864c2dcd50194c618f6630ebb9536fe, type: 3}
+    step2: {fileID: 7919352031153013493, guid: b864c2dcd50194c618f6630ebb9536fe, type: 3}
+  - name: red_mage
+    up: {fileID: 6869820286880595507, guid: b864c2dcd50194c618f6630ebb9536fe, type: 3}
+    down: {fileID: -8670126318083050102, guid: b864c2dcd50194c618f6630ebb9536fe, type: 3}
+    step1: {fileID: -4955240747007715266, guid: b864c2dcd50194c618f6630ebb9536fe,
+      type: 3}
+    step2: {fileID: -7702168438591223781, guid: b864c2dcd50194c618f6630ebb9536fe,
+      type: 3}
+  - name: red_wizard
+    up: {fileID: 5595352399046787725, guid: b864c2dcd50194c618f6630ebb9536fe, type: 3}
+    down: {fileID: -491000806372484911, guid: b864c2dcd50194c618f6630ebb9536fe, type: 3}
+    step1: {fileID: -7835426637077157406, guid: b864c2dcd50194c618f6630ebb9536fe,
+      type: 3}
+    step2: {fileID: 1246585378779764407, guid: b864c2dcd50194c618f6630ebb9536fe, type: 3}
+  - name: thief
+    up: {fileID: -8513729419774231368, guid: b864c2dcd50194c618f6630ebb9536fe, type: 3}
+    down: {fileID: 1508907952123479184, guid: b864c2dcd50194c618f6630ebb9536fe, type: 3}
+    step1: {fileID: 8960421833988930334, guid: b864c2dcd50194c618f6630ebb9536fe, type: 3}
+    step2: {fileID: -6042558719246366898, guid: b864c2dcd50194c618f6630ebb9536fe,
+      type: 3}
+  - name: white_mage
+    up: {fileID: 363120452229777094, guid: b864c2dcd50194c618f6630ebb9536fe, type: 3}
+    down: {fileID: -7225898147436198081, guid: b864c2dcd50194c618f6630ebb9536fe, type: 3}
+    step1: {fileID: 6724175098447589929, guid: b864c2dcd50194c618f6630ebb9536fe, type: 3}
+    step2: {fileID: -3437611254022390577, guid: b864c2dcd50194c618f6630ebb9536fe,
+      type: 3}
+  - name: white_wizard
+    up: {fileID: 5445513934105861695, guid: b864c2dcd50194c618f6630ebb9536fe, type: 3}
+    down: {fileID: -3077691454763529442, guid: b864c2dcd50194c618f6630ebb9536fe, type: 3}
+    step1: {fileID: -9062093603636991699, guid: b864c2dcd50194c618f6630ebb9536fe,
+      type: 3}
+    step2: {fileID: 6308679712954100753, guid: b864c2dcd50194c618f6630ebb9536fe, type: 3}
+  character_index: 0
+  title_screen_mode: 0
