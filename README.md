@@ -1,6 +1,8 @@
 # Phantasia
 Multiplatform Final Fantasy 1 port in Unity
 
+# CURRENT BUILD IS BROKEN, BATTLES WILL CRASH THE GAME. DOWNLOAD [THIS](https://github.com/CharlesAverill/Phantasia/tree/aef6ba6ea8e859bf5ebea7c8e58649f9011dca39) BUILD IF YOU WANT TO PLAY.
+
 ## Installation
 Download the repo as a zip file (green button at the top right). Open the "Builds" folder.
 - Mac - Run Phantasia.app
