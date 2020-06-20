@@ -28,6 +28,7 @@ public class BattleHandler : MonoBehaviour
     
     public bool battle_complete;
     public bool win;
+    public bool lose;
     public bool stalemate;
 
     private Dictionary<int, int> level_up_chart;
@@ -160,14 +161,22 @@ public class BattleHandler : MonoBehaviour
                     m.turn();
                     
                     if(m.target == null){
-                        continue;
+                        lose = true;
+                        break;
                     }
                     
                     Debug.Log(m.name + " " + m.action + "->" + m.target.name);
                 }
             }
-            
+
+            if (lose)
+            {
+                battle_complete = true;
+                break;
+            }
+
             //Scheduling
+            Debug.Log("Scheduling...");
             List<int> schedule = new List<int>();
             
             foreach(Monster m in monsters){
@@ -230,21 +239,23 @@ public class BattleHandler : MonoBehaviour
                         p.GetComponent<Battler>().fight(p, p.target.GetComponent<Monster>());
                     }
                     
-                    if(p.action == "run"){
+                    if(p.action == "run") {
+                        /*
                         if(!p.can_run){
                             Debug.Log("Can't run!");
                         }
                         else{
-                            int run_seed = UnityEngine.Random.Range(0, p.level + 15);
-                            if(p.luck > run_seed){
-                                battle_complete = true;
-                                stalemate = true;
-                                break;
-                            }
-                            else{
-                                Debug.Log("Running was unsuccessful...");
-                            }
+                        */
+                        int run_seed = UnityEngine.Random.Range(0, p.level + 15);
+                        if(p.luck > run_seed){
+                            battle_complete = true;
+                            stalemate = true;
+                            break;
                         }
+                        else{
+                            Debug.Log("Running was unsuccessful...");
+                        }
+                        //}
                     }
                 }
                 else{
@@ -283,11 +294,23 @@ public class BattleHandler : MonoBehaviour
                     }
                     break;
                 }
+
+                //Check if players lost
+                lose = true;
+                foreach (PartyMember p in party)
+                {
+                    if (p.HP > 0)
+                        lose = false;
+                }
+
+                if (win || lose || stalemate)
+                {
+                    battle_complete = true;
+                    break;
+                }
             }
+
             
-            if(stalemate || win){
-                break;
-            }
         }
         
         if(win)
@@ -302,39 +325,40 @@ public class BattleHandler : MonoBehaviour
             }
             
             Debug.Log("You won!");
-            
-            while(Input.GetAxis("Submit") == 0){
+
+            foreach (PartyMember p in party)
+            {
+                p.save_player();
+                Destroy(p.gameObject);
+            }
+
+            while (Input.GetAxis("Submit") == 0){
                 yield return null;
             }
         }
-
-        bool lose = true;
-        foreach(PartyMember p in party)
+        else if (lose)
         {
-            if (p.HP > 0)
-                lose = false;
+                Debug.Log("Game over!");
+                SceneManager.LoadSceneAsync("Title Screen");
+                SceneManager.UnloadScene("Overworld");
         }
-
-        if (lose)
-        {
-            Debug.Log("Game over!");
-            SceneManager.LoadSceneAsync("Overworld");
-        }
-
-        else
+        else if (stalemate)
         {
             foreach (PartyMember p in party)
             {
                 p.save_player();
+                Destroy(p.gameObject);
             }
-
-            Destroy(monster_party);
-
-            GlobalControl.instance.monster_party = null;
-
-            SceneManager.UnloadScene("Battle");
         }
-        
+
+        SaveSystem.SaveToDisk();
+
+        Destroy(monster_party);
+
+        GlobalControl.instance.monster_party = null;
+
+        SceneManager.UnloadScene("Battle");
+
     }
     
     public void fight_choose(){
@@ -418,6 +442,7 @@ public class BattleHandler : MonoBehaviour
     
         battle_complete = false;
         win = false;
+        lose = false;
         
         monsters = (from m in monster_cursor.monsters select m.GetComponent<Monster>()).ToArray();
         

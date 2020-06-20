@@ -41,10 +41,18 @@ public class CursorController : MonoBehaviour
     {
         
         if(monster_mode){
+            List<GameObject> to_remove = new List<GameObject>();
             foreach(GameObject obj in active_list){
                 if(obj.GetComponent<Monster>().HP <= 0){
-                    remove_from_list(obj);
+                    to_remove.Add(obj);
                 }
+            }
+
+            int x = to_remove.Count;
+            for(int i = 0; i < x; i++)
+            {
+                remove_from_list(to_remove[i]);
+                x = to_remove.Count;
             }
         }
         

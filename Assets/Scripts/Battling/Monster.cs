@@ -30,33 +30,44 @@ public class Monster : Battler
     
     void choose_player(){
         PartyMember[] party = bh.party;
-        
-        choose_party_member:
+
+        List<int> tried = new List<int>();
+
+        bool found_target = false;
+        int count = 0;
+        while (!found_target)
+        {
+            count += 1;
             int n = Random.Range(1, 8);
-            if(n >= 1 && n <= 4){
+            tried.Add(n);
+
+            if (n >= 1 && n <= 4)
+            {
                 target = party[0].gameObject;
-                if(party[0].HP <= 0){
-                    goto choose_party_member;
-                }
             }
-            if(n == 5 || n == 6){
+            if (n == 5 || n == 6)
+            {
                 target = party[1].gameObject;
-                if(party[1].HP <= 0){
-                    goto choose_party_member;
-                }
             }
-            if(n == 7){
+            if (n == 7)
+            {
                 target = party[2].gameObject;
-                if(party[2].HP <= 0){
-                    goto choose_party_member;
-                }
             }
-            if(n == 8){
+            if (n == 8)
+            {
                 target = party[3].gameObject;
-                if(party[3].HP <= 0){
-                    goto choose_party_member;
-                }
             }
+            if(target.GetComponent<PartyMember>().HP > 0)
+            {
+                found_target = true;
+            }
+
+            if(count >= 8)
+            {
+                target = null;
+                break;
+            }
+        }
     }
     
     public void turn(){
@@ -73,8 +84,17 @@ public class Monster : Battler
         }
         
         action = actions[Random.Range(0, actions.Count)];
-        
+
         PartyMember leader = bh.party[0];
+        for (int i = 0; i < bh.party.Length; i++)
+        {
+            if(bh.party[i].HP > 0)
+            {
+                leader = bh.party[i];
+                break;
+            }
+        }
+
         if(morale - (2 * leader.level) + Random.Range(0, 50) < 80){
             action = "run";
         }

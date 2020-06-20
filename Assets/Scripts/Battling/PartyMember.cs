@@ -145,6 +145,7 @@ public class PartyMember : Battler
     {
         if(HP <= 0 && GetComponent<SpriteRenderer>().sprite != dead)
         {
+            GetComponent<Animator>().enabled = false;
             GetComponent<SpriteRenderer>().sprite = dead;
         }
         transform.position = Vector3.MoveTowards(transform.position, move_point, 8 * Time.deltaTime);

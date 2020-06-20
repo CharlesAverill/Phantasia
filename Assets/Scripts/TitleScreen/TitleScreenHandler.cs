@@ -47,6 +47,8 @@ public class TitleScreenHandler : MonoBehaviour
             remaster.volume = 1f;
             classic.volume = 0f;
         }
+
+        Cursor.lockState = CursorLockMode.None;
         
         title.SetActive(true);
         char_select.SetActive(false);
@@ -57,8 +59,11 @@ public class TitleScreenHandler : MonoBehaviour
         
         SaveSystem.SetBool("in_submap", false);
         SaveSystem.SetBool("inside_of_room", false);
-        
-        SaveSystem.SetInt("reh_seed", 255);
+
+        RandomEncounterHandler reh = new RandomEncounterHandler();
+        reh.gen_seed();
+
+        SaveSystem.SetInt("reh_seed", reh.seed);
     
         SaveSystem.SetFloat("overworldX", -1f);
         SaveSystem.SetFloat("overworldY", -5f);

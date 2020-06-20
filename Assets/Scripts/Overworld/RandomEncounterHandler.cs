@@ -76,11 +76,12 @@ public class RandomEncounterHandler : MonoBehaviour
         }
         
         player.can_move = true;
-            
-        player.map_handler.save_position();
-        
+
         gen_seed();
         SaveSystem.SetInt("reh_seed", seed);
+
+        player.map_handler.save_position();
+        
         SaveSystem.SaveToDisk();
         
         battling = false;
