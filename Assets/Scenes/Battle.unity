@@ -16532,6 +16532,7 @@ MonoBehaviour:
   active_party_member: {fileID: 0}
   battle_complete: 0
   win: 0
+  lose: 0
   stalemate: 0
 --- !u!4 &1076755716
 Transform:
@@ -17474,7 +17475,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc82100c6d9b94d2f9040c5c3b96ca70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  loop_start_seconds: 3.563
+  loop_start_seconds: 3.5
   loop_end_seconds: 41.315
 --- !u!4 &8292291840959798372
 Transform:
@@ -17682,7 +17683,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   loop_start_seconds: 3.506
-  loop_end_seconds: 17.603
+  loop_end_seconds: 17.503
 --- !u!82 &8292291841255479460
 AudioSource:
   m_ObjectHideFlags: 0

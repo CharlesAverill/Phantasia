@@ -55,8 +55,11 @@ public class CursorController : MonoBehaviour
                 x = to_remove.Count;
             }
         }
-        
-        event_system.SetSelectedGameObject(active_list[active]);
+
+        if(active < active_list.Count)
+        {
+            event_system.SetSelectedGameObject(active_list[active]);
+        }
         frame = frame + 1;
         if(frame >= 20){
         

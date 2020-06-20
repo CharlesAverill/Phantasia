@@ -132,8 +132,36 @@ public class BattleHandler : MonoBehaviour
         }
         
         while(!battle_complete){
+
+            //Check if players won
+            int living = 0;
+            foreach (Monster m in monsters)
+            {
+                if (m.HP > 0)
+                {
+                    living += 1;
+                }
+                else
+                {
+                    m.gameObject.SetActive(false);
+                }
+            }
+
+            if (living == 0)
+            {
+                if (monsters.Length == 0)
+                {
+                    stalemate = true;
+                }
+                else
+                {
+                    win = true;
+                }
+                break;
+            }
+
             //Party selection
-            foreach(PartyMember p in party){
+            foreach (PartyMember p in party){
                 if(p.HP > 0){
                     active_party_member = p;
                     p.turn();
@@ -202,7 +230,7 @@ public class BattleHandler : MonoBehaviour
                 }
             }
             
-            int living = 0;
+            living = 0;
             foreach(Monster m in monsters){
                 if(m.HP > 0){
                     living += 1;
@@ -326,12 +354,6 @@ public class BattleHandler : MonoBehaviour
             
             Debug.Log("You won!");
 
-            foreach (PartyMember p in party)
-            {
-                p.save_player();
-                Destroy(p.gameObject);
-            }
-
             while (Input.GetAxis("Submit") == 0){
                 yield return null;
             }
@@ -342,20 +364,18 @@ public class BattleHandler : MonoBehaviour
                 SceneManager.LoadSceneAsync("Title Screen");
                 SceneManager.UnloadScene("Overworld");
         }
-        else if (stalemate)
-        {
-            foreach (PartyMember p in party)
-            {
-                p.save_player();
-                Destroy(p.gameObject);
-            }
-        }
 
         SaveSystem.SaveToDisk();
 
         Destroy(monster_party);
 
         GlobalControl.instance.monster_party = null;
+
+        foreach (PartyMember p in party)
+        {
+            p.save_player();
+            Destroy(p.gameObject);
+        }
 
         SceneManager.UnloadScene("Battle");
 
