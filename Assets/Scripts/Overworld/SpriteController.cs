@@ -48,6 +48,12 @@ public class SpriteController : MonoBehaviour
 
         display = true;
     }
+
+    public void set_character(int index)
+    {
+        character_index = index;
+        active_character = characters[character_index];
+    }
     
     private int frames_since_last_increment;
     
@@ -90,7 +96,6 @@ public class SpriteController : MonoBehaviour
     }
     
     public string get_direction(){
-        Debug.Log(direction);
         return direction;
     }
     

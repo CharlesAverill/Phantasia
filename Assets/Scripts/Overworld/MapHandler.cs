@@ -89,8 +89,15 @@ public class MapHandler : MonoBehaviour
                 SaveSystem.SetBool("inside_of_room", rh.rooms.active);
             }
         }
-        
-        SaveSystem.SaveToDisk();
+    }
+
+    public void save_inn()
+    {
+        SaveSystem.SetFloat("overworldX", overworldX);
+        SaveSystem.SetFloat("overworldY", overworldY);
+
+        SaveSystem.SetBool("in_submap", false);
+        SaveSystem.SetBool("inside_of_room", false);
     }
     
     void deactivate_maps_except(GameObject map){
@@ -116,6 +123,8 @@ public class MapHandler : MonoBehaviour
     
     IEnumerator change(GameObject map){
         done_changing = false;
+
+        player.can_move = false;
         
         Map active = active_map.GetComponent<Map>();
         active.play_music = false;
@@ -136,9 +145,11 @@ public class MapHandler : MonoBehaviour
         
         if(active.name != "Overworld"){
             player.transform.position = active.entry_position.position;
+            player.sc.change_direction("up");
         }
         else{
             player.transform.position = new Vector3(overworldX, overworldY, 0f);
+            player.sc.change_direction("down");
         }
         
         player.move_point.position = player.transform.position;
@@ -153,6 +164,8 @@ public class MapHandler : MonoBehaviour
         }
         
         active.play_music = true;
+
+        player.can_move = true;
         
         done_changing = true;
     }

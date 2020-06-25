@@ -365,8 +365,6 @@ public class BattleHandler : MonoBehaviour
                 SceneManager.UnloadScene("Overworld");
         }
 
-        SaveSystem.SaveToDisk();
-
         Destroy(monster_party);
 
         GlobalControl.instance.monster_party = null;

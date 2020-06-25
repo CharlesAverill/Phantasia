@@ -9,7 +9,6 @@ public class RandomEncounterHandler : MonoBehaviour
 
     public int seed;
     
-    public GameObject scene_container;
     public PlayerController player;
     public Transform cam;
     
@@ -34,7 +33,7 @@ public class RandomEncounterHandler : MonoBehaviour
     IEnumerator initiate_encounter(){
     
         battling = true;
-        
+
         GlobalControl.instance.monster_party = player.og.get_monster_party();
     
         int countLoaded = SceneManager.sceneCount;
@@ -46,8 +45,8 @@ public class RandomEncounterHandler : MonoBehaviour
             
             //gameObject.AddComponent(typeof(Camera));
             cam.transform.parent = gameObject.transform;
-        
-            scene_container.SetActive(false);
+
+            GlobalControl.instance.overworld_scene_container.SetActive(false);
             
             //gameObject.AddComponent(typeof(AudioListener));
             
@@ -65,7 +64,7 @@ public class RandomEncounterHandler : MonoBehaviour
             while(SceneManager.sceneCount > 1){
                 yield return null;
             }
-            scene_container.SetActive(true);
+            GlobalControl.instance.overworld_scene_container.SetActive(true);
         }
         
         countLoaded = SceneManager.sceneCount;
@@ -81,9 +80,6 @@ public class RandomEncounterHandler : MonoBehaviour
         SaveSystem.SetInt("reh_seed", seed);
 
         player.map_handler.save_position();
-        
-        SaveSystem.SaveToDisk();
-        
         battling = false;
         
         yield return null;
@@ -92,7 +88,8 @@ public class RandomEncounterHandler : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        encounters = player.map_handler.active_map.GetComponent<Map>().encounters;
+        if(!player == null)
+            encounters = player.map_handler.active_map.GetComponent<Map>().encounters;
         seed = SaveSystem.GetInt("reh_seed");
     }
 

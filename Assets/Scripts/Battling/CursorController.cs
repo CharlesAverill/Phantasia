@@ -8,6 +8,7 @@ using UnityEngine.EventSystems;
 public class CursorController : MonoBehaviour
 {
     public bool monster_mode;
+    public bool shop_mode;
     public EventSystem event_system;
     
     public GameObject[] buttons;
@@ -85,17 +86,25 @@ public class CursorController : MonoBehaviour
                 frame = 35;
             }
             
-            float offset = 0f;
+            float xoffset = 0f;
+            float yoffset = 0f;
             
             if(monster_mode){
-                offset = 3.5f;
+                xoffset = -3.5f;
+                yoffset = -0.4f;
+            }
+            else if (shop_mode)
+            {
+                xoffset = -2.725f;
+                yoffset = -1.05f;
             }
             else{
-                offset = 4.5f;
+                xoffset = -4.5f;
+                yoffset = -0.4f;
             }
             
             
-            transform.position = new Vector3(active_list[active].transform.position.x - offset, active_list[active].transform.position.y - 0.4f, 1f);
+            transform.position = new Vector3(active_list[active].transform.position.x + xoffset, active_list[active].transform.position.y + yoffset, 1f);
         }
     }
     

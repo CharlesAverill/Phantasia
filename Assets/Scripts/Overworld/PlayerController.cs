@@ -56,12 +56,13 @@ public class PlayerController : MonoBehaviour
         if(reh.gameObject.active == false){
             reh.gameObject.SetActive(true);
         }
-        
+        /*
         if(Input.GetKeyDown("i") && can_move && reh.seed > 0){
             Debug.Log("Saving...");
             SaveSystem.SetInt("reh_seed", reh.seed);
             map_handler.save_position();
         }
+        */
 
         /*
         if(Input.GetKeyDown("c") && can_move && reh.seed > 0){
@@ -174,6 +175,10 @@ public class PlayerController : MonoBehaviour
     }
     
     void OnTriggerEnter2D(Collider2D c){
+        if(transform.position == move_point.position)
+        {
+            return;
+        }
         if(c.gameObject.GetComponent<RoomHandler>()){
             c.gameObject.GetComponent<RoomHandler>().change();
         }
@@ -186,13 +191,44 @@ public class PlayerController : MonoBehaviour
         else if(c.gameObject.GetComponent<OverworldGrid>()){
             og = c.gameObject.GetComponent<OverworldGrid>();
             //SaveSystem.SetString("player_og", og.gameObject.name);
-            //SaveSystem.SaveToDisk();
+        }
+        else if (c.gameObject.GetComponent<ShopWarp>() && move_point.position != transform.position)
+        {
+            map_just_changed = true;
+            StartCoroutine(shop_warp(c.gameObject.GetComponent<ShopWarp>()));
+        }
+        else if(map_handler.done_changing)
+        {
+            can_move = true;
         }
     }
     
     void OnTriggerExit2D(Collider2D c){
         map_just_changed = false;
         reh.gameObject.SetActive(true);
+        if (map_handler.done_changing)
+        {
+            can_move = true;
+        }
+    }
+
+    IEnumerator shop_warp(ShopWarp warp)
+    {
+        can_move = false;
+
+        while (transform.position != move_point.position)
+        {
+            yield return null;
+        }
+
+        StartCoroutine(warp.warp());
+
+        while (warp.shopping)
+        {
+            yield return null;
+        }
+
+        can_move = true;
     }
     
     IEnumerator change_map(GameObject map){

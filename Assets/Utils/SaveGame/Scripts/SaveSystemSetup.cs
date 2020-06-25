@@ -16,6 +16,6 @@ public class SaveSystemSetup : MonoBehaviour {
     // on some platforms there may not be an exit function, see the Unity help
     void OnApplicationQuit()
 	{
-		SaveSystem.SaveToDisk();
+		//SaveSystem.SaveToDisk();
 	}
 }

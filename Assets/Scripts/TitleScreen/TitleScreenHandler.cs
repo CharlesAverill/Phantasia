@@ -60,10 +60,12 @@ public class TitleScreenHandler : MonoBehaviour
         SaveSystem.SetBool("in_submap", false);
         SaveSystem.SetBool("inside_of_room", false);
 
-        RandomEncounterHandler reh = new RandomEncounterHandler();
+        RandomEncounterHandler reh = gameObject.AddComponent<RandomEncounterHandler>();
         reh.gen_seed();
 
         SaveSystem.SetInt("reh_seed", reh.seed);
+
+        SaveSystem.SetInt("gil", 200);
     
         SaveSystem.SetFloat("overworldX", -1f);
         SaveSystem.SetFloat("overworldY", -5f);
@@ -88,6 +90,7 @@ public class TitleScreenHandler : MonoBehaviour
         if(input_allowed){
             if(Input.GetKeyDown("h") && names.Length > 0){
                 foreach(string name in names){
+                    SaveSystem.SetInt(name + "_maxHP", 100);
                     SaveSystem.SetInt(name + "_HP", 100);
                 }
                 Debug.Log("Healed your party");

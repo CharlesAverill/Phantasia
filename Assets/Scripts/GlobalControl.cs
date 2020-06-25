@@ -6,8 +6,15 @@ public class GlobalControl : MonoBehaviour
 {
 
     public static GlobalControl instance;
-    
+
+    public GameObject overworld_scene_container;
     public GameObject monster_party;
+
+    public PlayerController player;
+
+    public string shopmode;
+    public int inn_clinic_price;
+    public Dictionary<string, int> shop_products;
 
     // Start is called before the first frame update
     void Awake()

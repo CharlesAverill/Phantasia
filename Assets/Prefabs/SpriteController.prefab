@@ -166,4 +166,6 @@ MonoBehaviour:
       type: 3}
     step2: {fileID: 6308679712954100753, guid: b864c2dcd50194c618f6630ebb9536fe, type: 3}
   character_index: 0
+  sr: {fileID: 3711603809744901652}
   title_screen_mode: 0
+  display: 0
