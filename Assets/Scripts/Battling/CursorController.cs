@@ -111,7 +111,6 @@ public class CursorController : MonoBehaviour
     public void remove_from_list(GameObject obj){
         active = 0;
         active_list.Remove(obj);
-        Debug.Log(active_list.Count);
     }
     
     public Monster get_monster(){

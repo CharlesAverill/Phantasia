@@ -856,7 +856,7 @@ ScriptsOnlyBuild:
     className: Physics2DRaycaster
   - hash:
       serializedVersion: 2
-      Hash: ef404dac3119cd2ac17ed0d6bde1a968
+      Hash: 111e06a473319ee177a9e8e34cd53679
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: BattleHandler
@@ -934,7 +934,7 @@ ScriptsOnlyBuild:
     className: SaveSystemSetup
   - hash:
       serializedVersion: 2
-      Hash: 62a5fca471796d8971192f6ce81bb888
+      Hash: 58701c1ff6c20ea165f81e703fe90515
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PartyMember

@@ -88,6 +88,7 @@ public class TitleScreenHandler : MonoBehaviour
         frames_since_music_switch += 1;
         
         if(input_allowed){
+            /*
             if(Input.GetKeyDown("h") && names.Length > 0){
                 foreach(string name in names){
                     SaveSystem.SetInt(name + "_maxHP", 100);
@@ -95,6 +96,7 @@ public class TitleScreenHandler : MonoBehaviour
                 }
                 Debug.Log("Healed your party");
             }
+            */
             
             if(Input.GetKeyDown("m") && frames_since_music_switch >= 15){
                 SaveSystem.SetBool("classic_music", !SaveSystem.GetBool("classic_music"));
@@ -235,8 +237,9 @@ public class TitleScreenHandler : MonoBehaviour
             SaveSystem.SetInt(player_n + "exp", 0);
             SaveSystem.SetBool(player_n + "poison", false);
             SaveSystem.SetBool(player_n + "stone", false);
+            SaveSystem.SetInt(player_n + "maxHP", SaveSystem.GetInt(player_n + "HP"));
 
-            if(i == 0)
+            if (i == 0)
             {
                 SaveSystem.SetInt("character_index", character_index);
             }

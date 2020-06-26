@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class BattleHandler : MonoBehaviour
 {
@@ -13,6 +14,10 @@ public class BattleHandler : MonoBehaviour
     public PartyMember[] party;
 
     public Transform[] party_placement;
+
+    public Text battle_text;
+    public Text[] party_names;
+    public Text[] party_HP;
     
     private List<GameObject> battlers;
     
@@ -89,6 +94,27 @@ public class BattleHandler : MonoBehaviour
 
         return level_chart;
     }
+
+    public string process_monster_name(string m_name)
+    {
+        if (!m_name.Contains("("))
+            return m_name;
+        return m_name.Substring(0, m_name.IndexOf("(") - 1);
+    }
+
+    public int get_level_from_exp(int exp)
+    {
+        Dictionary<int, int> level_chart = get_level_chart();
+        int level = 1;
+        foreach (KeyValuePair<int, int> entry in level_chart)
+        {
+            if (entry.Value > exp)
+                break;
+            else
+                level = entry.Key;
+        }
+        return level;
+    }
     
     public float party_average_level(){
         float level = 0;
@@ -112,13 +138,22 @@ public class BattleHandler : MonoBehaviour
          // finally, let's decrement Array's size by one
          Array.Resize(ref arr, arr.Length - 1);
      }
-    
-    IEnumerator battle(){
-    
-        foreach(PartyMember p in party){
-            while(!p.done_set_up){
+
+    IEnumerator battle() {
+        battle_text.text = "";
+
+        int gold_won = 0;
+
+        foreach (PartyMember p in party) {
+            while (!p.done_set_up) {
                 yield return null;
             }
+        }
+
+        for (int i = 0; i < 4; i++)
+        {
+            party_names[i].text = party[i].name;
+            party_HP[i].text = "HP: " + party[i].HP;
         }
     
         battlers = new List<GameObject>();
@@ -171,12 +206,14 @@ public class BattleHandler : MonoBehaviour
                             break;
                         yield return null;
                     }
+                    /*
                     if(p.target){
                         Debug.Log(p.name + " " + p.action + " -> " + p.target.name);
                     }
                     else{
                         Debug.Log(p.name + " -> " + p.action);
                     }
+                    */
                 }
             }
             
@@ -193,7 +230,7 @@ public class BattleHandler : MonoBehaviour
                         break;
                     }
                     
-                    Debug.Log(m.name + " " + m.action + "->" + m.target.name);
+                    //Debug.Log(m.name + " " + m.action + "->" + m.target.name);
                 }
             }
 
@@ -204,7 +241,7 @@ public class BattleHandler : MonoBehaviour
             }
 
             //Scheduling
-            Debug.Log("Scheduling...");
+            //Debug.Log("Scheduling...");
             List<int> schedule = new List<int>();
             
             foreach(Monster m in monsters){
@@ -264,7 +301,20 @@ public class BattleHandler : MonoBehaviour
                             p.target = monsters[UnityEngine.Random.Range(0, monsters.Length)].gameObject;
                         }
                         
-                        p.GetComponent<Battler>().fight(p, p.target.GetComponent<Monster>());
+                        int damage = p.GetComponent<Battler>().fight(p, p.target.GetComponent<Monster>());
+                        if(damage == -1)
+                            battle_text.text = p.gameObject.name + " missed";
+                        else
+                            battle_text.text = p.gameObject.name + " does " + damage + " damage to " + process_monster_name(p.target.gameObject.name);
+                        if (p.target.GetComponent<Monster>().HP <= 0)
+                        {
+                            gold_won += p.target.GetComponent<Monster>().gold;
+                            while (Input.GetAxis("Submit") == 0)
+                            {
+                                yield return null;
+                            }
+                            battle_text.text = process_monster_name(p.target.gameObject.name) + " was slain";
+                        }
                     }
                     
                     if(p.action == "run") {
@@ -276,14 +326,27 @@ public class BattleHandler : MonoBehaviour
                         */
                         int run_seed = UnityEngine.Random.Range(0, p.level + 15);
                         if(p.luck > run_seed){
+                            battle_text.text = p.gameObject.name + " ran away";
+
+                            yield return new WaitForSeconds(.2f);
+                            while (Input.GetAxis("Submit") == 0)
+                            {
+                                yield return null;
+                            }
+
                             battle_complete = true;
                             stalemate = true;
                             break;
                         }
                         else{
-                            Debug.Log("Running was unsuccessful...");
+                            battle_text.text = "Running was unsuccessful...";
                         }
                         //}
+                    }
+                    yield return new WaitForSeconds(.2f);
+                    while (Input.GetAxis("Submit") == 0)
+                    {
+                        yield return null;
                     }
                 }
                 else{
@@ -292,14 +355,32 @@ public class BattleHandler : MonoBehaviour
                     
                     if(m.HP > 0){
                         if(m.action == "fight"){
-                            m.GetComponent<Battler>().fight(m, m.target.GetComponent<PartyMember>());
+                            int damage = m.GetComponent<Battler>().fight(m, m.target.GetComponent<PartyMember>());
+                            if (damage == -1)
+                                battle_text.text = process_monster_name(m.gameObject.name) + " missed";
+                            else
+                                battle_text.text = process_monster_name(m.gameObject.name) + " does " + damage + " damage to " + m.target.gameObject.name;
                         }
                         
                         if(m.action == "run"){
-                            Debug.Log(m.gameObject.name + " ran away");
+                            battle_text.text = process_monster_name(m.gameObject.name) + " ran away";
                             Destroy(m.gameObject);
                             remove_from_array(ref monsters, x);
                         }
+
+                        if (m.target.GetComponent<PartyMember>().HP <= 0)
+                        {
+                            while (Input.GetAxis("Submit") == 0)
+                            {
+                                yield return null;
+                            }
+                            battle_text.text = m.target.gameObject.name + " was slain";
+                        }
+                    }
+                    yield return new WaitForSeconds(.2f);
+                    while (Input.GetAxis("Submit") == 0)
+                    {
+                        yield return null;
                     }
                 }
                 //Check if players won
@@ -308,7 +389,8 @@ public class BattleHandler : MonoBehaviour
                     if(m.HP > 0){
                         living += 1;
                     }
-                    else{
+                    else
+                    {
                         m.gameObject.SetActive(false);
                     }
                 }
@@ -343,16 +425,28 @@ public class BattleHandler : MonoBehaviour
         
         if(win)
         {
+            foreach (PartyMember p in party)
+            {
+                p.save_player();
+            }
 
             battle_music.get_active().Stop();
             victory_music.gameObject.SetActive(true);
             victory_music.get_active().Play();
-            
-            while(victory_music.get_active().time <= victory_music.get_active().gameObject.GetComponent<IntroLoop>().loop_start_seconds){
+
+            battle_text.text = "Victory!";
+
+            while (Input.GetAxis("Submit") == 0)
+            {
                 yield return null;
             }
-            
-            Debug.Log("You won!");
+
+            battle_text.text = "Obtained " + gold_won + " gold.";
+            SaveSystem.SetInt("gil", SaveSystem.GetInt("gil") + gold_won);
+
+            while (victory_music.get_active().time <= victory_music.get_active().gameObject.GetComponent<IntroLoop>().loop_start_seconds){
+                yield return null;
+            }
 
             while (Input.GetAxis("Submit") == 0){
                 yield return null;
@@ -360,9 +454,16 @@ public class BattleHandler : MonoBehaviour
         }
         else if (lose)
         {
-                Debug.Log("Game over!");
-                SceneManager.LoadSceneAsync("Title Screen");
-                SceneManager.UnloadScene("Overworld");
+            battle_text.text = "Game over...";
+
+            yield return new WaitForSeconds(.2f);
+            while (Input.GetAxis("Submit") == 0)
+            {
+                yield return null;
+            }
+
+            SceneManager.LoadSceneAsync("Title Screen");
+            SceneManager.UnloadScene("Overworld");
         }
 
         Destroy(monster_party);
@@ -396,7 +497,6 @@ public class BattleHandler : MonoBehaviour
         {
             string player_n = "player" + (i + 1) + "_";
             string job = SaveSystem.GetString("player" + (i + 1) + "_class");
-            Debug.Log(job);
             switch (job)
             {
                 case "fighter":
@@ -421,24 +521,8 @@ public class BattleHandler : MonoBehaviour
 
             party[i].gameObject.name = SaveSystem.GetString(player_n + "name");
             party[i].bh = this;
-
-            party[i].strength = SaveSystem.GetInt(player_n + "strength");
-            party[i].agility = SaveSystem.GetInt(player_n + "agility");
-            party[i].intelligence = SaveSystem.GetInt(player_n + "intelligence");
-            party[i].vitality = SaveSystem.GetInt(player_n + "vitality");
-            party[i].luck = SaveSystem.GetInt(player_n + "luck");
-            party[i].HP = SaveSystem.GetInt(player_n + "HP");
-            party[i].hit = SaveSystem.GetFloat(player_n + "hit_percent");
-            party[i].magic_defense = SaveSystem.GetFloat(player_n + "magic_defense");
-
-            if(SaveSystem.GetBool(player_n + "poison"))
-            {
-                party[i].conditions.Add("poison");
-            }
-            if (SaveSystem.GetBool(player_n + "stone"))
-            {
-                party[i].conditions.Add("stone");
-            }
+            party[i].index = i;
+            party[i].load_player();
         }
     }
     
@@ -452,7 +536,6 @@ public class BattleHandler : MonoBehaviour
         level_up_chart = get_level_chart();
         
         monster_party = (GameObject)Instantiate(GlobalControl.instance.monster_party, new Vector3(0f, 0f, 1f), Quaternion.identity);
-        Debug.Log(monster_party);
         monster_party.SetActive(true);
         
         monster_cursor = monster_party.GetComponentInChildren<CursorController>();
@@ -472,6 +555,10 @@ public class BattleHandler : MonoBehaviour
     {
         if(monsters.Length == 0){
             battle_complete = true;
+        }
+        for (int i = 0; i < 4; i++)
+        {
+            party_HP[i].text = "HP: " + party[i].HP;
         }
     }
 }

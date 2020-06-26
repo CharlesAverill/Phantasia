@@ -10,7 +10,7 @@ public class Battler : MonoBehaviour
     public float magic_defense;
     public List<String> conditions;
     
-    public void fight(Monster attack, PartyMember defend){
+    public int fight(Monster attack, PartyMember defend){
     
         string[] conditions_array = conditions.ToArray();
     
@@ -49,15 +49,15 @@ public class Battler : MonoBehaviour
         }
         
         if(UnityEngine.Random.Range(0f, 200f) <= chance_to_hit){
-            Debug.Log(attack.name + " does " + (int)damage + " damage to " + defend.name);
             defend.HP -= (int)damage;
+            return (int)damage;
         }
         else{
-            Debug.Log("Missed");
+            return -1;
         }
     }
     
-    public void fight(PartyMember attack, Monster defend){
+    public int fight(PartyMember attack, Monster defend){
     
         string[] conditions_array = conditions.ToArray();
     
@@ -96,16 +96,16 @@ public class Battler : MonoBehaviour
             chance_to_hit += 40f;
         }
         
-        if(damage < 0f){
+        if(damage < 1f){
             damage = 1f;
         }
         
         if(UnityEngine.Random.Range(0f, 200f) <= chance_to_hit){
-            Debug.Log(attack.name + " does " + (int)damage + " damage to " + defend.name);
             defend.HP -= (int)damage;
+            return (int)damage;
         }
         else{
-            Debug.Log("Missed");
+            return -1;
         }
     }
     

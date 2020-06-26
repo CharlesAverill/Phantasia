@@ -230,9 +230,10 @@ public class Shop : MonoBehaviour
             else if (yes)
             {
                 SaveSystem.SetInt("gil", player_gil - inn_clinic_price);
-                foreach(string name in party_names)
+                for(int i = 0; i < 4; i++)
                 {
-                    SaveSystem.SetInt(name + "_HP", SaveSystem.GetInt(name + "_maxHP"));
+                    if(SaveSystem.GetInt("player" + (i + 1) + "_HP") > 0)
+                        SaveSystem.SetInt("player" + (i + 1) + "_HP", SaveSystem.GetInt("player" + (i + 1) + "_maxHP"));
                 }
 
                 GlobalControl.instance.player.map_handler.save_inn();

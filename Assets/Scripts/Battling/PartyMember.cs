@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class PartyMember : Battler
 {
+    public int index;
+
+    public int maxHP;
     public string job;
     public string weapon;
     public int strength;
@@ -32,10 +35,44 @@ public class PartyMember : Battler
     public GameObject target;
         
     public void save_player(){
-        SaveSystem.SetInt(gameObject.name + "_HP", HP);
-        SaveSystem.SetInt(gameObject.name + "_exp", experience);
-        SaveSystem.SetBool(gameObject.name + "_poison", conditions.Contains("poison"));
-        SaveSystem.SetBool(gameObject.name + "_stone", conditions.Contains("stone"));
+        string player_n = "player" + (index + 1) + "_";
+        SaveSystem.SetInt(player_n + "strength", strength);
+        SaveSystem.SetInt(player_n + "agility", agility);
+        SaveSystem.SetInt(player_n + "intelligence", intelligence);
+        SaveSystem.SetInt(player_n + "vitality", vitality);
+        SaveSystem.SetInt(player_n + "luck", luck);
+        SaveSystem.SetFloat(player_n + "hit_percent", hit);
+        SaveSystem.SetFloat(player_n + "magic_defense", magic_defense);
+        SaveSystem.SetInt(player_n + "HP", HP);
+        SaveSystem.SetInt(player_n + "maxHP", maxHP);
+        SaveSystem.SetInt(player_n + "exp", experience);
+        SaveSystem.SetBool(player_n + "poison", conditions.Contains("poison"));
+        SaveSystem.SetBool(player_n + "stone", conditions.Contains("stone"));
+    }
+
+    public void load_player()
+    {
+        string player_n = "player" + (index + 1) + "_";
+        strength = SaveSystem.GetInt(player_n + "strength");
+        agility = SaveSystem.GetInt(player_n + "agility");
+        intelligence = SaveSystem.GetInt(player_n + "intelligence");
+        vitality = SaveSystem.GetInt(player_n + "vitality");
+        luck = SaveSystem.GetInt(player_n + "luck");
+        hit = SaveSystem.GetInt(player_n + "hit_percent");
+        magic_defense = SaveSystem.GetInt(player_n + "magic_defense");
+        HP = SaveSystem.GetInt(player_n + "HP");
+        maxHP = SaveSystem.GetInt(player_n + "maxHP");
+        experience = SaveSystem.GetInt(player_n + "exp");
+        level = bh.get_level_from_exp(experience);
+
+        if(SaveSystem.GetBool(player_n + "stone"))
+        {
+            conditions.Add("stone");
+        }
+        if (SaveSystem.GetBool(player_n + "poison"))
+        {
+            conditions.Add("poison");
+        }
     }
     
     public IEnumerator choose_monster(string act){
@@ -134,8 +171,6 @@ public class PartyMember : Battler
         
         anim = GetComponent<Animator>();
         anim.speed = 3f;
-        
-        save_player();
         
         done_set_up = true;
     }
