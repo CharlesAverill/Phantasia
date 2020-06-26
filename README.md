@@ -10,7 +10,6 @@ Download the repo as a zip file (green button at the top right). Open the "Build
 ## Tips
 - Pressing "m" on the title screen will switch between classic/remastered music. This will carry across sessions.
 - Pressing "escape" will unlock the mouse.
-- Damge IS happening when you're battling, both to you and the monsters. I just haven't created the UI yet.
 
 ## What's Supported
 
@@ -49,4 +48,6 @@ Download the repo as a zip file (green button at the top right). Open the "Build
   - NPC Movement, Dialogue
   - Indoor rooms
   - All Overworld sprites
-  - Shops, but not buying/selling. Saving at Inns supported.
+  - Shops, but not buying/selling. Saving + Healing at Inns supported.
+  - Earning gil upon battle win
+  - Battle UI
