@@ -151,7 +151,6 @@ public class TitleScreenHandler : MonoBehaviour
             string player_n = "player" + (i + 1) + "_";
 
             string p_class = sprite_controllers[i].get_class();
-            Debug.Log(p_class);
             SaveSystem.SetString(player_n + "class", p_class);
             
             switch(p_class){

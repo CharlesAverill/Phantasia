@@ -143,6 +143,7 @@ public class BattleHandler : MonoBehaviour
         battle_text.text = "";
 
         int gold_won = 0;
+        int exp_won = 0;
 
         foreach (PartyMember p in party) {
             while (!p.done_set_up) {
@@ -309,6 +310,7 @@ public class BattleHandler : MonoBehaviour
                         if (p.target.GetComponent<Monster>().HP <= 0)
                         {
                             gold_won += p.target.GetComponent<Monster>().gold;
+                            exp_won += p.target.GetComponent<Monster>().exp;
                             while (Input.GetAxis("Submit") == 0)
                             {
                                 yield return null;
@@ -328,7 +330,7 @@ public class BattleHandler : MonoBehaviour
                         if(p.luck > run_seed){
                             battle_text.text = p.gameObject.name + " ran away";
 
-                            yield return new WaitForSeconds(.2f);
+                            yield return new WaitForSeconds(.3f);
                             while (Input.GetAxis("Submit") == 0)
                             {
                                 yield return null;
@@ -343,7 +345,7 @@ public class BattleHandler : MonoBehaviour
                         }
                         //}
                     }
-                    yield return new WaitForSeconds(.2f);
+                    yield return new WaitForSeconds(.3f);
                     while (Input.GetAxis("Submit") == 0)
                     {
                         yield return null;
@@ -377,7 +379,7 @@ public class BattleHandler : MonoBehaviour
                             battle_text.text = m.target.gameObject.name + " was slain";
                         }
                     }
-                    yield return new WaitForSeconds(.2f);
+                    yield return new WaitForSeconds(.3f);
                     while (Input.GetAxis("Submit") == 0)
                     {
                         yield return null;
@@ -436,13 +438,66 @@ public class BattleHandler : MonoBehaviour
 
             battle_text.text = "Victory!";
 
+            yield return new WaitForSeconds(.3f);
             while (Input.GetAxis("Submit") == 0)
             {
                 yield return null;
             }
 
-            battle_text.text = "Obtained " + gold_won + " gold.";
+            battle_text.text = "Obtained " + gold_won + " gold";
             SaveSystem.SetInt("gil", SaveSystem.GetInt("gil") + gold_won);
+
+            yield return new WaitForSeconds(.3f);
+            while (Input.GetAxis("Submit") == 0)
+            {
+                yield return null;
+            }
+
+            int living = 0;
+            foreach (PartyMember m in party)
+            {
+                if (m.HP > 0)
+                {
+                    living += 1;
+                }
+            }
+
+            int exp_each = exp_won / living;
+            battle_text.text = "Obtained " + exp_won + " exp";
+
+            yield return new WaitForSeconds(.3f);
+            while (Input.GetAxis("Submit") == 0)
+            {
+                yield return null;
+            }
+
+            foreach (PartyMember m in party)
+            {
+                m.experience += exp_each;
+                while(get_level_from_exp(m.experience) > m.level)
+                {
+                    List<string> stats = m.level_up();
+
+                    battle_text.text = m.gameObject.name + " leveled up!";
+
+                    yield return new WaitForSeconds(.3f);
+                    while (Input.GetAxis("Submit") == 0)
+                    {
+                        yield return null;
+                    }
+
+                    foreach (string s in stats)
+                    {
+                        battle_text.text = s + " up";
+                        yield return new WaitForSeconds(.3f);
+                        while (Input.GetAxis("Submit") == 0)
+                        {
+                            yield return null;
+                        }
+                    }
+                }
+            }
+
 
             while (victory_music.get_active().time <= victory_music.get_active().gameObject.GetComponent<IntroLoop>().loop_start_seconds){
                 yield return null;
@@ -456,7 +511,7 @@ public class BattleHandler : MonoBehaviour
         {
             battle_text.text = "Game over...";
 
-            yield return new WaitForSeconds(.2f);
+            yield return new WaitForSeconds(.3f);
             while (Input.GetAxis("Submit") == 0)
             {
                 yield return null;

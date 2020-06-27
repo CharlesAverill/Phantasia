@@ -33,6 +33,288 @@ public class PartyMember : Battler
     
     public string action;
     public GameObject target;
+
+    public List<string> level_up()
+    {
+
+        level += 1;
+
+        int seed = 0;
+
+        List<string> stats_increased = new List<string>();
+
+        int s_old = strength;
+        int a_old = agility;
+        int i_old = intelligence;
+        int v_old = vitality;
+        int l_old = luck;
+
+        switch(SaveSystem.GetString("player" + (index + 1) + "_class"))
+        {
+            case "fighter":
+                seed = UnityEngine.Random.Range(1, 8);
+                if(seed > 0)
+                {
+                    strength += 1;
+                }
+                seed = UnityEngine.Random.Range(1, 8);
+                if (seed > 2)
+                {
+                    agility += 1;
+                }
+                seed = UnityEngine.Random.Range(1, 8);
+                if (seed > 4)
+                {
+                    intelligence += 1;
+                }
+                seed = UnityEngine.Random.Range(1, 8);
+                if (seed > 3)
+                {
+                    vitality += 1;
+                }
+                seed = UnityEngine.Random.Range(1, 8);
+                if (seed > 2)
+                {
+                    luck += 1;
+                }
+
+                seed = UnityEngine.Random.Range(1, 100);
+                if(seed > 50)
+                {
+                    maxHP += 20 + (vitality / 4) + UnityEngine.Random.Range(1, 6);
+                }
+                else
+                {
+                    maxHP += (vitality / 4) + 1;
+                }
+
+                hit += .03f;
+                magic_defense += .03f;
+
+                break;
+            case "black_belt":
+                seed = UnityEngine.Random.Range(1, 8);
+                if (seed > 3)
+                {
+                    strength += 1;
+                }
+                seed = UnityEngine.Random.Range(1, 8);
+                if (seed > 3)
+                {
+                    agility += 1;
+                }
+                seed = UnityEngine.Random.Range(1, 8);
+                if (seed > 3)
+                {
+                    intelligence += 1;
+                }
+                seed = UnityEngine.Random.Range(1, 8);
+                if (seed > 0)
+                {
+                    vitality += 1;
+                }
+                seed = UnityEngine.Random.Range(1, 8);
+                if (seed > 3)
+                {
+                    luck += 1;
+                }
+
+                seed = UnityEngine.Random.Range(1, 100);
+                if (seed > 60)
+                {
+                    maxHP += 20 + (vitality / 4) + UnityEngine.Random.Range(1, 6);
+                }
+                else
+                {
+                    maxHP += (vitality / 4) + 1;
+                }
+
+                hit += .03f;
+                magic_defense += .04f;
+
+                break;
+            case "red_mage":
+                seed = UnityEngine.Random.Range(1, 8);
+                if (seed > 3)
+                {
+                    strength += 1;
+                }
+                seed = UnityEngine.Random.Range(1, 8);
+                if (seed > 3)
+                {
+                    agility += 1;
+                }
+                seed = UnityEngine.Random.Range(1, 8);
+                if (seed > 3)
+                {
+                    intelligence += 1;
+                }
+                seed = UnityEngine.Random.Range(1, 8);
+                if (seed > 3)
+                {
+                    vitality += 1;
+                }
+                seed = UnityEngine.Random.Range(1, 8);
+                if (seed > 3)
+                {
+                    luck += 1;
+                }
+
+                seed = UnityEngine.Random.Range(1, 100);
+                if (seed > 75)
+                {
+                    maxHP += 20 + (vitality / 4) + UnityEngine.Random.Range(1, 6);
+                }
+                else
+                {
+                    maxHP += (vitality / 4) + 1;
+                }
+
+                hit += .02f;
+                magic_defense += .02f;
+
+                break;
+            case "thief":
+                seed = UnityEngine.Random.Range(1, 8);
+                if (seed > 1)
+                {
+                    strength += 1;
+                }
+                seed = UnityEngine.Random.Range(1, 8);
+                if (seed > 2)
+                {
+                    agility += 1;
+                }
+                seed = UnityEngine.Random.Range(1, 8);
+                if (seed > 4)
+                {
+                    intelligence += 1;
+                }
+                seed = UnityEngine.Random.Range(1, 8);
+                if (seed > 4)
+                {
+                    vitality += 1;
+                }
+                seed = UnityEngine.Random.Range(1, 8);
+                if (seed > 0)
+                {
+                    luck += 1;
+                }
+
+                seed = UnityEngine.Random.Range(1, 100);
+                if (seed > 65)
+                {
+                    maxHP += 20 + (vitality / 4) + UnityEngine.Random.Range(1, 6);
+                }
+                else
+                {
+                    maxHP += (vitality / 4) + 1;
+                }
+
+                hit += .02f;
+                magic_defense += .02f;
+
+                break;
+            case "white_mage":
+                seed = UnityEngine.Random.Range(1, 8);
+                if (seed > 4)
+                {
+                    strength += 1;
+                }
+                seed = UnityEngine.Random.Range(1, 8);
+                if (seed > 4)
+                {
+                    agility += 1;
+                }
+                seed = UnityEngine.Random.Range(1, 8);
+                if (seed > 3)
+                {
+                    intelligence += 1;
+                }
+                seed = UnityEngine.Random.Range(1, 8);
+                if (seed > 4)
+                {
+                    vitality += 1;
+                }
+                seed = UnityEngine.Random.Range(1, 8);
+                if (seed > 3)
+                {
+                    luck += 1;
+                }
+
+                seed = UnityEngine.Random.Range(1, 100);
+                if (seed > 70)
+                {
+                    maxHP += 20 + (vitality / 4) + UnityEngine.Random.Range(1, 6);
+                }
+                else
+                {
+                    maxHP += (vitality / 4) + 1;
+                }
+
+                hit += .01f;
+                magic_defense += .02f;
+
+                break;
+            case "black_mage":
+                seed = UnityEngine.Random.Range(1, 8);
+                if (seed > 4)
+                {
+                    strength += 1;
+                }
+                seed = UnityEngine.Random.Range(1, 8);
+                if (seed > 5)
+                {
+                    agility += 1;
+                }
+                seed = UnityEngine.Random.Range(1, 8);
+                if (seed > 0)
+                {
+                    intelligence += 1;
+                }
+                seed = UnityEngine.Random.Range(1, 8);
+                if (seed > 4)
+                {
+                    vitality += 1;
+                }
+                seed = UnityEngine.Random.Range(1, 8);
+                if (seed > 4)
+                {
+                    luck += 1;
+                }
+
+                seed = UnityEngine.Random.Range(1, 100);
+                if (seed > 75)
+                {
+                    maxHP += 20 + (vitality / 4) + UnityEngine.Random.Range(1, 6);
+                }
+                else
+                {
+                    maxHP += (vitality / 4) + 1;
+                }
+
+                hit += .01f;
+                magic_defense += .02f;
+
+                break;
+        }
+
+        if (s_old != strength)
+            stats_increased.Add("Strength");
+        if (a_old != strength)
+            stats_increased.Add("Agility");
+        if (i_old != strength)
+            stats_increased.Add("Intelligence");
+        if (v_old != strength)
+            stats_increased.Add("Vitality");
+        if (l_old != strength)
+            stats_increased.Add("Luck");
+        stats_increased.Add("HP");
+
+        save_player();
+
+        return stats_increased;
+    }
         
     public void save_player(){
         string player_n = "player" + (index + 1) + "_";
