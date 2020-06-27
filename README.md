@@ -51,3 +51,4 @@ Download the repo as a zip file (green button at the top right). Open the "Build
   - Shops, but not buying/selling. Saving + Healing at Inns supported.
   - Earning gil upon battle win
   - Battle UI
+  - Experience/Leveling system
