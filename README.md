@@ -1,15 +1,19 @@
 # Phantasia
 Multiplatform Final Fantasy 1 port in Unity
 
+![Phantasia](Assets/misc/title_screen.png)
+
 ## Installation
 Download the repo as a zip file (green button at the top right). Open the "Builds" folder.
 - Mac - Run Phantasia.app
 - Windows - Run Phantasia.exe
 - Linux - Run Phantasia.x86_64
 
+## Button Layout
+![Button layout](Assets/misc/button_layout.png)
+
 ## Tips
 - Pressing "m" on the title screen will switch between classic/remastered music. This will carry across sessions.
-- press "escape" in the overworld to pause. 
 
 ## What's Supported
 
