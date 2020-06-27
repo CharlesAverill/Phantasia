@@ -28,7 +28,7 @@ public class RandomEncounterHandler : MonoBehaviour
         }
     }
     
-    private bool battling;
+    public bool battling;
     
     IEnumerator initiate_encounter(){
     
@@ -96,7 +96,6 @@ public class RandomEncounterHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
         if(seed <= 0 && !battling){
             Debug.Log("Random encounter initiated");
             StartCoroutine(initiate_encounter());

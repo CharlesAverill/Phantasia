@@ -256,7 +256,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Matt
+  m_Text: 
 --- !u!222 &42993703
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -412,7 +412,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Matt does 37 damage to Imp
+  m_Text: 
 --- !u!222 &86117023
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -848,7 +848,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'HP: 999'
+  m_Text: 
 --- !u!222 &327058339
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1162,7 +1162,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'HP: 999'
+  m_Text: 
 --- !u!222 &705574089
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -17130,7 +17130,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'HP: 999'
+  m_Text: 
 --- !u!222 &1189034978
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -17394,7 +17394,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'HP: 999'
+  m_Text: 
 --- !u!222 &1551141821
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -17472,9 +17472,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Alta
-
-'
+  m_Text: 
 --- !u!222 &1581509036
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -17552,7 +17550,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Ivan
+  m_Text: 
 --- !u!222 &1591370338
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -18013,7 +18011,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Cora
+  m_Text: 
 --- !u!222 &1946396347
 CanvasRenderer:
   m_ObjectHideFlags: 0

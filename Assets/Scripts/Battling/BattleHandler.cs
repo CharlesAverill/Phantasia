@@ -139,7 +139,22 @@ public class BattleHandler : MonoBehaviour
          Array.Resize(ref arr, arr.Length - 1);
      }
 
+    IEnumerator set_battle_text(string t, float wait, bool wait_for_input, bool clear_on_finish)
+    {
+        battle_text.text = t;
+
+        yield return new WaitForSeconds(wait);
+        while (!wait_for_input || Input.GetAxis("Submit") == 0)
+        {
+            yield return null;
+        }
+
+        if(clear_on_finish)
+            battle_text.text = "";
+    }
+
     IEnumerator battle() {
+
         battle_text.text = "";
 
         int gold_won = 0;
@@ -166,8 +181,21 @@ public class BattleHandler : MonoBehaviour
         foreach(PartyMember p in party){
             battlers.Add(p.gameObject);
         }
-        
-        while(!battle_complete){
+
+        List<string> monsters_encountered = new List<string>();
+        foreach(Monster m in monsters)
+        {
+            if (!monsters_encountered.Contains(process_monster_name(m.gameObject.name)))
+                monsters_encountered.Add(process_monster_name(m.gameObject.name));
+        }
+        string encounter_text = "Encountered ";
+        foreach (string s in monsters_encountered)
+            encounter_text += s + ", ";
+        encounter_text = encounter_text.Substring(0, encounter_text.Length - 2) + "!";
+
+        set_battle_text(encounter_text, 1f, true, true);
+
+        while (!battle_complete){
 
             //Check if players won
             int living = 0;
@@ -200,6 +228,9 @@ public class BattleHandler : MonoBehaviour
             foreach (PartyMember p in party){
                 if(p.HP > 0){
                     active_party_member = p;
+
+                    set_battle_text(p.gameObject.name + " action?", .1f, true, false);
+
                     p.turn();
                     
                     while(p.action == "" || p.target == null){
@@ -230,7 +261,6 @@ public class BattleHandler : MonoBehaviour
                         lose = true;
                         break;
                     }
-                    
                     //Debug.Log(m.name + " " + m.action + "->" + m.target.name);
                 }
             }
@@ -293,6 +323,12 @@ public class BattleHandler : MonoBehaviour
                     }
                     
                     if(p.action == "fight"){
+
+                        while (p.target.GetComponent<Monster>().HP <= 0)
+                        {
+                            p.target = monsters[UnityEngine.Random.Range(0, monsters.Length)].gameObject;
+                        }
+
                         StartCoroutine(p.show_battle());
                         while(!p.done_showing){
                             yield return null;
@@ -304,18 +340,16 @@ public class BattleHandler : MonoBehaviour
                         
                         int damage = p.GetComponent<Battler>().fight(p, p.target.GetComponent<Monster>());
                         if(damage == -1)
-                            battle_text.text = p.gameObject.name + " missed";
+                            yield return StartCoroutine(set_battle_text(p.gameObject.name + " missed", .3f, true, true));
                         else
-                            battle_text.text = p.gameObject.name + " does " + damage + " damage to " + process_monster_name(p.target.gameObject.name);
+                            yield return StartCoroutine(set_battle_text(p.gameObject.name + " does " + damage + " damage to " + process_monster_name(p.target.gameObject.name), .3f, true, true));
+
                         if (p.target.GetComponent<Monster>().HP <= 0)
                         {
                             gold_won += p.target.GetComponent<Monster>().gold;
                             exp_won += p.target.GetComponent<Monster>().exp;
-                            while (Input.GetAxis("Submit") == 0)
-                            {
-                                yield return null;
-                            }
-                            battle_text.text = process_monster_name(p.target.gameObject.name) + " was slain";
+
+                            yield return StartCoroutine(set_battle_text(process_monster_name(p.target.gameObject.name) + " was slain", .3f, true, true));
                         }
                     }
                     
@@ -328,27 +362,17 @@ public class BattleHandler : MonoBehaviour
                         */
                         int run_seed = UnityEngine.Random.Range(0, p.level + 15);
                         if(p.luck > run_seed){
-                            battle_text.text = p.gameObject.name + " ran away";
 
-                            yield return new WaitForSeconds(.3f);
-                            while (Input.GetAxis("Submit") == 0)
-                            {
-                                yield return null;
-                            }
+                            yield return StartCoroutine(set_battle_text(p.gameObject.name + " ran away", .3f, true, true));
 
                             battle_complete = true;
                             stalemate = true;
                             break;
                         }
                         else{
-                            battle_text.text = "Running was unsuccessful...";
+                            yield return StartCoroutine(set_battle_text(p.name + " couldn't run", .3f, true, true));
                         }
                         //}
-                    }
-                    yield return new WaitForSeconds(.3f);
-                    while (Input.GetAxis("Submit") == 0)
-                    {
-                        yield return null;
                     }
                 }
                 else{
@@ -357,32 +381,30 @@ public class BattleHandler : MonoBehaviour
                     
                     if(m.HP > 0){
                         if(m.action == "fight"){
+
+                            while (m.target.GetComponent<PartyMember>().HP <= 0)
+                            {
+                                m.target = party[UnityEngine.Random.Range(0, party.Length)].gameObject;
+                            }
+
                             int damage = m.GetComponent<Battler>().fight(m, m.target.GetComponent<PartyMember>());
                             if (damage == -1)
-                                battle_text.text = process_monster_name(m.gameObject.name) + " missed";
+                                yield return StartCoroutine(set_battle_text(process_monster_name(m.gameObject.name) + " missed", .3f, true, true));
                             else
-                                battle_text.text = process_monster_name(m.gameObject.name) + " does " + damage + " damage to " + m.target.gameObject.name;
+                                yield return StartCoroutine(set_battle_text(process_monster_name(m.gameObject.name) + " does " + damage + " damage to " + m.target.gameObject.name, .3f, true, true));
                         }
                         
                         if(m.action == "run"){
-                            battle_text.text = process_monster_name(m.gameObject.name) + " ran away";
+                            yield return StartCoroutine(set_battle_text(process_monster_name(m.gameObject.name) + " ran away", .3f, true, true));
                             Destroy(m.gameObject);
                             remove_from_array(ref monsters, x);
                         }
 
                         if (m.target.GetComponent<PartyMember>().HP <= 0)
                         {
-                            while (Input.GetAxis("Submit") == 0)
-                            {
-                                yield return null;
-                            }
-                            battle_text.text = m.target.gameObject.name + " was slain";
+
+                            yield return StartCoroutine(set_battle_text(m.target.gameObject.name + " was slain", .3f, true, true));
                         }
-                    }
-                    yield return new WaitForSeconds(.3f);
-                    while (Input.GetAxis("Submit") == 0)
-                    {
-                        yield return null;
                     }
                 }
                 //Check if players won
@@ -436,22 +458,10 @@ public class BattleHandler : MonoBehaviour
             victory_music.gameObject.SetActive(true);
             victory_music.get_active().Play();
 
-            battle_text.text = "Victory!";
+            yield return StartCoroutine(set_battle_text("Victory!", 1f, true, true));
 
-            yield return new WaitForSeconds(.3f);
-            while (Input.GetAxis("Submit") == 0)
-            {
-                yield return null;
-            }
-
-            battle_text.text = "Obtained " + gold_won + " gold";
+            yield return StartCoroutine(set_battle_text("Obtained " + gold_won + " gold", 1f, true, true));
             SaveSystem.SetInt("gil", SaveSystem.GetInt("gil") + gold_won);
-
-            yield return new WaitForSeconds(.3f);
-            while (Input.GetAxis("Submit") == 0)
-            {
-                yield return null;
-            }
 
             int living = 0;
             foreach (PartyMember m in party)
@@ -463,13 +473,7 @@ public class BattleHandler : MonoBehaviour
             }
 
             int exp_each = exp_won / living;
-            battle_text.text = "Obtained " + exp_won + " exp";
-
-            yield return new WaitForSeconds(.3f);
-            while (Input.GetAxis("Submit") == 0)
-            {
-                yield return null;
-            }
+            yield return StartCoroutine(set_battle_text("Obtained " + exp_each + " exp", 1f, true, false));
 
             foreach (PartyMember m in party)
             {
@@ -478,22 +482,11 @@ public class BattleHandler : MonoBehaviour
                 {
                     List<string> stats = m.level_up();
 
-                    battle_text.text = m.gameObject.name + " leveled up!";
-
-                    yield return new WaitForSeconds(.3f);
-                    while (Input.GetAxis("Submit") == 0)
-                    {
-                        yield return null;
-                    }
+                    yield return StartCoroutine(set_battle_text(m.gameObject.name + " leveled up!", .3f, true, true));
 
                     foreach (string s in stats)
                     {
-                        battle_text.text = s + " up";
-                        yield return new WaitForSeconds(.3f);
-                        while (Input.GetAxis("Submit") == 0)
-                        {
-                            yield return null;
-                        }
+                        yield return StartCoroutine(set_battle_text(s + " up", .2f, true, false));
                     }
                 }
             }
@@ -509,13 +502,7 @@ public class BattleHandler : MonoBehaviour
         }
         else if (lose)
         {
-            battle_text.text = "Game over...";
-
-            yield return new WaitForSeconds(.3f);
-            while (Input.GetAxis("Submit") == 0)
-            {
-                yield return null;
-            }
+            yield return StartCoroutine(set_battle_text("Game over...", .5f, true, false));
 
             SceneManager.LoadSceneAsync("Title Screen");
             SceneManager.UnloadScene("Overworld");

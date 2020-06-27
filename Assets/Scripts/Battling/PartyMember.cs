@@ -358,13 +358,15 @@ public class PartyMember : Battler
     }
     
     public IEnumerator choose_monster(string act){
-    
+
         monster_cursor.gameObject.SetActive(true);
+        monster_cursor.GetComponent<SpriteRenderer>().enabled = false;
         menu_cursor.gameObject.SetActive(false);
-        
+        monster_cursor.GetComponent<SpriteRenderer>().enabled = true;
+
         yield return new WaitForSeconds(.2f);
-        
-        while(Input.GetAxis("Submit") == 0){
+
+        while (Input.GetAxis("Submit") == 0){
             yield return null;
         }
         

@@ -816,7 +816,7 @@ ScriptsOnlyBuild:
     className: SignalReceiver
   - hash:
       serializedVersion: 2
-      Hash: 95ed52483d66cda48ea2c8d805a7b531
+      Hash: f252ff5e5be6f3f71c0a567db9461241
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: RandomEncounterHandler

@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System.IO;
+using System.Collections.Generic;
 
 public static class SaveSystem {
 	
@@ -60,6 +61,12 @@ public static class SaveSystem {
 		return false;
 	}
 
+	public static void SetStringList(string name, List<string> strings)
+    {
+		if (string.IsNullOrEmpty(name)) return;
+		SetString(name, string.Join(",", strings.ToArray()));
+	}
+
 	public static void SetVector3(string name, Vector3 val)
 	{
 		if(string.IsNullOrEmpty(name)) return;
@@ -109,6 +116,15 @@ public static class SaveSystem {
 		if(data.items.Count == 0) return;
 		SerializatorBinary.SaveBinary(data, GetPath());
 		Debug.Log("[SaveGame] --> Save game data: " + GetPath());
+	}
+
+	public static List<string> GetStringList(string name)
+    {
+		if (string.IsNullOrEmpty(name)) return new List<string>();
+
+		string s = GetString(name);
+		string[] strings = s.Split(',');
+		return new List<string>(strings);
 	}
 
 	public static Vector3 GetVector3(string name)
