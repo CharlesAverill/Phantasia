@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System;
 using System.IO;
 using System.Collections.Generic;
 
@@ -67,6 +68,17 @@ public static class SaveSystem {
 		SetString(name, string.Join(",", strings.ToArray()));
 	}
 
+	public static void SetIntList(string name, List<int> ints)
+    {
+		if (string.IsNullOrEmpty(name)) return;
+
+		List<string> strings = new List<string>();
+		foreach (int i in ints)
+			strings.Add("" + i);
+
+		SetStringList(name, strings);
+	}
+
 	public static void SetVector3(string name, Vector3 val)
 	{
 		if(string.IsNullOrEmpty(name)) return;
@@ -118,8 +130,22 @@ public static class SaveSystem {
 		Debug.Log("[SaveGame] --> Save game data: " + GetPath());
 	}
 
-	public static List<string> GetStringList(string name)
+	public static List<int> GetIntList(string name)
     {
+		if (string.IsNullOrEmpty(name)) return new List<int>();
+
+		string s = GetString(name);
+		string[] strings = s.Split(',');
+
+		List<int> output = new List<int>();
+		foreach (string str in strings)
+			output.Add(Int32.Parse(str));
+
+		return output;
+	}
+
+	public static List<string> GetStringList(string name)
+	{
 		if (string.IsNullOrEmpty(name)) return new List<string>();
 
 		string s = GetString(name);

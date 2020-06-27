@@ -47,8 +47,6 @@ public class TitleScreenHandler : MonoBehaviour
             remaster.volume = 1f;
             classic.volume = 0f;
         }
-
-        Cursor.lockState = CursorLockMode.None;
         
         title.SetActive(true);
         char_select.SetActive(false);
@@ -65,7 +63,7 @@ public class TitleScreenHandler : MonoBehaviour
 
         SaveSystem.SetInt("reh_seed", reh.seed);
 
-        SaveSystem.SetInt("gil", 200);
+        SaveSystem.SetInt("gil", 500);
     
         SaveSystem.SetFloat("overworldX", -1f);
         SaveSystem.SetFloat("overworldY", -5f);
@@ -74,6 +72,11 @@ public class TitleScreenHandler : MonoBehaviour
         SaveSystem.SetString("player2_name", names[1]);
         SaveSystem.SetString("player3_name", names[2]);
         SaveSystem.SetString("player4_name", names[3]);
+
+        SaveSystem.SetBool("earth_orb", false);
+        SaveSystem.SetBool("fire_orb", false);
+        SaveSystem.SetBool("water_orb", false);
+        SaveSystem.SetBool("wind_orb", false);
 
         SaveSystem.SaveToDisk();
         Debug.Log("Done initializing");
@@ -250,8 +253,8 @@ public class TitleScreenHandler : MonoBehaviour
     IEnumerator load(){
         loading_circle.gameObject.SetActive(true);
         loading_circle.start_loading_circle();
-        yield return new WaitForSeconds(.75f);
-        Cursor.lockState = CursorLockMode.Locked;
+        yield return new WaitForSeconds(.5f);
+        Cursor.visible = false;
         SceneManager.LoadSceneAsync("Overworld");
     }
 }

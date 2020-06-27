@@ -100,9 +100,5 @@ public class RandomEncounterHandler : MonoBehaviour
             Debug.Log("Random encounter initiated");
             StartCoroutine(initiate_encounter());
         }
-        
-        if(Input.GetKeyDown("escape")){
-            Cursor.lockState = CursorLockMode.None;
-        }
     }
 }

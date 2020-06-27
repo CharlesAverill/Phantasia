@@ -20,6 +20,7 @@ ScriptsOnlyBuild:
     - OverworldGrid
     - OverworldUpdate
     - PartyMember
+    - PauseMenuHandler
     - PlayerController
     - RandomEncounterHandler
     - RoomHandler
@@ -168,6 +169,8 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11498}
     - Class: 114
+      Script: {instanceID: 11552}
+    - Class: 114
       Script: {instanceID: 11592}
     - Class: 114
       Script: {instanceID: 11656}
@@ -187,6 +190,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 12750}
     - Class: 114
       Script: {instanceID: 12776}
+    - Class: 114
+      Script: {instanceID: 12942}
     - Class: 114
       Script: {instanceID: 13052}
     - Class: 114
@@ -209,6 +214,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 14336}
     - Class: 114
       Script: {instanceID: 72860}
+    - Class: 114
+      Script: {instanceID: 428104}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -1066,6 +1073,12 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: ShopWarp
+  - hash:
+      serializedVersion: 2
+      Hash: 6536e3f1a4577e3c6cf5444ea39812bc
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: PauseMenuHandler
   platform: 19
   scenePathNames:
   - Assets/Scenes/Title Screen.unity

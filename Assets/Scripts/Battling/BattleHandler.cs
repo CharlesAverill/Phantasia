@@ -106,6 +106,7 @@ public class BattleHandler : MonoBehaviour
     {
         Dictionary<int, int> level_chart = get_level_chart();
         int level = 1;
+
         foreach (KeyValuePair<int, int> entry in level_chart)
         {
             if (entry.Value > exp)

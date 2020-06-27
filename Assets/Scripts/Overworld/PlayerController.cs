@@ -31,12 +31,15 @@ public class PlayerController : MonoBehaviour
     public OverworldGrid og;
     
     public int frames_since_last_interact;
+
+    void OnEnable()
+    {
+        Cursor.visible = false;
+    }
     
     // Start is called before the first frame update
     void Start()
     {
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
         
         move_point.parent = transform.parent;
         move_point.transform.position = transform.position;
