@@ -9,7 +9,7 @@ Download the repo as a zip file (green button at the top right). Open the "Build
 
 ## Tips
 - Pressing "m" on the title screen will switch between classic/remastered music. This will carry across sessions.
-- Pressing "escape" will unlock the mouse.
+- press "escape" in the overworld to pause. 
 
 ## What's Supported
 
@@ -39,6 +39,12 @@ Download the repo as a zip file (green button at the top right). Open the "Build
   - Wolf
   - WrWolf
   - Zombie
+### Pause Menu
+  - Orb Display
+  - Gil Display
+  - HP Display
+  - Class Display
+  - Lvl Display
 ### Misc
   - Title screen
   - Screen transitions
