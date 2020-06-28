@@ -12,9 +12,6 @@ Download the repo as a zip file (green button at the top right). Open the "Build
 ## Button Layout
 ![Button layout](Assets/misc/button_layout.png)
 
-## Tips
-- Pressing "m" on the title screen will switch between classic/remastered music. This will carry across sessions.
-
 ## What's Supported
 
 ### Overworld
