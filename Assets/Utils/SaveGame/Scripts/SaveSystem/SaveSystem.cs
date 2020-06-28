@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System;
+using System.Linq;
 using System.IO;
 using System.Collections.Generic;
 
@@ -60,6 +61,12 @@ public static class SaveSystem {
 		}
 
 		return false;
+	}
+
+	public static void SetStringIntDict(string name, Dictionary<string, int> dict)
+    {
+		string s = string.Join(";", dict.Select(x => x.Key + "=" + x.Value).ToArray());
+		SetString(name, s);
 	}
 
 	public static void SetStringList(string name, List<string> strings)
@@ -128,6 +135,32 @@ public static class SaveSystem {
 		if(data.items.Count == 0) return;
 		SerializatorBinary.SaveBinary(data, GetPath());
 		Debug.Log("[SaveGame] --> Save game data: " + GetPath());
+	}
+
+	public static Dictionary<string, int> GetStringIntDict(string name)
+    {
+		if (string.IsNullOrEmpty(name)) return new Dictionary<string, int>();
+
+		string s = GetString(name);
+
+		if(s.Length < 3)
+        {
+			return new Dictionary<string, int>();
+		}
+
+		string[] strings = s.Split(';');
+
+		Dictionary<string, int> output = new Dictionary<string, int>();
+
+		foreach(string str in strings)
+        {
+			string key = str.Substring(0, str.IndexOf("="));
+			string pre_value = str.Substring(str.IndexOf("=") + 1, str.Length - str.IndexOf("=") - 1);
+			int value = Int32.Parse(pre_value);
+			output.Add(key, value);
+        }
+
+		return output;
 	}
 
 	public static List<int> GetIntList(string name)

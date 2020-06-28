@@ -1,12 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Shop : MonoBehaviour
 {
+
+    [Serializable]
+    public class product_text
+    {
+        public Text name;
+        public Text cost;
+    }
+
     public Transform[] party;
     public List<GameObject> party_clones;
 
@@ -14,11 +23,13 @@ public class Shop : MonoBehaviour
 
     public string shopmode;
 
-    public Dictionary<string, int> products;
-
     public Text prompt_text;
     public Text gil_display_text;
     public Text shop_type_text;
+
+    public GameObject buy_container;
+    public GameObject buy_cursor;
+    public product_text[] product_Texts;
 
     public GameObject yes_no;
     public GameObject buy_sell_quit;
@@ -26,7 +37,6 @@ public class Shop : MonoBehaviour
 
     private bool yes;
     private bool no;
-    private bool buy;
     private bool sell;
 
     private int inn_clinic_price;
@@ -34,14 +44,42 @@ public class Shop : MonoBehaviour
 
     private SpriteController sc;
 
+    int buy_index;
+
+    void setup()
+    {
+        foreach (product_text t in product_Texts)
+        {
+            t.name.transform.parent.gameObject.SetActive(false);
+        }
+
+        yes_no.SetActive(false);
+        buy_sell_quit.SetActive(true);
+        only_quit.SetActive(false);
+        buy_container.SetActive(false);
+
+        for (int i = 0; i < GlobalControl.instance.shop_products.Count; i++)
+        {
+            string prod_name = GlobalControl.instance.shop_products.ElementAt(i).Key;
+            int prod_cost = GlobalControl.instance.shop_products.ElementAt(i).Value;
+
+            product_Texts[i].name.transform.parent.gameObject.SetActive(true);
+
+            product_Texts[i].name.text = prod_name;
+            product_Texts[i].cost.text = "" + prod_cost;
+        }
+        prompt_text.text = "What do you need?";
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         party_clones = new List<GameObject>();
-        products = new Dictionary<string, int>();
         party_names = new string[4];
 
-        for(int i = 0; i < 4; i++)
+        buy_container.SetActive(false);
+
+        for (int i = 0; i < 4; i++)
         {
             party_names[i] = SaveSystem.GetString("player" + (i + 1) + "_name");
         }
@@ -51,16 +89,7 @@ public class Shop : MonoBehaviour
 
         if(shopmode != "inn" && shopmode != "clinic")
         {
-            yes_no.SetActive(false);
-            buy_sell_quit.SetActive(true);
-            only_quit.SetActive(false);
-            for(int i = 0; i < GlobalControl.instance.shop_products.Count; i++)
-            {
-                string prod_name = GlobalControl.instance.shop_products.ElementAt(i).Key;
-                int prod_cost = GlobalControl.instance.shop_products.ElementAt(i).Value;
-                products.Add(prod_name, prod_cost);
-            }
-            prompt_text.text = "What do you need?";
+            setup();
         }
         else
         {
@@ -76,13 +105,13 @@ public class Shop : MonoBehaviour
             if(shopmode == "clinic")
             {
                 int dead = 0;
-                foreach(string name in party_names)
+
+                for(int i = 0; i < 4; i++)
                 {
-                    if(SaveSystem.GetInt(name + "_HP") <= 0)
-                    {
+                    if (SaveSystem.GetInt("player" + (i + 1) + "_HP") <= 0)
                         dead += 1;
-                    }
                 }
+
                 if (dead > 0)
                 {
                     prompt_text.text = "A party member of yours has fallen. Would you like to revive them for " + inn_clinic_price + "G?";
@@ -195,15 +224,16 @@ public class Shop : MonoBehaviour
         no = true;
     }
 
-    public void buy_true()
+    public void buy()
     {
-        buy = true;
-        sell = false;
+        buy_container.SetActive(true);
+        buy_cursor.SetActive(true);
+        buy_sell_quit.SetActive(false);
+        prompt_text.text = "What would you like?";
     }
 
     public void sell_true()
     {
-        buy = false;
         sell = true;
     }
 
@@ -221,6 +251,13 @@ public class Shop : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(player_gil != SaveSystem.GetInt("gil"))
+        {
+            player_gil = SaveSystem.GetInt("gil");
+
+            gil_display_text.text = "G: " + player_gil;
+        }
+
         if((shopmode == "inn" || shopmode == "clinic") && (yes || no))
         {
             if(yes && player_gil < inn_clinic_price)
@@ -243,5 +280,107 @@ public class Shop : MonoBehaviour
 
             exit_shop();
         }
+    }
+
+    public void buy_1()
+    {
+        StartCoroutine(buy_select(0));
+    }
+
+    public void buy_2()
+    {
+        StartCoroutine(buy_select(1));
+    }
+
+    public void buy_3()
+    {
+        StartCoroutine(buy_select(2));
+    }
+
+    public void buy_4()
+    {
+        StartCoroutine(buy_select(3));
+    }
+
+    public void buy_5()
+    {
+        StartCoroutine(buy_select(4));
+    }
+
+    IEnumerator buy_select(int index)
+    {
+        buy_cursor.SetActive(false);
+
+        yes = false;
+        no = false;
+
+        string p_name = product_Texts[index].name.text;
+        int p_cost = Int32.Parse(product_Texts[index].cost.text);
+
+        prompt_text.text = "Is " + p_cost + " G for a " + p_name + " okay?";
+        yes_no.SetActive(true);
+
+        while (!yes && !no)
+            yield return null;
+
+        if (yes)
+        {
+            if(player_gil >= p_cost)
+            {
+                string category = item_category(p_name);
+
+                switch (category)
+                {
+                    case "items":
+                        Dictionary<string, int> items = SaveSystem.GetStringIntDict("items");
+                        if (items.ContainsKey(p_name))
+                            items[p_name] = items[p_name] + 1;
+                        else
+                            items.Add(p_name, 1);
+                        SaveSystem.SetStringIntDict("items", items);
+                        SaveSystem.SetInt("gil", player_gil - p_cost);
+                        break;
+                    case "weapons":
+                        List<string> weapons = SaveSystem.GetStringList("weapons");
+                        weapons.Add(p_name);
+                        SaveSystem.SetStringList("weapons", weapons);
+                        SaveSystem.SetInt("gil", player_gil - p_cost);
+                        break;
+                    case "armor":
+                        List<string> armor = SaveSystem.GetStringList("armor");
+                        armor.Add(p_name);
+                        SaveSystem.SetStringList("armor", armor);
+                        SaveSystem.SetInt("gil", player_gil - p_cost);
+                        break;
+                }
+            }
+            else
+            {
+                prompt_text.text = "You don't have enough money";
+                yes_no.SetActive(false);
+                yield return new WaitForSeconds(1.5f);
+            }
+        }
+
+        setup();
+    }
+
+    public string item_category(string item)
+    {
+        List<string> items = new List<string> {"Heal Potion", "Pure Potion", "Tent"};
+        List<string> weapons = new List<string> {"Wooden Staff", "Small Dagger", "Wooden Nunchuck", "Rapier", "Iron Hammer"};
+        List<string> armor = new List<string> {"Cloth", "Wooden Armor", "Chain Armor" };
+        List<string> w_magic = new List<string> {"Cure", "Harm", "Fog", "Ruse"};
+        List<string> b_magic = new List<string> {"Fire", "Slep", "Lock", "Lit"};
+
+        if (items.Contains(item))
+            return "items";
+        if (weapons.Contains(item))
+            return "weapons";
+        if (b_magic.Contains(item))
+            return "black magic";
+        if (w_magic.Contains(item))
+            return "white magic";
+        return "armor";
     }
 }

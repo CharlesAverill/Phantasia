@@ -50,6 +50,10 @@ public class Battler : MonoBehaviour
         
         if(UnityEngine.Random.Range(0f, 200f) <= chance_to_hit){
             defend.HP -= (int)damage;
+
+            if (defend.HP < 0)
+                defend.HP = 0;
+
             return (int)damage;
         }
         else{
@@ -102,6 +106,10 @@ public class Battler : MonoBehaviour
         
         if(UnityEngine.Random.Range(0f, 200f) <= chance_to_hit){
             defend.HP -= (int)damage;
+
+            if (defend.HP < 0)
+                defend.HP = 0;
+
             return (int)damage;
         }
         else{

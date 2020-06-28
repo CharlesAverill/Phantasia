@@ -34,6 +34,8 @@ public class RandomEncounterHandler : MonoBehaviour
     
         battling = true;
 
+        player.pause_menu_container.SetActive(false);
+
         GlobalControl.instance.monster_party = player.og.get_monster_party();
     
         int countLoaded = SceneManager.sceneCount;
@@ -78,6 +80,8 @@ public class RandomEncounterHandler : MonoBehaviour
 
         gen_seed();
         SaveSystem.SetInt("reh_seed", seed);
+
+        player.pause_menu_container.SetActive(true);
 
         player.map_handler.save_position();
         battling = false;

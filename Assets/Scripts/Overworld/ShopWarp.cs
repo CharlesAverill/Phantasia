@@ -38,7 +38,11 @@ public class ShopWarp : MonoBehaviour
     {
         shopping = true;
 
+        player.pause_menu_container.SetActive(false);
+
         player.can_move = false;
+
+        GlobalControl.instance.shop_products = new Dictionary<string, int>();
 
         GlobalControl.instance.shopmode = shopmode;
         GlobalControl.instance.inn_clinic_price = inn_clinic_price;

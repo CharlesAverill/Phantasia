@@ -17,6 +17,8 @@ public class PlayerController : MonoBehaviour
     public LayerMask water;
     public LayerMask river;
     public LayerMask NPC;
+
+    public GameObject pause_menu_container;
     
     public SpriteController sc;
     
@@ -35,6 +37,8 @@ public class PlayerController : MonoBehaviour
     void OnEnable()
     {
         Cursor.visible = false;
+        if (can_move)
+            pause_menu_container.SetActive(true);
     }
     
     // Start is called before the first frame update
@@ -178,6 +182,7 @@ public class PlayerController : MonoBehaviour
     }
     
     void OnTriggerEnter2D(Collider2D c){
+
         if(transform.position == move_point.position)
         {
             return;
@@ -236,8 +241,10 @@ public class PlayerController : MonoBehaviour
     
     IEnumerator change_map(GameObject map){
         can_move = false;
-        
-        while(transform.position != move_point.position){
+
+        pause_menu_container.SetActive(false);
+
+        while (transform.position != move_point.position){
             yield return null;
         }
         
@@ -248,5 +255,7 @@ public class PlayerController : MonoBehaviour
         }
         
         can_move = true;
+
+        pause_menu_container.SetActive(true);
     }
 }

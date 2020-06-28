@@ -9,6 +9,8 @@ public class CursorController : MonoBehaviour
 {
     public bool monster_mode;
     public bool shop_mode;
+    public bool buy_cursor_mode;
+
     public EventSystem event_system;
     
     public GameObject[] buttons;
@@ -33,8 +35,19 @@ public class CursorController : MonoBehaviour
         else{
             active_array = buttons;
         }
-        
+
         active_list = active_array.OfType<GameObject>().ToList();
+    }
+
+    void OnEnable()
+    {
+        for (int i = 0; i < buttons.Length; i++)
+        {
+            if (shop_mode && buttons[i].active == false)
+            {
+                remove_from_list(buttons[i]);
+            }
+        }
     }
 
     // Update is called once per frame
@@ -92,6 +105,11 @@ public class CursorController : MonoBehaviour
             if(monster_mode){
                 xoffset = -3.5f;
                 yoffset = -0.4f;
+            }
+            else if (shop_mode && buy_cursor_mode)
+            {
+                xoffset = -.45f;
+                yoffset = 0f;
             }
             else if (shop_mode)
             {

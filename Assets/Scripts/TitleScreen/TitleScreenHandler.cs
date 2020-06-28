@@ -63,7 +63,7 @@ public class TitleScreenHandler : MonoBehaviour
 
         SaveSystem.SetInt("reh_seed", reh.seed);
 
-        SaveSystem.SetInt("gil", 500);
+        SaveSystem.SetInt("gil", 400);
     
         SaveSystem.SetFloat("overworldX", -1f);
         SaveSystem.SetFloat("overworldY", -5f);
@@ -72,6 +72,10 @@ public class TitleScreenHandler : MonoBehaviour
         SaveSystem.SetString("player2_name", names[1]);
         SaveSystem.SetString("player3_name", names[2]);
         SaveSystem.SetString("player4_name", names[3]);
+
+        SaveSystem.SetStringIntDict("items", new Dictionary<string, int>());
+        SaveSystem.SetStringList("weapons", new List<string>());
+        SaveSystem.SetStringList("armor", new List<string>());
 
         SaveSystem.SetBool("earth_orb", false);
         SaveSystem.SetBool("fire_orb", false);
