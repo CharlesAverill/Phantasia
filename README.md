@@ -58,7 +58,8 @@ Download the repo as a zip file (green button at the top right). Open the "Build
   - NPC Movement, Dialogue
   - Indoor rooms
   - All Overworld sprites
-  - Shops, but not buying/selling. Saving + Healing at Inns supported.
+  - Buying items, weapons, armor, magic from shops. Equipping and learning magic not supported.
+  - Saving + Healing at Inns
   - Earning gil upon battle win
   - Battle UI
   - Experience/Leveling system
