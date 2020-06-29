@@ -6,6 +6,10 @@ public class Map : MonoBehaviour
 {
     
     public Transform entry_position;
+
+    public bool use_stairs;
+
+    public Transform stair_entry_position;
     
     private PlayerController p;
     

@@ -128,6 +128,8 @@ public class MapHandler : MonoBehaviour
         
         Map active = active_map.GetComponent<Map>();
         active.play_music = false;
+
+        bool use_stairs = active.use_stairs;
         
         AudioSource am_as = active_map.GetComponentInChildren<MusicHandler>().get_active();
         am_as.Stop();
@@ -144,8 +146,16 @@ public class MapHandler : MonoBehaviour
         active = active_map.GetComponent<Map>();
         
         if(active.name != "Overworld"){
-            player.transform.position = active.entry_position.position;
-            player.sc.change_direction("up");
+            if (use_stairs)
+            {
+                player.transform.position = active.stair_entry_position.position;
+                player.sc.change_direction("down");
+            }
+            else
+            {
+                player.transform.position = active.entry_position.position;
+                player.sc.change_direction("up");
+            }
         }
         else{
             player.transform.position = new Vector3(overworldX, overworldY, 0f);
