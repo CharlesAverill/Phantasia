@@ -150,10 +150,15 @@ public class PlayerController : MonoBehaviour
             if(hit.collider){
                 GameObject obj = hit.collider.gameObject;
                 NPC inter_npc = obj.GetComponent<NPC>();
+                Chest inter_chest = obj.GetComponent<Chest>();
                 
                 if(inter_npc){
                     if(inter_npc.move_point.position == inter_npc.transform.position)
                         StartCoroutine(inter_npc.interact(this));
+                }
+                else if (inter_chest)
+                {
+                    StartCoroutine(inter_chest.interact(this));
                 }
             }
             else{

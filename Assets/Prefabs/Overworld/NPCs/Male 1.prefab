@@ -48,8 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogue: Hey there!
-  box: {fileID: 21300000, guid: b128b150ea11e47a0a146b9d95f138bd, type: 3}
-  text_box: {fileID: 848726573207992963}
+  text_box: {fileID: 342177004913967001, guid: 71f54e438ef5c46b4b9f49c2b4affe48, type: 3}
   move_point: {fileID: 848726573751756989}
   collision:
     serializedVersion: 2

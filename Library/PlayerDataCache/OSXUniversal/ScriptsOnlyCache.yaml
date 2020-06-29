@@ -7,6 +7,7 @@ ScriptsOnlyBuild:
     - BattleHandler
     - BlinkText
     - CameraController
+    - Chest
     - CursorController
     - GlobalControl
     - IntroLoop
@@ -214,6 +215,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 13790}
     - Class: 114
       Script: {instanceID: 14338}
+    - Class: 114
+      Script: {instanceID: 22738}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -803,7 +806,7 @@ ScriptsOnlyBuild:
     className: PlayerController
   - hash:
       serializedVersion: 2
-      Hash: e223c2fc83d1d98b31eeba84e933c5cb
+      Hash: 39786f606fec1ae6b5f70b190242bca2
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Interactable
@@ -887,7 +890,7 @@ ScriptsOnlyBuild:
     className: BattleHandler
   - hash:
       serializedVersion: 2
-      Hash: f7d10f6312ed99d496aa5b1c501f297c
+      Hash: 58aa6f330103f2856443f7f46584c1c4
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: NPC
@@ -1077,6 +1080,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
+  - hash:
+      serializedVersion: 2
+      Hash: d7c33e3d1448a95ae0082bfbdc81433e
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Chest
   platform: 2
   scenePathNames:
   - Assets/Scenes/Title Screen.unity
