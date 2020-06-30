@@ -11,19 +11,14 @@ public class ShopWarp : MonoBehaviour
     public string shopmode;
     public int inn_clinic_price;
 
-    [Serializable]
-    public class product
-    {
-        public string name;
-        public int price;
-    }
+    public string[] products;
 
-    public product[] products;
+    Equips equips;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        equips = new Equips();
     }
 
     // Update is called once per frame
@@ -50,9 +45,10 @@ public class ShopWarp : MonoBehaviour
         {
             GlobalControl.instance.shop_products = new Dictionary<string, int>();
         }
-        foreach (product p in products)
+        foreach (string p in products)
         {
-            GlobalControl.instance.shop_products.Add(p.name, p.price);
+            KeyValuePair<string, int> name_price = equips.name_price(p);
+            GlobalControl.instance.shop_products.Add(name_price.Key, name_price.Value);
         }
 
         int countLoaded = SceneManager.sceneCount;

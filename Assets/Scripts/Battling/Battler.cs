@@ -9,8 +9,15 @@ public class Battler : MonoBehaviour
     public float hit;
     public float magic_defense;
     public List<String> conditions;
-    
+
+    Equips equip;
+
     public int fight(Monster attack, PartyMember defend){
+
+        if(equip == null)
+        {
+            equip = new Equips();
+        }
     
         string[] conditions_array = conditions.ToArray();
     
@@ -21,7 +28,7 @@ public class Battler : MonoBehaviour
             absorb_rating = defend.level;
         }
         else{
-            absorb_rating = sum_armor(defend);
+            absorb_rating = equip.sum_armor(defend.index);
         }
         
         float damage = 0f;
@@ -62,7 +69,12 @@ public class Battler : MonoBehaviour
     }
     
     public int fight(PartyMember attack, Monster defend){
-    
+
+        if (equip == null)
+        {
+            equip = new Equips();
+        }
+
         string[] conditions_array = conditions.ToArray();
     
         float damage_rating = 0;
@@ -118,25 +130,25 @@ public class Battler : MonoBehaviour
     }
     
     int weapon_damage(string weapon){
-        return 0;
+        if (weapon == "")
+            return 0;
+        return equip.get_weapon(weapon).damage;
     }
     
     float weapon_crit(string weapon){
-        return .01f;
-    }
-    
-    int sum_armor(PartyMember member){
-        return 1;
+        if (weapon == "")
+            return 0f;
+        return equip.get_weapon(weapon).crit;
     }
     
     string weapon_type(PartyMember member){
-        return "";
+        return equip.get_weapon(SaveSystem.GetString("player" + (member.index + 1) + "_weapon")).element;
     }
     
     // Start is called before the first frame update
     void Start()
     {
-        
+        equip = new Equips();
     }
 
     // Update is called once per frame

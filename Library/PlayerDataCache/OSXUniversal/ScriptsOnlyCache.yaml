@@ -716,7 +716,7 @@ ScriptsOnlyBuild:
     className: Selectable
   - hash:
       serializedVersion: 2
-      Hash: c093aa891485103ded66c085e2f5d778
+      Hash: 8858ec019cead5506a321086e46279b4
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: ShopWarp

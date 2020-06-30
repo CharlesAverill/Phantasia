@@ -455,6 +455,8 @@ public class PartyMember : Battler
         
         anim = GetComponent<Animator>();
         anim.speed = 3f;
+
+        weapon = SaveSystem.GetString("player" + (index + 1) + "_weapon");
         
         done_set_up = true;
     }

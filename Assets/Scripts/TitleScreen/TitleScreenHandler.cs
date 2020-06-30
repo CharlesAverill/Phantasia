@@ -240,6 +240,14 @@ public class TitleScreenHandler : MonoBehaviour
 
                     break;
             }
+
+            SaveSystem.SetString(player_n + "shield", "");
+            SaveSystem.SetString(player_n + "helmet", "");
+            SaveSystem.SetString(player_n + "armor", "");
+            SaveSystem.SetString(player_n + "glove", "");
+
+            SaveSystem.SetString(player_n + "weapon", "");
+
             SaveSystem.SetInt(player_n + "exp", 0);
             SaveSystem.SetBool(player_n + "poison", false);
             SaveSystem.SetBool(player_n + "stone", false);
