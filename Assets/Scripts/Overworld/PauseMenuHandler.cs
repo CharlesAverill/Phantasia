@@ -10,12 +10,20 @@ public class PauseMenuHandler : MonoBehaviour
     public GameObject overworld_scene_container;
     public GameObject pausemenu_container;
     public GameObject status_container;
+    public GameObject music_container;
 
     public SpriteController[] spriteControllers;
     public Text[] names;
     public Text[] levels;
     public Text[] HPs;
     public Text[] MPs;
+
+    public GameObject bag_obj;
+    public Text[] bag_items;
+
+    public GameObject givedrop;
+
+    public GameObject give;
 
     public Text gold;
 
@@ -125,6 +133,16 @@ public class PauseMenuHandler : MonoBehaviour
         overworld_scene_container.SetActive(true);
         pausemenu_container.SetActive(false);
         status_container.SetActive(false);
+        bag_obj.SetActive(false);
+        give.SetActive(false);
+        givedrop.SetActive(false);
+    }
+
+    void OnEnable()
+    {
+        status_container.SetActive(false);
+        bag_obj.SetActive(false);
+        givedrop.SetActive(false);
     }
 
     // Start is called before the first frame update
@@ -241,6 +259,25 @@ public class PauseMenuHandler : MonoBehaviour
         status(3);
     }
 
+    public void bag()
+    {
+        Dictionary<string, int> items = SaveSystem.GetStringIntDict("items");
+        foreach(Text t in bag_items)
+        {
+            t.text = "";
+        }
+
+        int i = 0;
+
+        foreach(KeyValuePair<string, int> kvp in items)
+        {
+            bag_items[i].text = kvp.Key + " x" + kvp.Value;
+            i += 1;
+        }
+
+        bag_obj.SetActive(true);
+    }
+
     public void status(int index)
     {
         string player_n = "player" + (index + 1) + "_";
@@ -319,6 +356,228 @@ public class PauseMenuHandler : MonoBehaviour
         status_container.SetActive(true);
     }
 
+    int item_select_index;
+
+    public void select_item_1()
+    {
+        if (bag_items[0].text == "")
+            return;
+        item_select_index = 0;
+        select();
+    }
+
+    public void select_item_2()
+    {
+        if (bag_items[1].text == "")
+            return;
+        item_select_index = 1;
+        select();
+    }
+
+    public void select_item_3()
+    {
+        if (bag_items[2].text == "")
+            return;
+        item_select_index = 2;
+        select();
+    }
+
+    public void select_item_4()
+    {
+        if (bag_items[3].text == "")
+            return;
+        item_select_index = 3;
+        select();
+    }
+
+    public void select_item_5()
+    {
+        if (bag_items[4].text == "")
+            return;
+        item_select_index = 4;
+        select();
+    }
+
+    public void select_item_6()
+    {
+        if (bag_items[5].text == "")
+            return;
+        item_select_index = 5;
+        select();
+    }
+
+    public void select_item_7()
+    {
+        if (bag_items[6].text == "")
+            return;
+        item_select_index = 6;
+        select();
+    }
+
+    public void select_item_8()
+    {
+        if (bag_items[7].text == "")
+            return;
+        item_select_index = 7;
+        select();
+    }
+
+    public void select_item_9()
+    {
+        if (bag_items[8].text == "")
+            return;
+        item_select_index = 8;
+        select();
+    }
+
+    public void select_item_10()
+    {
+        if (bag_items[9].text == "")
+            return;
+        item_select_index = 9;
+        select();
+    }
+
+    public void select_item_11()
+    {
+        if (bag_items[10].text == "")
+            return;
+        item_select_index = 10;
+        select();
+    }
+
+    public void select_item_12()
+    {
+        if (bag_items[11].text == "")
+            return;
+        item_select_index = 11;
+        select();
+    }
+
+    public void select_item_13()
+    {
+        if (bag_items[12].text == "")
+            return;
+        item_select_index = 12;
+        select();
+    }
+
+    public void select_item_14()
+    {
+        if (bag_items[13].text == "")
+            return;
+        item_select_index = 13;
+        select();
+    }
+
+    public void select_item_15()
+    {
+        if (bag_items[14].text == "")
+            return;
+        item_select_index = 14;
+        select();
+    }
+
+    public void select_item_16()
+    {
+        if (bag_items[15].text == "")
+            return;
+        item_select_index = 15;
+        select();
+    }
+
+    public void select()
+    {
+        givedrop.SetActive(true);
+    }
+
+    public void give_button()
+    {
+        give.SetActive(true);
+        StartCoroutine(give_to_player());
+    }
+
+    int give_index = -1;
+
+    public void give_to_player_1()
+    {
+        give_index = 0;
+    }
+
+    public void give_to_player_2()
+    {
+        give_index = 1;
+    }
+
+    public void give_to_player_3()
+    {
+        give_index = 2;
+    }
+
+    public void give_to_player_4()
+    {
+        give_index = 3;
+    }
+
+    IEnumerator give_to_player()
+    {
+        Debug.Log("waiting to find out who to give to");
+
+        givedrop.SetActive(false);
+
+        while(give_index == -1)
+        {
+            yield return null;
+        }
+
+        Debug.Log(give_index);
+
+        string item_name = bag_items[item_select_index].text.Substring(0, bag_items[item_select_index].text.IndexOf(" x"));
+
+        string category = new Equips().item_category(item_name);
+
+        switch (category)
+        {
+            case "weapon":
+                List<string> weapons = SaveSystem.GetStringList("player" + (give_index + 1) + "_weapons");
+                weapons.Add(item_name);
+                SaveSystem.SetStringList("player" + (give_index + 1) + "_weapons", weapons);
+
+                Dictionary<string, int> party_items = SaveSystem.GetStringIntDict("items");
+                int count = party_items[item_name];
+                if (count == 1)
+                    party_items.Remove(item_name);
+                else
+                    party_items[item_name] = party_items[item_name] - 1;
+
+                SaveSystem.SetStringIntDict("items", party_items);
+
+                break;
+            case "armor":
+                List<string> armor = SaveSystem.GetStringList("player" + (give_index + 1) + "_armor");
+                armor.Add(item_name);
+                SaveSystem.SetStringList("player" + (give_index + 1) + "_armor", armor);
+
+                Dictionary<string, int> party_items1 = SaveSystem.GetStringIntDict("items");
+                int count1 = party_items1[item_name];
+                if (count1 == 1)
+                    party_items1.Remove(item_name);
+                else
+                    party_items1[item_name] = party_items1[item_name] - 1;
+
+                SaveSystem.SetStringIntDict("items", party_items1);
+
+                break;
+        }
+
+        give.SetActive(false);
+        givedrop.SetActive(false);
+
+        bag();
+
+        give_index = -1;
+    }
+
     public void status_off()
     {
         pausemenu_container.SetActive(true);
@@ -327,16 +586,35 @@ public class PauseMenuHandler : MonoBehaviour
 
     public void off()
     {
-        Cursor.visible = false;
-        pausemenu_container.SetActive(false);
-        status_container.SetActive(false);
-        overworld_scene_container.SetActive(true);
+        if(give.active == true)
+        {
+            give.SetActive(false);
+        }
+        else if(givedrop.active == true)
+        {
+            givedrop.SetActive(false);
+        }
+        else if(bag_obj.active == true)
+        {
+            bag_obj.SetActive(false);
+        }
+        else
+        {
+            Cursor.visible = false;
+            pausemenu_container.SetActive(false);
+            status_container.SetActive(false);
+            music_container.SetActive(false);
+            overworld_scene_container.SetActive(true);
+            bag_obj.SetActive(false);
+            givedrop.SetActive(false);
+        }
     }
 
     public void on()
     {
         overworld_scene_container.SetActive(false);
         pausemenu_container.SetActive(true);
+        music_container.SetActive(true);
         Cursor.visible = true;
     }
 

@@ -74,8 +74,6 @@ public class TitleScreenHandler : MonoBehaviour
         SaveSystem.SetString("player4_name", names[3]);
 
         SaveSystem.SetStringIntDict("items", new Dictionary<string, int>());
-        SaveSystem.SetStringList("weapons", new List<string>());
-        SaveSystem.SetStringList("armor", new List<string>());
 
         SaveSystem.SetBool("earth_orb", false);
         SaveSystem.SetBool("fire_orb", false);
@@ -240,6 +238,9 @@ public class TitleScreenHandler : MonoBehaviour
 
                     break;
             }
+
+            SaveSystem.SetStringList(player_n + "armor_inventory", new List<string>());
+            SaveSystem.SetStringList(player_n + "weapons_inventory", new List<string>());
 
             SaveSystem.SetString(player_n + "shield", "");
             SaveSystem.SetString(player_n + "helmet", "");

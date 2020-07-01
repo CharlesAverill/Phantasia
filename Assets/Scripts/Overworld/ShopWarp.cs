@@ -48,6 +48,7 @@ public class ShopWarp : MonoBehaviour
         foreach (string p in products)
         {
             KeyValuePair<string, int> name_price = equips.name_price(p);
+            Debug.Log(p);
             GlobalControl.instance.shop_products.Add(name_price.Key, name_price.Value);
         }
 

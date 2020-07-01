@@ -327,11 +327,9 @@ public class Shop : MonoBehaviour
         {
             if(player_gil >= p_cost)
             {
-                string category = item_category(p_name);
-
-                switch (category)
+                switch (shopmode)
                 {
-                    case "items":
+                    case "item":
                         Dictionary<string, int> items = SaveSystem.GetStringIntDict("items");
                         if (items.ContainsKey(p_name))
                             items[p_name] = items[p_name] + 1;
@@ -340,16 +338,16 @@ public class Shop : MonoBehaviour
                         SaveSystem.SetStringIntDict("items", items);
                         SaveSystem.SetInt("gil", player_gil - p_cost);
                         break;
-                    case "weapons":
-                        List<string> weapons = SaveSystem.GetStringList("weapons");
-                        weapons.Add(p_name);
-                        SaveSystem.SetStringList("weapons", weapons);
+                    case "weapon":
+                        Dictionary<string, int> items1 = SaveSystem.GetStringIntDict("items");
+                        items1.Add(p_name, 1);
+                        SaveSystem.SetStringIntDict("items", items1);
                         SaveSystem.SetInt("gil", player_gil - p_cost);
                         break;
                     case "armor":
-                        List<string> armor = SaveSystem.GetStringList("armor");
-                        armor.Add(p_name);
-                        SaveSystem.SetStringList("armor", armor);
+                        Dictionary<string, int> items2 = SaveSystem.GetStringIntDict("items");
+                        items2.Add(p_name, 1);
+                        SaveSystem.SetStringIntDict("items", items2);
                         SaveSystem.SetInt("gil", player_gil - p_cost);
                         break;
                 }
@@ -363,24 +361,5 @@ public class Shop : MonoBehaviour
         }
 
         setup();
-    }
-
-    public string item_category(string item)
-    {
-        List<string> items = new List<string> {"Heal Potion", "Pure Potion", "Tent"};
-        List<string> weapons = new List<string> {"Wooden Staff", "Small Dagger", "Wooden Nunchuck", "Rapier", "Iron Hammer"};
-        List<string> armor = new List<string> {"Cloth", "Wooden Armor", "Chain Armor" };
-        List<string> w_magic = new List<string> {"Cure", "Harm", "Fog", "Ruse"};
-        List<string> b_magic = new List<string> {"Fire", "Slep", "Lock", "Lit"};
-
-        if (items.Contains(item))
-            return "items";
-        if (weapons.Contains(item))
-            return "weapons";
-        if (b_magic.Contains(item))
-            return "black magic";
-        if (w_magic.Contains(item))
-            return "white magic";
-        return "armor";
     }
 }
