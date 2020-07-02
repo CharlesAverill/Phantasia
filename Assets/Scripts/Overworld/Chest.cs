@@ -65,11 +65,9 @@ public class Chest : Interactable
             dialogue = "Nothing";
         }
 
-        Debug.Log("displaying text");
-
         display_textbox(location);
 
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(.8f);
         while (Input.GetAxisRaw("Submit") == 0)
         {
             yield return null;
@@ -84,7 +82,7 @@ public class Chest : Interactable
     }
 
     // Start is called before the first frame update
-    void Start()
+    void OnEnable()
     {
         obtained = SaveSystem.GetBool("chest_" + ID);
     }

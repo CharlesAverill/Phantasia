@@ -12,6 +12,7 @@ ScriptsOnlyBuild:
     - GlobalControl
     - IntroLoop
     - LoadingCircle
+    - LockedDoor
     - Map
     - MapHandler
     - Monster
@@ -217,6 +218,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 13796}
     - Class: 114
       Script: {instanceID: 14344}
+    - Class: 114
+      Script: {instanceID: 472008}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -458,7 +461,7 @@ ScriptsOnlyBuild:
     className: GroupTrack
   - hash:
       serializedVersion: 2
-      Hash: 6c7340bb2993b8809e998c4e9a2ccdd5
+      Hash: ca0a070232ec78519b3da06241e03f3d
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PauseMenuHandler
@@ -1086,6 +1089,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
+  - hash:
+      serializedVersion: 2
+      Hash: 3c79759b5d33b056d9edb189c7cb9eca
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: LockedDoor
   platform: 19
   scenePathNames:
   - Assets/Scenes/Title Screen.unity

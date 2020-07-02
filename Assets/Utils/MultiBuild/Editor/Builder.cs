@@ -194,10 +194,25 @@ namespace MultiBuild {
                 return BuildTarget.Android;
             case Target.WebGL:
                 return BuildTarget.WebGL;
+            case Target.WinStore:
+                return BuildTarget.WSAPlayer;
+            case Target.Tizen:
+                return BuildTarget.Tizen;
             case Target.PS4:
                 return BuildTarget.PS4;
             case Target.XboxOne:
                 return BuildTarget.XboxOne;
+            case Target.WiiU:
+                return BuildTarget.WiiU;
+            case Target.tvOS:
+                return BuildTarget.tvOS;
+#if UNITY_5_5_OR_NEWER
+            case Target.Nintendo3DS:
+                return BuildTarget.N3DS;
+#else
+            case Target.Nintendo3DS:
+                return BuildTarget.Nintendo3DS;
+#endif
 #if UNITY_5_6_OR_NEWER
             case Target.Switch:
                 return BuildTarget.Switch;

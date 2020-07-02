@@ -117,6 +117,7 @@ public class Equips
     void setup_armor()
     {
         armor.Add(new Armor("Cloth", "armor", 1, "", .2f, new List<string>(), new string[] { "fighter", "knight", "thief", "ninja", "black_belt", "master", "black_mage", "black_wizard", "red_mage", "red_wizard", "white_mage", "white_wizard" }, 10));
+        armor.Add(new Armor("Cap", "helmet", 1, "", .1f, new List<string>(), new string[] { "fighter", "knight", "thief", "ninja", "black_belt", "master", "black_mage", "black_wizard", "red_mage", "red_wizard", "white_mage", "white_wizard" }, 80));
         armor.Add(new Armor("Wooden Armor", "armor", 4, "", .8f, new List<string>(), new string[] { "fighter", "knight", "thief", "ninja", "black_belt", "master", "red_mage", "red_wizard" }, 50));
         armor.Add(new Armor("Chain Armor", "armor", 15, "", .15f, new List<string>(), new string[] { "fighter", "knight", "ninja", "red_mage", "red_wizard" }, 80));
         armor.Add(new Armor("Iron Armor", "armor", 24, "", .23f, new List<string>(), new string[] { "fighter", "knight", "ninja" }, 800));

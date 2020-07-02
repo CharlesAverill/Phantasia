@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenuHandler : MonoBehaviour
 {
-
+    public PlayerController player;
     public GameObject overworld_scene_container;
     public GameObject pausemenu_container;
     public GameObject status_container;
@@ -243,7 +243,7 @@ public class PauseMenuHandler : MonoBehaviour
     {
         if (Input.GetKeyDown("escape"))
         {
-            if (SceneManager.sceneCount == 1)
+            if (SceneManager.sceneCount == 1 && player.can_move)
                 setup();
                 on();
         }

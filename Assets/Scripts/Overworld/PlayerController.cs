@@ -151,6 +151,7 @@ public class PlayerController : MonoBehaviour
                 GameObject obj = hit.collider.gameObject;
                 NPC inter_npc = obj.GetComponent<NPC>();
                 Chest inter_chest = obj.GetComponent<Chest>();
+                LockedDoor lockedDoor = obj.GetComponent<LockedDoor>();
                 
                 if(inter_npc){
                     if(inter_npc.move_point.position == inter_npc.transform.position)
@@ -159,6 +160,10 @@ public class PlayerController : MonoBehaviour
                 else if (inter_chest)
                 {
                     StartCoroutine(inter_chest.interact(this));
+                }
+                else if (lockedDoor)
+                {
+                    StartCoroutine(lockedDoor.interact(this));
                 }
             }
             else{
