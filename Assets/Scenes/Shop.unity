@@ -6986,49 +6986,69 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characters:
   - name: armor
-    up: {fileID: 0}
-    down: {fileID: 8324621632376689671, guid: 87584cee071b64d5da58e0ad42d9fd26, type: 3}
+    up1: {fileID: 0}
+    up2: {fileID: 0}
+    down1: {fileID: 8324621632376689671, guid: 87584cee071b64d5da58e0ad42d9fd26, type: 3}
+    down2: {fileID: 0}
     step1: {fileID: 0}
     step2: {fileID: 0}
   - name: b_magic
-    up: {fileID: 0}
-    down: {fileID: 8441817080834929464, guid: 87584cee071b64d5da58e0ad42d9fd26, type: 3}
+    up1: {fileID: 0}
+    up2: {fileID: 0}
+    down1: {fileID: 8441817080834929464, guid: 87584cee071b64d5da58e0ad42d9fd26, type: 3}
+    down2: {fileID: 0}
     step1: {fileID: 0}
     step2: {fileID: 0}
   - name: clinic
-    up: {fileID: 0}
-    down: {fileID: 9026189533748585945, guid: 87584cee071b64d5da58e0ad42d9fd26, type: 3}
+    up1: {fileID: 0}
+    up2: {fileID: 0}
+    down1: {fileID: 9026189533748585945, guid: 87584cee071b64d5da58e0ad42d9fd26, type: 3}
+    down2: {fileID: 0}
     step1: {fileID: 0}
     step2: {fileID: 0}
   - name: inn
-    up: {fileID: 0}
-    down: {fileID: 6702337702551442779, guid: 87584cee071b64d5da58e0ad42d9fd26, type: 3}
+    up1: {fileID: 0}
+    up2: {fileID: 0}
+    down1: {fileID: 6702337702551442779, guid: 87584cee071b64d5da58e0ad42d9fd26, type: 3}
+    down2: {fileID: 0}
     step1: {fileID: 0}
     step2: {fileID: 0}
   - name: item
-    up: {fileID: 0}
-    down: {fileID: -4403742145773797953, guid: 87584cee071b64d5da58e0ad42d9fd26, type: 3}
+    up1: {fileID: 0}
+    up2: {fileID: 0}
+    down1: {fileID: -4403742145773797953, guid: 87584cee071b64d5da58e0ad42d9fd26,
+      type: 3}
+    down2: {fileID: 0}
     step1: {fileID: 0}
     step2: {fileID: 0}
   - name: oasis
-    up: {fileID: 0}
-    down: {fileID: -3603494559859665163, guid: 87584cee071b64d5da58e0ad42d9fd26, type: 3}
+    up1: {fileID: 0}
+    up2: {fileID: 0}
+    down1: {fileID: -3603494559859665163, guid: 87584cee071b64d5da58e0ad42d9fd26,
+      type: 3}
+    down2: {fileID: 0}
     step1: {fileID: 0}
     step2: {fileID: 0}
   - name: w_magic
-    up: {fileID: 0}
-    down: {fileID: 7983467105666994071, guid: 87584cee071b64d5da58e0ad42d9fd26, type: 3}
+    up1: {fileID: 0}
+    up2: {fileID: 0}
+    down1: {fileID: 7983467105666994071, guid: 87584cee071b64d5da58e0ad42d9fd26, type: 3}
+    down2: {fileID: 0}
     step1: {fileID: 0}
     step2: {fileID: 0}
   - name: weapon
-    up: {fileID: 0}
-    down: {fileID: -4453754882460649108, guid: 87584cee071b64d5da58e0ad42d9fd26, type: 3}
+    up1: {fileID: 0}
+    up2: {fileID: 0}
+    down1: {fileID: -4453754882460649108, guid: 87584cee071b64d5da58e0ad42d9fd26,
+      type: 3}
+    down2: {fileID: 0}
     step1: {fileID: 0}
     step2: {fileID: 0}
   character_index: 0
   sr: {fileID: 8683960260684678373}
   title_screen_mode: 1
   display: 0
+  walk_animation: 0
 --- !u!212 &8683960260684678373
 SpriteRenderer:
   m_ObjectHideFlags: 0

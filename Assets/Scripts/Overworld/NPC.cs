@@ -54,6 +54,14 @@ public class NPC : Interactable
         float multiplier = 2f;
         float hor = 0f;
         float ver = 0f;
+
+        if (immobile_npc)
+        {
+            if (!sc.walk_animation && can_move && !interacting)
+            {
+                StartCoroutine(sc.walk());
+            }
+        }
         
         if(frame_count >= frames_until_move && can_move && !immobile_npc){
             if (!is_player_within_radius(5f))
@@ -157,9 +165,11 @@ public class NPC : Interactable
             RaycastHit2D hit = Physics2D.Raycast(transform.position, new Vector3(hor, 0f, 0f), multiplier, collision | water | river);
             if(hor == multiplier){
                 sc.change_direction("right");
+                StartCoroutine(sc.walk());
             }
             if(hor == -1f * multiplier){
                 sc.change_direction("left");
+                StartCoroutine(sc.walk());
             }
             if(hit.collider == null || hit.collider.gameObject.layer == 0){
                 move_point.position += new Vector3(hor, 0f, 0f);
@@ -173,10 +183,12 @@ public class NPC : Interactable
             RaycastHit2D hit = Physics2D.Raycast(transform.position, new Vector3(0f, ver, 0f), 1f * multiplier, collision | water | river);
             if(ver == multiplier){
                 sc.change_direction("up");
+                StartCoroutine(sc.walk());
             }
             if(ver == -1f * multiplier){
                 //anim.SetTrigger("down");
                 sc.change_direction("down");
+                StartCoroutine(sc.walk());
             }
             if(hit.collider == null || hit.collider.gameObject.layer == 0){
                 move_point.position += new Vector3(0f, ver, 0f);
@@ -187,32 +199,41 @@ public class NPC : Interactable
         }
         transform.position = Vector3.MoveTowards(transform.position, move_point.position, move_speed * Time.deltaTime);
     }
+
+    bool interacting;
     
     public IEnumerator interact(PlayerController p){
+        interacting = true;
+
         if (is_player_within_radius(2.5f))
         {
             can_move = false;
 
-            if (p.sc.get_direction() == "down")
-            {
-                sc.change_direction("up");
-            }
-            else if (p.sc.get_direction() == "up")
-            {
-                sc.change_direction("down");
-            }
-            else if (p.sc.get_direction() == "left")
-            {
-                sc.change_direction("right");
-            }
-            else if (p.sc.get_direction() == "right")
-            {
-                sc.change_direction("left");
-            }
-
             Vector3 p_pos = p.gameObject.transform.position;
 
             Vector3 location = new Vector3(p_pos.x, p_pos.y - 7.5f, p_pos.z);
+
+            string direction_to_look = "";
+
+            if (p.sc.get_direction() == "down")
+            {
+                direction_to_look = "up";
+            }
+            else if (p.sc.get_direction() == "up")
+            {
+                direction_to_look = "down";
+            }
+            else if (p.sc.get_direction() == "left")
+            {
+                direction_to_look = "right";
+            }
+            else if (p.sc.get_direction() == "right")
+            {
+                direction_to_look = "left";
+            }
+
+            sc.change_direction(direction_to_look);
+            StartCoroutine(look_in_direction(direction_to_look));
 
             display_textbox(location);
 
@@ -224,10 +245,43 @@ public class NPC : Interactable
 
             hide_textbox();
             p.can_move = true;
-            can_move = true;
 
             p.frames_since_last_interact = 0;
         }
+        interacting = false;
+        if (immobile_npc)
+        {
+            can_move = true;
+            sc.walk_animation = false;
+        }
+    }
+
+    IEnumerator look_in_direction(string dir)
+    {
+        while (interacting)
+        {
+            switch (dir)
+            {
+                case "up":
+                    if (sc.sr.sprite != sc.active_character.up1)
+                        sc.change_direction("up");
+                    break;
+                case "down":
+                    if (sc.sr.sprite != sc.active_character.down1)
+                        sc.change_direction("down");
+                    break;
+                case "left":
+                    if (sc.sr.sprite != sc.active_character.step1)
+                        sc.change_direction("left");
+                    break;
+                case "right":
+                    if (sc.sr.sprite != sc.active_character.step1)
+                        sc.change_direction("right");
+                    break;
+            }
+            yield return null;
+        }
+        yield return null;
     }
 
     bool is_player_within_radius(float radius)
@@ -258,5 +312,15 @@ public class NPC : Interactable
     void OnCollisionExit2D(Collision2D c)
     {
         can_move = true;
+    }
+
+    void OnEnable()
+    {
+        if (immobile_npc)
+        {
+            can_move = true;
+            interacting = false;
+            sc.walk_animation = false;
+        }
     }
 }

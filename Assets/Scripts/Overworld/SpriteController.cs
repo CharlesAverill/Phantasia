@@ -11,8 +11,10 @@ public class SpriteController : MonoBehaviour
     
         public string name;
     
-        public Sprite up;
-        public Sprite down;
+        public Sprite up1;
+        public Sprite up2;
+        public Sprite down1;
+        public Sprite down2;
         public Sprite step1;
         public Sprite step2;
     }
@@ -20,7 +22,7 @@ public class SpriteController : MonoBehaviour
     public SpriteGroup[] characters;
     
     public int character_index;
-    private SpriteGroup active_character;
+    public SpriteGroup active_character;
     
     private string direction;
     
@@ -42,7 +44,7 @@ public class SpriteController : MonoBehaviour
         direction = "down";
     
         sr = GetComponent<SpriteRenderer>();
-        sr.sprite = active_character.down;
+        sr.sprite = active_character.down1;
         
         frames_since_last_increment = 15;
 
@@ -93,6 +95,23 @@ public class SpriteController : MonoBehaviour
     
     public void change_direction(string dir){
         direction = dir;
+        switch (direction)
+        {
+            case "up":
+                sr.sprite = active_character.up1;
+                break;
+            case "down":
+                sr.sprite = active_character.down1;
+                break;
+            case "left":
+                sr.flipX = false;
+                sr.sprite = active_character.step1;
+                break;
+            case "right":
+                sr.flipX = true;
+                sr.sprite = active_character.step1;
+                break;
+        }
     }
     
     public string get_direction(){
@@ -101,6 +120,45 @@ public class SpriteController : MonoBehaviour
     
     public string get_class(){
         return active_character.name;
+    }
+
+    public bool walk_animation;
+
+    public IEnumerator walk()
+    {
+        float wait = 0.13189315f;
+        walk_animation = true;
+        switch (direction)
+        {
+            case "up":
+                sr.sprite = active_character.up1;
+                yield return new WaitForSeconds(wait);
+                sr.sprite = active_character.up2;
+                yield return new WaitForSeconds(wait);
+                break;
+            case "down":
+                sr.sprite = active_character.down1;
+                yield return new WaitForSeconds(wait);
+                sr.sprite = active_character.down2;
+                yield return new WaitForSeconds(wait);
+                break;
+            case "left":
+                sr.flipX = false;
+                sr.sprite = active_character.step1;
+                yield return new WaitForSeconds(wait);
+                sr.flipX = false;
+                sr.sprite = active_character.step2;
+                yield return new WaitForSeconds(wait);
+                break;
+            case "right":
+                sr.flipX = true;
+                sr.sprite = active_character.step1;
+                yield return new WaitForSeconds(wait);
+                sr.sprite = active_character.step2;
+                yield return new WaitForSeconds(wait);
+                break;
+        }
+        walk_animation = false;
     }
 
     // Update is called once per frame
@@ -120,23 +178,6 @@ public class SpriteController : MonoBehaviour
         
         if(active_character != characters[character_index]){
             active_character = characters[character_index];
-        }
-        
-        switch(direction){
-            case "up":
-                sr.sprite = active_character.up;
-                break;
-            case "down":
-                sr.sprite = active_character.down;
-                break;
-            case "left":
-                sr.sprite = active_character.step1;
-                sr.flipX = false;
-                break;
-            case "right":
-                sr.sprite = active_character.step1;
-                sr.flipX = true;
-                break;
         }
     }
 }

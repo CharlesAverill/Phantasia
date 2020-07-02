@@ -56,9 +56,45 @@ public class PlayerController : MonoBehaviour
         reh.seed = SaveSystem.GetInt("reh_seed");
     }
 
+    float timer = -1;
+    List<float> times;
+
+    void startTimer()
+    {
+        if(times == null)
+        {
+            times = new List<float>();
+        }
+        timer = 0;
+    }
+
+    void stopTimer()
+    {
+        Debug.Log(timer);
+        times.Add(timer);
+
+        float total = 0f;
+        foreach(float f in times)
+        {
+            total += f;
+        }
+        Debug.Log("Average: " + (total / (float)times.Count));
+
+        timer = -1f;
+    }
+
     // Update is called once per frame
     void Update()
     {
+
+        if(timer >= 0)
+        {
+            timer += Time.deltaTime;
+            if(transform.position == move_point.position)
+            {
+                stopTimer();
+            }
+        }
         
         if(reh.gameObject.active == false){
             reh.gameObject.SetActive(true);
@@ -111,6 +147,8 @@ public class PlayerController : MonoBehaviour
                                 reh.decrement(2);
                                 break;
                         }
+                        startTimer();
+                        StartCoroutine(sc.walk());
                     }
                 }
                 
@@ -135,6 +173,8 @@ public class PlayerController : MonoBehaviour
                                 reh.decrement(2);
                                 break;
                         }
+                        startTimer();
+                        StartCoroutine(sc.walk());
                     }
                 }
             }
