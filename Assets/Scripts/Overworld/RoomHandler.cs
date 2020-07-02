@@ -8,6 +8,7 @@ public class RoomHandler : MonoBehaviour
 
     public GameObject rooms;
     public GameObject outside_collision;
+    public GameObject outside_NPCs;
 
     // Start is called before the first frame update
     void Start()
@@ -20,6 +21,7 @@ public class RoomHandler : MonoBehaviour
         else{
             rooms.SetActive(false);
             outside_collision.SetActive(true);
+            outside_NPCs.SetActive(true);
         }
         GetComponent<TilemapRenderer>().enabled = false;
     }
@@ -27,6 +29,7 @@ public class RoomHandler : MonoBehaviour
     public void change(){
         rooms.SetActive(!rooms.active);
         outside_collision.SetActive(!outside_collision.active);
+        outside_NPCs.SetActive(!outside_NPCs.active);
     }
 
     // Update is called once per frame

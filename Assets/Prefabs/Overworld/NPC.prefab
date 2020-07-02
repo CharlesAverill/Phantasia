@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 848726572356610202}
   - component: {fileID: 848726572356610201}
   m_Layer: 12
-  m_Name: Male 1
+  m_Name: NPC
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -61,6 +61,7 @@ MonoBehaviour:
     m_Bits: 2048
   move_speed: 8
   sc: {fileID: 8641046275214453184}
+  immobile_npc: 0
 --- !u!61 &848726572356610201
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -292,7 +293,7 @@ GameObject:
   m_Component:
   - component: {fileID: 848726573751756989}
   m_Layer: 0
-  m_Name: Male 1 Move Point
+  m_Name: Move Point
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -397,6 +398,27 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 848726572356610203}
     m_Modifications:
+    - target: {fileID: 3711603809744901652, guid: 488b069222aea41a0aa83719000c3277,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 3532bf4f58d3e443683ad443dae417e2,
+        type: 3}
+    - target: {fileID: 3711603809744901652, guid: 488b069222aea41a0aa83719000c3277,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3711603809744901652, guid: 488b069222aea41a0aa83719000c3277,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3711603809744901652, guid: 488b069222aea41a0aa83719000c3277,
+        type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3711603809744901653, guid: 488b069222aea41a0aa83719000c3277,
         type: 3}
       propertyPath: characters.Array.size

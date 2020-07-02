@@ -193,24 +193,21 @@ public class NPC : Interactable
         {
             can_move = false;
 
-            if (!immobile_npc)
+            if (p.sc.get_direction() == "down")
             {
-                if (p.sc.get_direction() == "down")
-                {
-                    sc.change_direction("up");
-                }
-                else if (p.sc.get_direction() == "up")
-                {
-                    sc.change_direction("down");
-                }
-                else if (p.sc.get_direction() == "left")
-                {
-                    sc.change_direction("right");
-                }
-                else if (p.sc.get_direction() == "right")
-                {
-                    sc.change_direction("left");
-                }
+                sc.change_direction("up");
+            }
+            else if (p.sc.get_direction() == "up")
+            {
+                sc.change_direction("down");
+            }
+            else if (p.sc.get_direction() == "left")
+            {
+                sc.change_direction("right");
+            }
+            else if (p.sc.get_direction() == "right")
+            {
+                sc.change_direction("left");
             }
 
             Vector3 p_pos = p.gameObject.transform.position;

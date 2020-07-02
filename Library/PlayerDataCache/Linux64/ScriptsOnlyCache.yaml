@@ -456,7 +456,7 @@ ScriptsOnlyBuild:
     className: GroupTrack
   - hash:
       serializedVersion: 2
-      Hash: 44acdaa4bf37c461e0d526f21e9c6d87
+      Hash: 6c7340bb2993b8809e998c4e9a2ccdd5
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PauseMenuHandler
@@ -696,7 +696,7 @@ ScriptsOnlyBuild:
     className: TMP_SpriteAsset
   - hash:
       serializedVersion: 2
-      Hash: caaa8ac7a45b6d75c717bc8e54bca21d
+      Hash: b1a6f7d80db3b96c407377c9c27b7f11
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: RoomHandler

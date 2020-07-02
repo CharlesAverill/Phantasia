@@ -30,6 +30,9 @@ public class PauseMenuHandler : MonoBehaviour
 
     public GameObject give;
 
+    public GameObject areyousure;
+    public Text areyousuretext;
+
     public Text gold;
 
     public GameObject earth;
@@ -507,6 +510,54 @@ public class PauseMenuHandler : MonoBehaviour
         givedrop.SetActive(true);
     }
 
+    public void drop()
+    {
+        areyousuretext.text = "Are you sure you want to drop this?";
+        areyousure.SetActive(true);
+        StartCoroutine(drop_item());
+    }
+
+    bool areyousure_yes;
+    bool areyousure_no;
+
+    public void areyousureyes()
+    {
+        areyousure_yes = true;
+    }
+
+    public void areyousureno()
+    {
+        areyousure_no = true;
+    }
+
+    IEnumerator drop_item()
+    {
+        while (!areyousure_yes && !areyousure_no)
+        {
+            yield return null;
+        }
+
+        if (areyousure_yes)
+        {
+            string name = bag_items[item_select_index].text.Substring(0, bag_items[item_select_index].text.IndexOf(" x"));
+
+            Dictionary<string, int> items = SaveSystem.GetStringIntDict("items");
+            if (items[name] == 1)
+                items.Remove(name);
+            else
+                items[name] = items[name] - 1;
+            SaveSystem.SetStringIntDict("items", items);
+        }
+
+        areyousure.SetActive(false);
+        givedrop.SetActive(false);
+
+        areyousure_yes = false;
+        areyousure_no = false;
+
+        bag();
+    }
+
     public void give_button()
     {
         give.SetActive(true);
@@ -921,6 +972,35 @@ public class PauseMenuHandler : MonoBehaviour
     }
 
     public void quit()
+    {
+        areyousuretext.text = "Do you want to quit? Any unsaved progress will be lost.";
+        areyousure.SetActive(true);
+        StartCoroutine(quit_coroutine());
+    }
+
+    IEnumerator quit_coroutine()
+    {
+        while(!areyousure_yes && !areyousure_no)
+        {
+            yield return null;
+        }
+
+        if (areyousure_yes)
+        {
+            actually_quit_application();
+        }
+        else
+        {
+            areyousure.SetActive(false);
+        }
+
+        areyousure_yes = false;
+        areyousure_no = false;
+
+        yield return null;
+    }
+
+    void actually_quit_application()
     {
 #if UNITY_EDITOR
          UnityEditor.EditorApplication.isPlaying = false;

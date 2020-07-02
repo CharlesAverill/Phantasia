@@ -20,6 +20,8 @@ public class Interactable : MonoBehaviour
     
     public void display_textbox(Vector3 pos){
         tb_instance = Instantiate(text_box, pos, Quaternion.identity);
+        if (dialogue.Length >= 91)
+            tb_instance.GetComponentInChildren<Text>().fontSize = 26;
         tb_instance.GetComponentInChildren<Text>().text = dialogue;
         tb_instance.SetActive(true);
     }
