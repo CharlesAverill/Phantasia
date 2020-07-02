@@ -39,7 +39,7 @@ public class Chest : Interactable
                 dialogue = "Obtained " + gold_val + " G";
                 SaveSystem.SetInt("gil", SaveSystem.GetInt("gil") + gold_val);
             }
-            else if (item)
+            else if (item || weapon || armor)
             {
                 dialogue = "Obtained " + item_val;
 
@@ -50,22 +50,6 @@ public class Chest : Interactable
                 }
                 else
                     items.Add(item_val, 1);
-            }
-            else if (weapon)
-            {
-                dialogue = "Obtained " + weapon_val;
-
-                List<string> weapons = SaveSystem.GetStringList("weapons");
-                weapons.Add(weapon_val);
-                SaveSystem.SetStringList("weapons", weapons);
-            }
-            else if (armor)
-            {
-                dialogue = "Obtained " + armor_val;
-
-                List<string> armors = SaveSystem.GetStringList("armor");
-                armors.Add(armor_val);
-                SaveSystem.SetStringList("armor", armors);
             }
 
             SaveSystem.SetBool("chest_" + ID, true);

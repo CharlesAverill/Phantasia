@@ -157,7 +157,7 @@ public class Equips
         spells.Add(new Spell("SLEP", "black", 1, 0, .96f, true, false, false, "Sleep", "status", 100, black_broad));
 
         spells.Add(new Spell("RUSE", "white", 1, 0, -1f, false, false, true, "", "", 100, white_broad_small));
-        spells.Add(new Spell("HEAL", "white", 1, 0, -1f, false, true, false, "", "", 100, white_broad_large));
+        spells.Add(new Spell("CURE", "white", 1, 0, -1f, false, true, false, "", "", 100, white_broad_large));
         spells.Add(new Spell("HARM", "white", 1, 40, .96f, true, false, false, "", "", 100, white_only));
         spells.Add(new Spell("FOG", "white", 1, 0, -1f, false, false, true, "", "", 100, white_broad_large));
     }
@@ -215,7 +215,7 @@ public class Equips
             if (s.name == name)
                 return new KeyValuePair<string, int>(s.name, s.cost);
         }
-        return new KeyValuePair<string, int>(null, 0);
+        return new KeyValuePair<string, int>("", 0);
     }
 
     public string item_category(string name)
@@ -264,5 +264,27 @@ public class Equips
             total += glove.absorb;
 
         return total;
+    }
+
+    public bool can_equip_armor(Armor ar, string player_class)
+    {
+        foreach(string c in ar.equip_by)
+        {
+            if (c == player_class)
+                return true;
+        }
+
+        return false;
+    }
+
+    public bool can_equip_weapon(Weapon w, string player_class)
+    {
+        foreach (string c in w.equip_by)
+        {
+            if (c == player_class)
+                return true;
+        }
+
+        return false;
     }
 }

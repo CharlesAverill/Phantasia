@@ -340,13 +340,19 @@ public class Shop : MonoBehaviour
                         break;
                     case "weapon":
                         Dictionary<string, int> items1 = SaveSystem.GetStringIntDict("items");
-                        items1.Add(p_name, 1);
+                        if (items1.ContainsKey(p_name))
+                            items1[p_name] = items1[p_name] + 1;
+                        else
+                            items1.Add(p_name, 1);
                         SaveSystem.SetStringIntDict("items", items1);
                         SaveSystem.SetInt("gil", player_gil - p_cost);
                         break;
                     case "armor":
                         Dictionary<string, int> items2 = SaveSystem.GetStringIntDict("items");
-                        items2.Add(p_name, 1);
+                        if (items2.ContainsKey(p_name))
+                            items2[p_name] = items2[p_name] + 1;
+                        else
+                            items2.Add(p_name, 1);
                         SaveSystem.SetStringIntDict("items", items2);
                         SaveSystem.SetInt("gil", player_gil - p_cost);
                         break;

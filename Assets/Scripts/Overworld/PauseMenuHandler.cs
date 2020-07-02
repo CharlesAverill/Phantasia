@@ -10,6 +10,9 @@ public class PauseMenuHandler : MonoBehaviour
     public GameObject overworld_scene_container;
     public GameObject pausemenu_container;
     public GameObject status_container;
+    public GameObject status_bag;
+    public Text status_bag_category;
+    public Text[] status_bag_items;
     public GameObject music_container;
 
     public SpriteController[] spriteControllers;
@@ -21,7 +24,9 @@ public class PauseMenuHandler : MonoBehaviour
     public GameObject bag_obj;
     public Text[] bag_items;
 
+    public Text[] give_names;
     public GameObject givedrop;
+    public GameObject equipparty;
 
     public GameObject give;
 
@@ -136,6 +141,7 @@ public class PauseMenuHandler : MonoBehaviour
         bag_obj.SetActive(false);
         give.SetActive(false);
         givedrop.SetActive(false);
+        equipparty.SetActive(false);
     }
 
     void OnEnable()
@@ -143,6 +149,7 @@ public class PauseMenuHandler : MonoBehaviour
         status_container.SetActive(false);
         bag_obj.SetActive(false);
         givedrop.SetActive(false);
+        equipparty.SetActive(false);
     }
 
     // Start is called before the first frame update
@@ -278,10 +285,15 @@ public class PauseMenuHandler : MonoBehaviour
         bag_obj.SetActive(true);
     }
 
+    string status_player_n;
+
     public void status(int index)
     {
         string player_n = "player" + (index + 1) + "_";
+        status_player_n = player_n;
         pausemenu_container.SetActive(false);
+        bag_obj.SetActive(false);
+        status_bag.SetActive(false);
 
         string job = SaveSystem.GetString(player_n + "class");
 
@@ -488,6 +500,10 @@ public class PauseMenuHandler : MonoBehaviour
 
     public void select()
     {
+        for(int i = 0; i < 4; i++)
+        {
+            give_names[i].text = SaveSystem.GetString("player" + (i + 1) + "_name");
+        }
         givedrop.SetActive(true);
     }
 
@@ -521,16 +537,12 @@ public class PauseMenuHandler : MonoBehaviour
 
     IEnumerator give_to_player()
     {
-        Debug.Log("waiting to find out who to give to");
-
         givedrop.SetActive(false);
 
         while(give_index == -1)
         {
             yield return null;
         }
-
-        Debug.Log(give_index);
 
         string item_name = bag_items[item_select_index].text.Substring(0, bag_items[item_select_index].text.IndexOf(" x"));
 
@@ -539,9 +551,9 @@ public class PauseMenuHandler : MonoBehaviour
         switch (category)
         {
             case "weapon":
-                List<string> weapons = SaveSystem.GetStringList("player" + (give_index + 1) + "_weapons");
+                List<string> weapons = SaveSystem.GetStringList("player" + (give_index + 1) + "_weapons_inventory");
                 weapons.Add(item_name);
-                SaveSystem.SetStringList("player" + (give_index + 1) + "_weapons", weapons);
+                SaveSystem.SetStringList("player" + (give_index + 1) + "_weapons_inventory", weapons);
 
                 Dictionary<string, int> party_items = SaveSystem.GetStringIntDict("items");
                 int count = party_items[item_name];
@@ -554,9 +566,9 @@ public class PauseMenuHandler : MonoBehaviour
 
                 break;
             case "armor":
-                List<string> armor = SaveSystem.GetStringList("player" + (give_index + 1) + "_armor");
+                List<string> armor = SaveSystem.GetStringList("player" + (give_index + 1) + "_armor_inventory");
                 armor.Add(item_name);
-                SaveSystem.SetStringList("player" + (give_index + 1) + "_armor", armor);
+                SaveSystem.SetStringList("player" + (give_index + 1) + "_armor_inventory", armor);
 
                 Dictionary<string, int> party_items1 = SaveSystem.GetStringIntDict("items");
                 int count1 = party_items1[item_name];
@@ -578,23 +590,306 @@ public class PauseMenuHandler : MonoBehaviour
         give_index = -1;
     }
 
+    public void status_weapon()
+    {
+        equipparty.SetActive(false);
+        status_bag_category.text = "WEAPONS";
+
+        foreach(Text t in status_bag_items)
+        {
+            t.text = "";
+        }
+
+        List<string> weapons = SaveSystem.GetStringList(status_player_n + "weapons_inventory");
+
+        for(int i = 1; i < weapons.Count; i++)
+        {
+            string prefix = "";
+            if (SaveSystem.GetString(status_player_n + "weapon") == weapons[i])
+                prefix = "E- ";
+            status_bag_items[i - 1].text = prefix + weapons[i];
+        }
+
+        status_bag.SetActive(true);
+    }
+
+    public void status_armor()
+    {
+        equipparty.SetActive(false);
+        status_bag_category.text = "ARMOR";
+
+        foreach (Text t in status_bag_items)
+        {
+            t.text = "";
+        }
+
+        List<string> armor = SaveSystem.GetStringList(status_player_n + "armor_inventory");
+
+        Equips eq = new Equips();
+
+        for (int i = 1; i < armor.Count; i++)
+        {
+            string category = eq.get_armor(armor[i]).category;
+            string prefix = "";
+
+            if (SaveSystem.GetString(status_player_n + category) == armor[i])
+                prefix = "E- ";
+
+            status_bag_items[i - 1].text = prefix + armor[i];
+        }
+
+        status_bag.SetActive(true);
+    }
+
+    int item_select_status_index;
+
+    public void select_status_item_1()
+    {
+        item_select_status_index = 0;
+        string name = status_bag_items[0].text;
+        if (name == "")
+            return;
+        equipparty.SetActive(true);
+    }
+
+    public void select_status_item_2()
+    {
+        item_select_status_index = 1;
+        string name = status_bag_items[1].text;
+        if (name == "")
+            return;
+        equipparty.SetActive(true);
+    }
+
+    public void select_status_item_3()
+    {
+        item_select_status_index = 2;
+        string name = status_bag_items[2].text;
+        if (name == "")
+            return;
+        equipparty.SetActive(true);
+    }
+    public void select_status_item_4()
+    {
+        item_select_status_index = 3;
+        string name = status_bag_items[3].text;
+        if (name == "")
+            return;
+        equipparty.SetActive(true);
+    }
+
+    public void equip()
+    {
+        Equips eq = new Equips();
+
+        string name = status_bag_items[item_select_status_index].text;
+        string category = eq.item_category(name);
+
+        if(name.Contains("E- "))
+        {
+            category = eq.item_category(name.Substring(3));
+            switch (category)
+            {
+                case "armor":
+                    string armor_type = eq.get_armor(name).category;
+
+                    switch (armor_type)
+                    {
+                        case "armor":
+                            SaveSystem.SetString(status_player_n + "armor", "");
+                            break;
+                        case "shield":
+                            SaveSystem.SetString(status_player_n + "shield", "");
+                            break;
+                        case "helmet":
+                            SaveSystem.SetString(status_player_n + "helmet", "");
+                            break;
+                        case "glove":
+                            SaveSystem.SetString(status_player_n + "glove", "");
+                            break;
+                    }
+
+                    status_bag_items[item_select_status_index].text = name.Substring(3);
+
+                    break;
+                case "weapon":
+                    SaveSystem.SetString(status_player_n + "weapon", "");
+                    status_bag_items[item_select_status_index].text = name.Substring(3);
+                    break;
+            }
+        }
+        else
+        {
+            switch (category)
+            {
+                case "armor":
+                    string armor_type = eq.get_armor(name).category;
+
+                    string player_class = SaveSystem.GetString(status_player_n + "class");
+
+                    if (eq.can_equip_armor(eq.get_armor(name), player_class))
+                    {
+
+                        if (SaveSystem.GetString(status_player_n + armor_type) != "")
+                        {
+                            string already_equipped = SaveSystem.GetString(status_player_n + armor_type);
+                            foreach(Text t in status_bag_items)
+                            {
+                                if (t.text == "E- " + already_equipped)
+                                {
+                                    t.text = t.text.Substring(3, t.text.Length - 3);
+                                    break;
+                                }
+                            }
+                        }
+
+                        switch (armor_type)
+                        {
+                            case "armor":
+                                SaveSystem.SetString(status_player_n + "armor", name);
+                                break;
+                            case "shield":
+                                SaveSystem.SetString(status_player_n + "shield", name);
+                                break;
+                            case "helmet":
+                                SaveSystem.SetString(status_player_n + "helmet", name);
+                                break;
+                            case "glove":
+                                SaveSystem.SetString(status_player_n + "glove", name);
+                                break;
+                        }
+
+                        status_bag_items[item_select_status_index].text = "E- " + name;
+                    }
+                    break;
+                case "weapon":
+                    string player_class1 = SaveSystem.GetString(status_player_n + "class");
+                    if(eq.can_equip_weapon(eq.get_weapon(name), player_class1))
+                    {
+                        if (SaveSystem.GetString(status_player_n + "weapon") != "")
+                        {
+                            string already_equipped = SaveSystem.GetString(status_player_n + "weapon");
+                            foreach (Text t in status_bag_items)
+                            {
+                                if (t.text == "E- " + already_equipped)
+                                {
+                                    t.text = t.text.Substring(3, t.text.Length - 3);
+                                    break;
+                                }
+                            }
+                        }
+                        SaveSystem.SetString(status_player_n + "weapon", status_bag_items[item_select_status_index].text);
+                        status_bag_items[item_select_status_index].text = "E- " + status_bag_items[item_select_status_index].text;
+                    }
+                    break;
+            }
+        }
+
+        equipparty.SetActive(false);
+    }
+
+    public void send_to_party()
+    {
+        Equips eq = new Equips();
+
+        string name = status_bag_items[item_select_status_index].text;
+        if (name == "")
+            return;
+        if (name.Contains("E- "))
+            name = name.Substring(3);
+        string category = eq.item_category(name);
+
+        //Unequip
+        switch (category)
+        {
+            case "weapon":
+                if (name == SaveSystem.GetString(status_player_n + "weapon"))
+                {
+                    SaveSystem.SetString(status_player_n + "weapon", "");
+                }
+                break;
+            case "armor":
+                if (name == SaveSystem.GetString(status_player_n + "armor"))
+                {
+                    SaveSystem.SetString(status_player_n + "armor", "");
+                }
+                if (name == SaveSystem.GetString(status_player_n + "helmet"))
+                {
+                    SaveSystem.SetString(status_player_n + "helmet", "");
+                }
+                if (name == SaveSystem.GetString(status_player_n + "shield"))
+                {
+                    SaveSystem.SetString(status_player_n + "shield", "");
+                }
+                if (name == SaveSystem.GetString(status_player_n + "glove"))
+                {
+                    SaveSystem.SetString(status_player_n + "weapon", "");
+                }
+                break;
+        }
+
+        Dictionary<string, int> items = SaveSystem.GetStringIntDict("items");
+        if (items.ContainsKey(name))
+        {
+            items[name] = items[name] + 1;
+        }
+        else
+            items.Add(name, 1);
+
+        SaveSystem.SetStringIntDict("items", items);
+
+        equipparty.SetActive(false);
+
+        switch (category)
+        {
+            case "armor":
+                List<string> armor = SaveSystem.GetStringList(status_player_n + "armor_inventory");
+                armor.Remove(name);
+                SaveSystem.SetStringList(status_player_n + "armor_inventory", armor);
+                status_armor();
+                break;
+            case "weapon":
+                List<string> weapons = SaveSystem.GetStringList(status_player_n + "weapons_inventory");
+                weapons.Remove(name);
+                SaveSystem.SetStringList(status_player_n + "weapons_inventory", weapons);
+                status_weapon();
+                break;
+        }
+
+        status_bag_items[item_select_status_index].text = "";
+    }
+
     public void status_off()
     {
-        pausemenu_container.SetActive(true);
-        status_container.SetActive(false);
+        if (equipparty.active)
+        {
+            equipparty.SetActive(false);
+        }
+        if (status_bag.active)
+        {
+            status_bag.SetActive(false);
+        }
+        else
+        {
+            pausemenu_container.SetActive(true);
+            bag_obj.SetActive(false);
+            give.SetActive(false);
+            givedrop.SetActive(false);
+            status_container.SetActive(false);
+        }
     }
 
     public void off()
     {
-        if(give.active == true)
+        if(give.active)
         {
             give.SetActive(false);
         }
-        else if(givedrop.active == true)
+        else if(givedrop.active)
         {
             givedrop.SetActive(false);
         }
-        else if(bag_obj.active == true)
+        else if(bag_obj.active)
         {
             bag_obj.SetActive(false);
         }
@@ -623,26 +918,6 @@ public class PauseMenuHandler : MonoBehaviour
         Dictionary<string, int> dict = SaveSystem.GetStringIntDict("items");
         foreach (KeyValuePair<string, int> kvp in dict)
             Debug.Log(kvp.Key + " x" + kvp.Value);
-    }
-
-    public void weapons()
-    {
-        List<string> ls = SaveSystem.GetStringList("weapons");
-        foreach (string str in ls)
-        {
-            if (str.Length > 1)
-                Debug.Log(str);
-        }
-    }
-
-    public void armor()
-    {
-        List<string> ls = SaveSystem.GetStringList("armor");
-        foreach (string str in ls)
-        {
-            if (str.Length > 1)
-                Debug.Log(str);
-        }
     }
 
     public void quit()
