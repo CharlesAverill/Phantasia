@@ -86,15 +86,6 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        if(timer >= 0)
-        {
-            timer += Time.deltaTime;
-            if(transform.position == move_point.position)
-            {
-                stopTimer();
-            }
-        }
         
         if(reh.gameObject.active == false){
             reh.gameObject.SetActive(true);
@@ -147,7 +138,6 @@ public class PlayerController : MonoBehaviour
                                 reh.decrement(2);
                                 break;
                         }
-                        startTimer();
                         StartCoroutine(sc.walk());
                     }
                 }
@@ -173,7 +163,6 @@ public class PlayerController : MonoBehaviour
                                 reh.decrement(2);
                                 break;
                         }
-                        startTimer();
                         StartCoroutine(sc.walk());
                     }
                 }

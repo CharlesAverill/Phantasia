@@ -27,9 +27,11 @@ public class PartyMember : Battler
     
     private CursorController monster_cursor;
     private CursorController menu_cursor;
-    
-    private Animator anim;
-    public Sprite dead;
+
+    private BattleSpriteController bsc;
+
+    public WeaponSprite weapon_sprite;
+    public MagicSprite magic_sprite;
     
     public string action;
     public GameObject target;
@@ -371,8 +373,8 @@ public class PartyMember : Battler
         }
         
         target = monster_cursor.get_monster().gameObject;
-        
-        anim.SetTrigger("walk");
+
+        bsc.change_state("walk");
         walk_back();
         while(is_moving()){
             yield return null;
@@ -390,24 +392,30 @@ public class PartyMember : Battler
     }
     
     public bool is_playing_animation(){
-        return anim.GetCurrentAnimatorStateInfo(0).length >
-            anim.GetCurrentAnimatorStateInfo(0).normalizedTime;
+        return bsc.is_casting || bsc.is_fighting || bsc.is_walking;
     }
     
     public bool done_showing;
     
     public IEnumerator show_battle(){
         done_showing = false;
-        anim.SetTrigger("walk");
+
+        bsc.change_state("walk");
         move_point = new Vector3(1.66f, transform.position.y, transform.position.z);
         while(is_moving()){
             yield return null;
         }
-        anim.SetTrigger("fight");
-        while(is_playing_animation()){
-            yield return null;
+
+        if(action == "fight")
+        {
+            bsc.change_state("fight", weapon_sprite);
+            while (is_playing_animation())
+            {
+                yield return null;
+            }
         }
-        anim.SetTrigger("walk");
+
+        bsc.change_state("walk");
         move_point = new Vector3(3.66f, transform.position.y, transform.position.z);
         while(is_moving()){
             yield return null;
@@ -418,8 +426,8 @@ public class PartyMember : Battler
     private void check_load(){
         if(!monster_cursor)
             monster_cursor = bh.monster_cursor;
-        if(!anim)
-            anim = GetComponent<Animator>();
+        if(!bsc)
+            bsc = GetComponent<BattleSpriteController>();
         if(!menu_cursor)
             menu_cursor = bh.menu_cursor;
     }
@@ -431,8 +439,8 @@ public class PartyMember : Battler
         target = null;
         
         monster_cursor.gameObject.SetActive(false);
-        
-        anim.SetTrigger("walk");
+
+        bsc.change_state("walk");
         
         move_point = new Vector3(1.66f, transform.position.y, transform.position.z);
 
@@ -452,11 +460,11 @@ public class PartyMember : Battler
         
         menu_cursor.gameObject.SetActive(true);
         monster_cursor.gameObject.SetActive(false);
-        
-        anim = GetComponent<Animator>();
-        anim.speed = 3f;
+
+        bsc = GetComponent<BattleSpriteController>();
 
         weapon = SaveSystem.GetString("player" + (index + 1) + "_weapon");
+        weapon_sprite.set_sprite(bh.mwsh.get_weapon(weapon));
         
         done_set_up = true;
     }
@@ -464,11 +472,53 @@ public class PartyMember : Battler
     // Update is called once per frame
     void Update()
     {
-        if(HP <= 0 && GetComponent<SpriteRenderer>().sprite != dead)
+        if(HP <= 0 && bsc.get_state() != "dead")
         {
-            GetComponent<Animator>().enabled = false;
-            GetComponent<SpriteRenderer>().sprite = dead;
+            bsc.change_state("dead");
         }
+
+        if(transform.position == move_point && bsc.get_state() != "idle")
+        {
+            bsc.change_state("idle");
+        }
+
         transform.position = Vector3.MoveTowards(transform.position, move_point, 8 * Time.deltaTime);
+        /*
+        if (timer >= 0)
+        {
+            timer += Time.deltaTime;
+            if (transform.position == move_point)
+            {
+                stopTimer();
+            }
+        }
+        */
+    }
+
+    float timer = -1;
+    List<float> times;
+
+    void startTimer()
+    {
+        if (times == null)
+        {
+            times = new List<float>();
+        }
+        timer = 0;
+    }
+
+    void stopTimer()
+    {
+        Debug.Log(timer);
+        times.Add(timer);
+
+        float total = 0f;
+        foreach (float f in times)
+        {
+            total += f;
+        }
+        Debug.Log("Average: " + (total / (float)times.Count));
+
+        timer = -1f;
     }
 }

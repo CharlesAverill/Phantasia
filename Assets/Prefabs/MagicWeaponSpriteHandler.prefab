@@ -1,0 +1,440 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4182601388206180117
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4182601388206180115}
+  - component: {fileID: 4182601388206180116}
+  m_Layer: 0
+  m_Name: MagicWeaponSpriteHandler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4182601388206180115
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4182601388206180117}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.5818949, y: 0.16300616, z: 105.88557}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4182601388206180116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4182601388206180117}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9df0add59c9694906bd0224195d0b366, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weapons:
+  - name: Battle Axe
+    sprite: {fileID: -9140482831790144931, guid: 5780771d347cb41da866c229286f0eb2,
+      type: 3}
+  - name: Cat Claws
+    sprite: {fileID: 9109090114378654661, guid: 5780771d347cb41da866c229286f0eb2,
+      type: 3}
+  - name: Coral Sword
+    sprite: {fileID: -7706190253212291482, guid: 5780771d347cb41da866c229286f0eb2,
+      type: 3}
+  - name: Crosier
+    sprite: {fileID: -9144315404355856836, guid: 5780771d347cb41da866c229286f0eb2,
+      type: 3}
+  - name: Defender
+    sprite: {fileID: 1715686085431780359, guid: 5780771d347cb41da866c229286f0eb2,
+      type: 3}
+  - name: Excalibur
+    sprite: {fileID: 6321443046475953421, guid: 5780771d347cb41da866c229286f0eb2,
+      type: 3}
+  - name: Falchion
+    sprite: {fileID: -6635782518697459388, guid: 5780771d347cb41da866c229286f0eb2,
+      type: 3}
+  - name: Flame Sword
+    sprite: {fileID: -5039132156621874023, guid: 5780771d347cb41da866c229286f0eb2,
+      type: 3}
+  - name: Giant's Sword
+    sprite: {fileID: 2757244013601477781, guid: 5780771d347cb41da866c229286f0eb2,
+      type: 3}
+  - name: Great Axe
+    sprite: {fileID: 5629216859032522159, guid: 5780771d347cb41da866c229286f0eb2,
+      type: 3}
+  - name: Healing Staff
+    sprite: {fileID: 4609766379470990746, guid: 5780771d347cb41da866c229286f0eb2,
+      type: 3}
+  - name: Ice Brand
+    sprite: {fileID: -4855083040135353222, guid: 5780771d347cb41da866c229286f0eb2,
+      type: 3}
+  - name: Iron Hammer
+    sprite: {fileID: 1808469803286354170, guid: 5780771d347cb41da866c229286f0eb2,
+      type: 3}
+  - name: Iron Nunchuck
+    sprite: {fileID: -1825381902100672638, guid: 5780771d347cb41da866c229286f0eb2,
+      type: 3}
+  - name: Katana
+    sprite: {fileID: 1145637296735392538, guid: 5780771d347cb41da866c229286f0eb2,
+      type: 3}
+  - name: Large Knife
+    sprite: {fileID: -5557420877203330147, guid: 5780771d347cb41da866c229286f0eb2,
+      type: 3}
+  - name: Light Axe
+    sprite: {fileID: 781155818728307869, guid: 5780771d347cb41da866c229286f0eb2, type: 3}
+  - name: Longsword
+    sprite: {fileID: -8508422110644630109, guid: 5780771d347cb41da866c229286f0eb2,
+      type: 3}
+  - name: Mage's Staff
+    sprite: {fileID: -2747368275626950390, guid: 5780771d347cb41da866c229286f0eb2,
+      type: 3}
+  - name: Masamune
+    sprite: {fileID: -1211484807944515241, guid: 5780771d347cb41da866c229286f0eb2,
+      type: 3}
+  - name: Mythril Axe
+    sprite: {fileID: 5956946754449639209, guid: 5780771d347cb41da866c229286f0eb2,
+      type: 3}
+  - name: Mythril Hammer
+    sprite: {fileID: 7642472461541729571, guid: 5780771d347cb41da866c229286f0eb2,
+      type: 3}
+  - name: Mythril Knife
+    sprite: {fileID: -7888296697152109952, guid: 5780771d347cb41da866c229286f0eb2,
+      type: 3}
+  - name: Mythril Sword
+    sprite: {fileID: -2600240032574155362, guid: 5780771d347cb41da866c229286f0eb2,
+      type: 3}
+  - name: Power Staff
+    sprite: {fileID: 8217522810482615355, guid: 5780771d347cb41da866c229286f0eb2,
+      type: 3}
+  - name: Rapier
+    sprite: {fileID: 698664279297640794, guid: 5780771d347cb41da866c229286f0eb2, type: 3}
+  - name: Saber
+    sprite: {fileID: 698664279297640794, guid: 5780771d347cb41da866c229286f0eb2, type: 3}
+  - name: Razer
+    sprite: {fileID: 3975059572695951870, guid: 5780771d347cb41da866c229286f0eb2,
+      type: 3}
+  - name: Rune Blade
+    sprite: {fileID: 8101326686158321518, guid: 5780771d347cb41da866c229286f0eb2,
+      type: 3}
+  - name: Scimitar
+    sprite: {fileID: -2639032509303485284, guid: 5780771d347cb41da866c229286f0eb2,
+      type: 3}
+  - name: Short Sword
+    sprite: {fileID: 2912464402848211330, guid: 5780771d347cb41da866c229286f0eb2,
+      type: 3}
+  - name: Small Dagger
+    sprite: {fileID: 1098179606456428539, guid: 5780771d347cb41da866c229286f0eb2,
+      type: 3}
+  - name: Sun Blade
+    sprite: {fileID: -7353613653143852761, guid: 5780771d347cb41da866c229286f0eb2,
+      type: 3}
+  - name: Thor's Hammer
+    sprite: {fileID: 6287368773376091983, guid: 5780771d347cb41da866c229286f0eb2,
+      type: 3}
+  - name: Vorpal Sword
+    sprite: {fileID: -1499788451389146327, guid: 5780771d347cb41da866c229286f0eb2,
+      type: 3}
+  - name: Werebane
+    sprite: {fileID: 2920547695714349933, guid: 5780771d347cb41da866c229286f0eb2,
+      type: 3}
+  - name: Wizard's Staff
+    sprite: {fileID: -1160564495915953521, guid: 5780771d347cb41da866c229286f0eb2,
+      type: 3}
+  - name: Wooden Nunchuck
+    sprite: {fileID: -2885549205037184772, guid: 5780771d347cb41da866c229286f0eb2,
+      type: 3}
+  - name: Wooden Staff
+    sprite: {fileID: 7728853880080238148, guid: 5780771d347cb41da866c229286f0eb2,
+      type: 3}
+  - name: Wyrmkiller
+    sprite: {fileID: 853742892412031643, guid: 5780771d347cb41da866c229286f0eb2, type: 3}
+  spells:
+  - name: AFIR
+    sprite1: {fileID: 8441457257955626040, guid: e2383ffe369f249b59c9ac0681d2847d,
+      type: 3}
+    sprite2: {fileID: 5956209975163881948, guid: e2383ffe369f249b59c9ac0681d2847d,
+      type: 3}
+  - name: AICE
+    sprite1: {fileID: 4892822789084657081, guid: e2383ffe369f249b59c9ac0681d2847d,
+      type: 3}
+    sprite2: {fileID: -8620960876992814045, guid: e2383ffe369f249b59c9ac0681d2847d,
+      type: 3}
+  - name: ALIT
+    sprite1: {fileID: -4024692783875801349, guid: e2383ffe369f249b59c9ac0681d2847d,
+      type: 3}
+    sprite2: {fileID: 4640800853956266320, guid: e2383ffe369f249b59c9ac0681d2847d,
+      type: 3}
+  - name: AMUT
+    sprite1: {fileID: -3845850782815153377, guid: e2383ffe369f249b59c9ac0681d2847d,
+      type: 3}
+    sprite2: {fileID: 7050829148962774105, guid: e2383ffe369f249b59c9ac0681d2847d,
+      type: 3}
+  - name: BANE
+    sprite1: {fileID: -2227931498297556789, guid: e2383ffe369f249b59c9ac0681d2847d,
+      type: 3}
+    sprite2: {fileID: 8900171284327013730, guid: e2383ffe369f249b59c9ac0681d2847d,
+      type: 3}
+  - name: BLND
+    sprite1: {fileID: 5309690394316500369, guid: e2383ffe369f249b59c9ac0681d2847d,
+      type: 3}
+    sprite2: {fileID: -8956980008278884332, guid: e2383ffe369f249b59c9ac0681d2847d,
+      type: 3}
+  - name: BRAK
+    sprite1: {fileID: 8583709941148681272, guid: e2383ffe369f249b59c9ac0681d2847d,
+      type: 3}
+    sprite2: {fileID: -4885489434627720786, guid: e2383ffe369f249b59c9ac0681d2847d,
+      type: 3}
+  - name: CONF
+    sprite1: {fileID: 4434201948655956825, guid: e2383ffe369f249b59c9ac0681d2847d,
+      type: 3}
+    sprite2: {fileID: 5522564950678331043, guid: e2383ffe369f249b59c9ac0681d2847d,
+      type: 3}
+  - name: CUR2
+    sprite1: {fileID: 2514757923597929205, guid: e2383ffe369f249b59c9ac0681d2847d,
+      type: 3}
+    sprite2: {fileID: 491638786129827812, guid: e2383ffe369f249b59c9ac0681d2847d,
+      type: 3}
+  - name: CUR3
+    sprite1: {fileID: 4784200097788463288, guid: e2383ffe369f249b59c9ac0681d2847d,
+      type: 3}
+    sprite2: {fileID: -4022500438500865779, guid: e2383ffe369f249b59c9ac0681d2847d,
+      type: 3}
+  - name: CURE
+    sprite1: {fileID: 4623539755074440304, guid: e2383ffe369f249b59c9ac0681d2847d,
+      type: 3}
+    sprite2: {fileID: -486187971273615708, guid: e2383ffe369f249b59c9ac0681d2847d,
+      type: 3}
+  - name: DARK
+    sprite1: {fileID: 3621675314370666504, guid: e2383ffe369f249b59c9ac0681d2847d,
+      type: 3}
+    sprite2: {fileID: 8044784386503086077, guid: e2383ffe369f249b59c9ac0681d2847d,
+      type: 3}
+  - name: FAST
+    sprite1: {fileID: 5442008848754419773, guid: e2383ffe369f249b59c9ac0681d2847d,
+      type: 3}
+    sprite2: {fileID: 6497300561125797049, guid: e2383ffe369f249b59c9ac0681d2847d,
+      type: 3}
+  - name: FEAR
+    sprite1: {fileID: 2799540754861951572, guid: e2383ffe369f249b59c9ac0681d2847d,
+      type: 3}
+    sprite2: {fileID: -113720278387838975, guid: e2383ffe369f249b59c9ac0681d2847d,
+      type: 3}
+  - name: FIR2
+    sprite1: {fileID: -4645008140422814674, guid: e2383ffe369f249b59c9ac0681d2847d,
+      type: 3}
+    sprite2: {fileID: 1207322660729918912, guid: e2383ffe369f249b59c9ac0681d2847d,
+      type: 3}
+  - name: FIRE
+    sprite1: {fileID: 669651211684580091, guid: e2383ffe369f249b59c9ac0681d2847d,
+      type: 3}
+    sprite2: {fileID: 9074611191012836634, guid: e2383ffe369f249b59c9ac0681d2847d,
+      type: 3}
+  - name: FIR3
+    sprite1: {fileID: -8855349968216334581, guid: e2383ffe369f249b59c9ac0681d2847d,
+      type: 3}
+    sprite2: {fileID: -6183870797486868601, guid: e2383ffe369f249b59c9ac0681d2847d,
+      type: 3}
+  - name: FOG
+    sprite1: {fileID: -2256524004051076624, guid: e2383ffe369f249b59c9ac0681d2847d,
+      type: 3}
+    sprite2: {fileID: -9078422701824300910, guid: e2383ffe369f249b59c9ac0681d2847d,
+      type: 3}
+  - name: HARM
+    sprite1: {fileID: -944410467208058814, guid: e2383ffe369f249b59c9ac0681d2847d,
+      type: 3}
+    sprite2: {fileID: -8138277567477483303, guid: e2383ffe369f249b59c9ac0681d2847d,
+      type: 3}
+  - name: HEAL
+    sprite1: {fileID: 4199524141725964295, guid: e2383ffe369f249b59c9ac0681d2847d,
+      type: 3}
+    sprite2: {fileID: -421783385593626486, guid: e2383ffe369f249b59c9ac0681d2847d,
+      type: 3}
+  - name: HEL2
+    sprite1: {fileID: -6551038333448431977, guid: e2383ffe369f249b59c9ac0681d2847d,
+      type: 3}
+    sprite2: {fileID: 6211183366023920449, guid: e2383ffe369f249b59c9ac0681d2847d,
+      type: 3}
+  - name: ARUB
+    sprite1: {fileID: 7090752051898416065, guid: e2383ffe369f249b59c9ac0681d2847d,
+      type: 3}
+    sprite2: {fileID: -2665839452553656415, guid: e2383ffe369f249b59c9ac0681d2847d,
+      type: 3}
+  - name: CUR4
+    sprite1: {fileID: -7823434895511531111, guid: e2383ffe369f249b59c9ac0681d2847d,
+      type: 3}
+    sprite2: {fileID: -8829331622708634571, guid: e2383ffe369f249b59c9ac0681d2847d,
+      type: 3}
+  - name: FADE
+    sprite1: {fileID: 836617762715703668, guid: e2383ffe369f249b59c9ac0681d2847d,
+      type: 3}
+    sprite2: {fileID: 3550162497680769738, guid: e2383ffe369f249b59c9ac0681d2847d,
+      type: 3}
+  - name: HEL3
+    sprite1: {fileID: -170104674823697463, guid: e2383ffe369f249b59c9ac0681d2847d,
+      type: 3}
+    sprite2: {fileID: 60421991397625625, guid: e2383ffe369f249b59c9ac0681d2847d, type: 3}
+  - name: HOLD
+    sprite1: {fileID: 1707750686739370223, guid: e2383ffe369f249b59c9ac0681d2847d,
+      type: 3}
+    sprite2: {fileID: -1856326642984729445, guid: e2383ffe369f249b59c9ac0681d2847d,
+      type: 3}
+  - name: HRM2
+    sprite1: {fileID: 7885854906714815983, guid: e2383ffe369f249b59c9ac0681d2847d,
+      type: 3}
+    sprite2: {fileID: -2809080718250658457, guid: e2383ffe369f249b59c9ac0681d2847d,
+      type: 3}
+  - name: HRM3
+    sprite1: {fileID: -5745815726098298088, guid: e2383ffe369f249b59c9ac0681d2847d,
+      type: 3}
+    sprite2: {fileID: -8953215546654358727, guid: e2383ffe369f249b59c9ac0681d2847d,
+      type: 3}
+  - name: HRM4
+    sprite1: {fileID: 8903878123150603950, guid: e2383ffe369f249b59c9ac0681d2847d,
+      type: 3}
+    sprite2: {fileID: 46248627055558967, guid: e2383ffe369f249b59c9ac0681d2847d, type: 3}
+  - name: ICE2
+    sprite1: {fileID: 6405154303563045688, guid: e2383ffe369f249b59c9ac0681d2847d,
+      type: 3}
+    sprite2: {fileID: 1372960301063140431, guid: e2383ffe369f249b59c9ac0681d2847d,
+      type: 3}
+  - name: ICE3
+    sprite1: {fileID: -1783074766144496309, guid: e2383ffe369f249b59c9ac0681d2847d,
+      type: 3}
+    sprite2: {fileID: -9044115860185066532, guid: e2383ffe369f249b59c9ac0681d2847d,
+      type: 3}
+  - name: INV2
+    sprite1: {fileID: 7328189792143786408, guid: e2383ffe369f249b59c9ac0681d2847d,
+      type: 3}
+    sprite2: {fileID: -4511180576860485211, guid: e2383ffe369f249b59c9ac0681d2847d,
+      type: 3}
+  - name: INVS
+    sprite1: {fileID: -6482081916739643334, guid: e2383ffe369f249b59c9ac0681d2847d,
+      type: 3}
+    sprite2: {fileID: -8280719134527713833, guid: e2383ffe369f249b59c9ac0681d2847d,
+      type: 3}
+  - name: LAMP
+    sprite1: {fileID: 5999415079812868865, guid: e2383ffe369f249b59c9ac0681d2847d,
+      type: 3}
+    sprite2: {fileID: -1542367881651827358, guid: e2383ffe369f249b59c9ac0681d2847d,
+      type: 3}
+  - name: LIT
+    sprite1: {fileID: 7369426645401568730, guid: e2383ffe369f249b59c9ac0681d2847d,
+      type: 3}
+    sprite2: {fileID: 882176570337102928, guid: e2383ffe369f249b59c9ac0681d2847d,
+      type: 3}
+  - name: LOCK
+    sprite1: {fileID: 4229697873228113164, guid: e2383ffe369f249b59c9ac0681d2847d,
+      type: 3}
+    sprite2: {fileID: 631093897161565188, guid: e2383ffe369f249b59c9ac0681d2847d,
+      type: 3}
+  - name: LOK2
+    sprite1: {fileID: 1280628977681044625, guid: e2383ffe369f249b59c9ac0681d2847d,
+      type: 3}
+    sprite2: {fileID: -5055614616759598876, guid: e2383ffe369f249b59c9ac0681d2847d,
+      type: 3}
+  - name: MUTE
+    sprite1: {fileID: 2323602938289776274, guid: e2383ffe369f249b59c9ac0681d2847d,
+      type: 3}
+    sprite2: {fileID: -7918572536918440355, guid: e2383ffe369f249b59c9ac0681d2847d,
+      type: 3}
+  - name: NUKE
+    sprite1: {fileID: 8366784480351096855, guid: e2383ffe369f249b59c9ac0681d2847d,
+      type: 3}
+    sprite2: {fileID: -7078572938839913831, guid: e2383ffe369f249b59c9ac0681d2847d,
+      type: 3}
+  - name: PURE
+    sprite1: {fileID: -6931287368651312139, guid: e2383ffe369f249b59c9ac0681d2847d,
+      type: 3}
+    sprite2: {fileID: 3142792163315484425, guid: e2383ffe369f249b59c9ac0681d2847d,
+      type: 3}
+  - name: QAKE
+    sprite1: {fileID: -7052178581210832659, guid: e2383ffe369f249b59c9ac0681d2847d,
+      type: 3}
+    sprite2: {fileID: 4536343279270007777, guid: e2383ffe369f249b59c9ac0681d2847d,
+      type: 3}
+  - name: RUB
+    sprite1: {fileID: -5678305243198091186, guid: e2383ffe369f249b59c9ac0681d2847d,
+      type: 3}
+    sprite2: {fileID: -7626726964307027282, guid: e2383ffe369f249b59c9ac0681d2847d,
+      type: 3}
+  - name: RUSE
+    sprite1: {fileID: 7238360692837751153, guid: e2383ffe369f249b59c9ac0681d2847d,
+      type: 3}
+    sprite2: {fileID: -8442838531018050751, guid: e2383ffe369f249b59c9ac0681d2847d,
+      type: 3}
+  - name: SLP2
+    sprite1: {fileID: -4302926833427538032, guid: e2383ffe369f249b59c9ac0681d2847d,
+      type: 3}
+    sprite2: {fileID: -541401108722906011, guid: e2383ffe369f249b59c9ac0681d2847d,
+      type: 3}
+  - name: SLEP
+    sprite1: {fileID: 5930179826220914762, guid: e2383ffe369f249b59c9ac0681d2847d,
+      type: 3}
+    sprite2: {fileID: -6225213010028215901, guid: e2383ffe369f249b59c9ac0681d2847d,
+      type: 3}
+  - name: SLOW
+    sprite1: {fileID: 5930179826220914762, guid: e2383ffe369f249b59c9ac0681d2847d,
+      type: 3}
+    sprite2: {fileID: -6225213010028215901, guid: e2383ffe369f249b59c9ac0681d2847d,
+      type: 3}
+  - name: SLO2
+    sprite1: {fileID: 5930179826220914762, guid: e2383ffe369f249b59c9ac0681d2847d,
+      type: 3}
+    sprite2: {fileID: -6225213010028215901, guid: e2383ffe369f249b59c9ac0681d2847d,
+      type: 3}
+  - name: STOP
+    sprite1: {fileID: 4385583710117794566, guid: e2383ffe369f249b59c9ac0681d2847d,
+      type: 3}
+    sprite2: {fileID: -8133230126814790265, guid: e2383ffe369f249b59c9ac0681d2847d,
+      type: 3}
+  - name: STUN
+    sprite1: {fileID: 2204752211683383505, guid: e2383ffe369f249b59c9ac0681d2847d,
+      type: 3}
+    sprite2: {fileID: 4158544501376823703, guid: e2383ffe369f249b59c9ac0681d2847d,
+      type: 3}
+  - name: TMPR
+    sprite1: {fileID: 5363047611400002964, guid: e2383ffe369f249b59c9ac0681d2847d,
+      type: 3}
+    sprite2: {fileID: 1771071912072174045, guid: e2383ffe369f249b59c9ac0681d2847d,
+      type: 3}
+  - name: LIT2
+    sprite1: {fileID: -186025446202517, guid: e2383ffe369f249b59c9ac0681d2847d, type: 3}
+    sprite2: {fileID: -7674100502482870083, guid: e2383ffe369f249b59c9ac0681d2847d,
+      type: 3}
+  - name: Wall
+    sprite1: {fileID: 6588975921081359621, guid: e2383ffe369f249b59c9ac0681d2847d,
+      type: 3}
+    sprite2: {fileID: 6108656779617163309, guid: e2383ffe369f249b59c9ac0681d2847d,
+      type: 3}
+  - name: Saber
+    sprite1: {fileID: 6588975921081359621, guid: e2383ffe369f249b59c9ac0681d2847d,
+      type: 3}
+    sprite2: {fileID: 6108656779617163309, guid: e2383ffe369f249b59c9ac0681d2847d,
+      type: 3}
+  - name: XFER
+    sprite1: {fileID: -602878621663681082, guid: e2383ffe369f249b59c9ac0681d2847d,
+      type: 3}
+    sprite2: {fileID: -7261358050866806224, guid: e2383ffe369f249b59c9ac0681d2847d,
+      type: 3}
+  - name: XXXX
+    sprite1: {fileID: -5722062902396626194, guid: e2383ffe369f249b59c9ac0681d2847d,
+      type: 3}
+    sprite2: {fileID: 4765719979017258021, guid: e2383ffe369f249b59c9ac0681d2847d,
+      type: 3}
+  - name: ZAP!
+    sprite1: {fileID: 849244236790461933, guid: e2383ffe369f249b59c9ac0681d2847d,
+      type: 3}
+    sprite2: {fileID: 7333332746511532768, guid: e2383ffe369f249b59c9ac0681d2847d,
+      type: 3}

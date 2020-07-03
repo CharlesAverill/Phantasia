@@ -20,6 +20,8 @@ public class BattleHandler : MonoBehaviour
     public Text[] party_HP;
     
     private List<GameObject> battlers;
+
+    public MagicWeaponSpriteHandler mwsh;
     
     public CursorController monster_cursor;
     public CursorController menu_cursor;
