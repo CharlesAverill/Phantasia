@@ -28,7 +28,7 @@ public class PartyMember : Battler
     private CursorController monster_cursor;
     private CursorController menu_cursor;
 
-    private BattleSpriteController bsc;
+    public BattleSpriteController bsc;
 
     public WeaponSprite weapon_sprite;
     public MagicSprite magic_sprite;

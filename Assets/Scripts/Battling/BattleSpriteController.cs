@@ -55,6 +55,10 @@ public class BattleSpriteController : MonoBehaviour
             case "dead":
                 sr.sprite = dead;
                 break;
+            case "run":
+                sr.sprite = idle;
+                sr.flipX = true;
+                break;
         }
     }
     

@@ -74,6 +74,8 @@ public class SpriteController : MonoBehaviour
         if(!title_screen_mode){
             SaveSystem.SetInt("character_index", character_index);
         }
+
+        sr.sprite = characters[character_index].down1;
     }
     
     public void decrement_character(){
@@ -91,6 +93,8 @@ public class SpriteController : MonoBehaviour
         if(!title_screen_mode){
             SaveSystem.SetInt("character_index", character_index);
         }
+
+        sr.sprite = characters[character_index].down1;
     }
     
     public void change_direction(string dir){

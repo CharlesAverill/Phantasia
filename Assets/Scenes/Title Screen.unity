@@ -6637,42 +6637,42 @@ MonoBehaviour:
   - name: fighter
     up1: {fileID: 0}
     up2: {fileID: 0}
-    down1: {fileID: 0}
+    down1: {fileID: 21300000, guid: c9f233691a09244df8b6e8d0ec9b35eb, type: 3}
     down2: {fileID: 0}
     step1: {fileID: 0}
     step2: {fileID: 0}
   - name: black_belt
     up1: {fileID: 0}
     up2: {fileID: 0}
-    down1: {fileID: 0}
+    down1: {fileID: 21300000, guid: c9215a766b8384d97aa2f6f959ddd1b4, type: 3}
     down2: {fileID: 0}
     step1: {fileID: 0}
     step2: {fileID: 0}
   - name: red_mage
     up1: {fileID: 0}
     up2: {fileID: 0}
-    down1: {fileID: 0}
+    down1: {fileID: 21300000, guid: 740d276eb4f9243c7a78192573cd8354, type: 3}
     down2: {fileID: 0}
     step1: {fileID: 0}
     step2: {fileID: 0}
   - name: thief
     up1: {fileID: 0}
     up2: {fileID: 0}
-    down1: {fileID: 0}
+    down1: {fileID: 21300000, guid: f3a349cdbe2b14d2e86b673ea2fb06ee, type: 3}
     down2: {fileID: 0}
     step1: {fileID: 0}
     step2: {fileID: 0}
   - name: white_mage
     up1: {fileID: 0}
     up2: {fileID: 0}
-    down1: {fileID: 0}
+    down1: {fileID: 21300000, guid: 545acf9965f0f4e43ae39d83635cc024, type: 3}
     down2: {fileID: 0}
     step1: {fileID: 0}
     step2: {fileID: 0}
   - name: black_mage
     up1: {fileID: 0}
     up2: {fileID: 0}
-    down1: {fileID: 0}
+    down1: {fileID: 21300000, guid: c1d5ffd9faad8459c8e0095f4ba6cec5, type: 3}
     down2: {fileID: 0}
     step1: {fileID: 0}
     step2: {fileID: 0}
@@ -6788,42 +6788,42 @@ MonoBehaviour:
   - name: fighter
     up1: {fileID: 0}
     up2: {fileID: 0}
-    down1: {fileID: 0}
+    down1: {fileID: 21300000, guid: c9f233691a09244df8b6e8d0ec9b35eb, type: 3}
     down2: {fileID: 0}
     step1: {fileID: 0}
     step2: {fileID: 0}
   - name: black_belt
     up1: {fileID: 0}
     up2: {fileID: 0}
-    down1: {fileID: 0}
+    down1: {fileID: 21300000, guid: c9215a766b8384d97aa2f6f959ddd1b4, type: 3}
     down2: {fileID: 0}
     step1: {fileID: 0}
     step2: {fileID: 0}
   - name: red_mage
     up1: {fileID: 0}
     up2: {fileID: 0}
-    down1: {fileID: 0}
+    down1: {fileID: 21300000, guid: 740d276eb4f9243c7a78192573cd8354, type: 3}
     down2: {fileID: 0}
     step1: {fileID: 0}
     step2: {fileID: 0}
   - name: thief
     up1: {fileID: 0}
     up2: {fileID: 0}
-    down1: {fileID: 0}
+    down1: {fileID: 21300000, guid: f3a349cdbe2b14d2e86b673ea2fb06ee, type: 3}
     down2: {fileID: 0}
     step1: {fileID: 0}
     step2: {fileID: 0}
   - name: white_mage
     up1: {fileID: 0}
     up2: {fileID: 0}
-    down1: {fileID: 0}
+    down1: {fileID: 21300000, guid: 545acf9965f0f4e43ae39d83635cc024, type: 3}
     down2: {fileID: 0}
     step1: {fileID: 0}
     step2: {fileID: 0}
   - name: black_mage
     up1: {fileID: 0}
     up2: {fileID: 0}
-    down1: {fileID: 0}
+    down1: {fileID: 21300000, guid: c1d5ffd9faad8459c8e0095f4ba6cec5, type: 3}
     down2: {fileID: 0}
     step1: {fileID: 0}
     step2: {fileID: 0}
@@ -6907,42 +6907,42 @@ MonoBehaviour:
   - name: fighter
     up1: {fileID: 0}
     up2: {fileID: 0}
-    down1: {fileID: 0}
+    down1: {fileID: 21300000, guid: c9f233691a09244df8b6e8d0ec9b35eb, type: 3}
     down2: {fileID: 0}
     step1: {fileID: 0}
     step2: {fileID: 0}
   - name: black_belt
     up1: {fileID: 0}
     up2: {fileID: 0}
-    down1: {fileID: 0}
+    down1: {fileID: 21300000, guid: c9215a766b8384d97aa2f6f959ddd1b4, type: 3}
     down2: {fileID: 0}
     step1: {fileID: 0}
     step2: {fileID: 0}
   - name: red_mage
     up1: {fileID: 0}
     up2: {fileID: 0}
-    down1: {fileID: 0}
+    down1: {fileID: 21300000, guid: 740d276eb4f9243c7a78192573cd8354, type: 3}
     down2: {fileID: 0}
     step1: {fileID: 0}
     step2: {fileID: 0}
   - name: thief
     up1: {fileID: 0}
     up2: {fileID: 0}
-    down1: {fileID: 0}
+    down1: {fileID: 21300000, guid: f3a349cdbe2b14d2e86b673ea2fb06ee, type: 3}
     down2: {fileID: 0}
     step1: {fileID: 0}
     step2: {fileID: 0}
   - name: white_mage
     up1: {fileID: 0}
     up2: {fileID: 0}
-    down1: {fileID: 0}
+    down1: {fileID: 21300000, guid: 545acf9965f0f4e43ae39d83635cc024, type: 3}
     down2: {fileID: 0}
     step1: {fileID: 0}
     step2: {fileID: 0}
   - name: black_mage
     up1: {fileID: 0}
     up2: {fileID: 0}
-    down1: {fileID: 0}
+    down1: {fileID: 21300000, guid: c1d5ffd9faad8459c8e0095f4ba6cec5, type: 3}
     down2: {fileID: 0}
     step1: {fileID: 0}
     step2: {fileID: 0}
@@ -7141,42 +7141,42 @@ MonoBehaviour:
   - name: fighter
     up1: {fileID: 0}
     up2: {fileID: 0}
-    down1: {fileID: 0}
+    down1: {fileID: 21300000, guid: c9f233691a09244df8b6e8d0ec9b35eb, type: 3}
     down2: {fileID: 0}
     step1: {fileID: 0}
     step2: {fileID: 0}
   - name: black_belt
     up1: {fileID: 0}
     up2: {fileID: 0}
-    down1: {fileID: 0}
+    down1: {fileID: 21300000, guid: c9215a766b8384d97aa2f6f959ddd1b4, type: 3}
     down2: {fileID: 0}
     step1: {fileID: 0}
     step2: {fileID: 0}
   - name: red_mage
     up1: {fileID: 0}
     up2: {fileID: 0}
-    down1: {fileID: 0}
+    down1: {fileID: 21300000, guid: 740d276eb4f9243c7a78192573cd8354, type: 3}
     down2: {fileID: 0}
     step1: {fileID: 0}
     step2: {fileID: 0}
   - name: thief
     up1: {fileID: 0}
     up2: {fileID: 0}
-    down1: {fileID: 0}
+    down1: {fileID: 21300000, guid: f3a349cdbe2b14d2e86b673ea2fb06ee, type: 3}
     down2: {fileID: 0}
     step1: {fileID: 0}
     step2: {fileID: 0}
   - name: white_mage
     up1: {fileID: 0}
     up2: {fileID: 0}
-    down1: {fileID: 0}
+    down1: {fileID: 21300000, guid: 545acf9965f0f4e43ae39d83635cc024, type: 3}
     down2: {fileID: 0}
     step1: {fileID: 0}
     step2: {fileID: 0}
   - name: black_mage
     up1: {fileID: 0}
     up2: {fileID: 0}
-    down1: {fileID: 0}
+    down1: {fileID: 21300000, guid: c1d5ffd9faad8459c8e0095f4ba6cec5, type: 3}
     down2: {fileID: 0}
     step1: {fileID: 0}
     step2: {fileID: 0}

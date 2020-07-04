@@ -995,7 +995,7 @@ ScriptsOnlyBuild:
     className: SaveSystemSetup
   - hash:
       serializedVersion: 2
-      Hash: aacb61eac9c4b8bf1abbb2dbb8dda461
+      Hash: 380e864b1d4c1d9eeb2a2593cf4124ba
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PartyMember

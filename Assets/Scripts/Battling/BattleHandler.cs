@@ -142,18 +142,26 @@ public class BattleHandler : MonoBehaviour
          Array.Resize(ref arr, arr.Length - 1);
      }
 
+    bool setting_battle_text;
+
     IEnumerator set_battle_text(string t, float wait, bool wait_for_input, bool clear_on_finish)
     {
+        setting_battle_text = true;
         battle_text.text = t;
 
         yield return new WaitForSeconds(wait);
-        while (!wait_for_input || Input.GetAxis("Submit") == 0)
+        if (wait_for_input)
         {
-            yield return null;
+            while (Input.GetAxis("Submit") == 0)
+            {
+                yield return null;
+            }
         }
 
         if(clear_on_finish)
             battle_text.text = "";
+
+        setting_battle_text = false;
     }
 
     IEnumerator battle() {
@@ -163,8 +171,10 @@ public class BattleHandler : MonoBehaviour
         int gold_won = 0;
         int exp_won = 0;
 
-        foreach (PartyMember p in party) {
-            while (!p.done_set_up) {
+        foreach (PartyMember p in party)
+        {
+            while (!p.done_set_up)
+            {
                 yield return null;
             }
         }
@@ -174,19 +184,21 @@ public class BattleHandler : MonoBehaviour
             party_names[i].text = party[i].name;
             party_HP[i].text = "HP: " + party[i].HP;
         }
-    
+
         battlers = new List<GameObject>();
-        
-        foreach(Monster m in monsters){
+
+        foreach (Monster m in monsters)
+        {
             battlers.Add(m.gameObject);
         }
-        
-        foreach(PartyMember p in party){
+
+        foreach (PartyMember p in party)
+        {
             battlers.Add(p.gameObject);
         }
 
         List<string> monsters_encountered = new List<string>();
-        foreach(Monster m in monsters)
+        foreach (Monster m in monsters)
         {
             if (!monsters_encountered.Contains(process_monster_name(m.gameObject.name)))
                 monsters_encountered.Add(process_monster_name(m.gameObject.name));
@@ -198,7 +210,8 @@ public class BattleHandler : MonoBehaviour
 
         set_battle_text(encounter_text, 1f, true, true);
 
-        while (!battle_complete){
+        while (!battle_complete)
+        {
 
             //Check if players won
             int living = 0;
@@ -232,7 +245,7 @@ public class BattleHandler : MonoBehaviour
                 if(p.HP > 0){
                     active_party_member = p;
 
-                    set_battle_text(p.gameObject.name + " action?", .1f, true, false);
+                    yield return StartCoroutine(set_battle_text(p.gameObject.name + " action?", 0f, false, false));
 
                     p.turn();
                     
@@ -347,12 +360,22 @@ public class BattleHandler : MonoBehaviour
                         else
                             yield return StartCoroutine(set_battle_text(p.gameObject.name + " does " + damage + " damage to " + process_monster_name(p.target.gameObject.name), .3f, true, true));
 
+                        while (setting_battle_text)
+                        {
+                            yield return null;
+                        }
+
                         if (p.target.GetComponent<Monster>().HP <= 0)
                         {
                             gold_won += p.target.GetComponent<Monster>().gold;
                             exp_won += p.target.GetComponent<Monster>().exp;
 
                             yield return StartCoroutine(set_battle_text(process_monster_name(p.target.gameObject.name) + " was slain", .3f, true, true));
+
+                            while (setting_battle_text)
+                            {
+                                yield return null;
+                            }
                         }
                     }
                     
@@ -368,12 +391,28 @@ public class BattleHandler : MonoBehaviour
 
                             yield return StartCoroutine(set_battle_text(p.gameObject.name + " ran away", .3f, true, true));
 
+                            while (setting_battle_text)
+                            {
+                                yield return null;
+                            }
+
+                            foreach (PartyMember pm in party)
+                            {
+                                pm.bsc.change_state("run");
+                                yield return new WaitForSeconds(.26f);
+                            }
+
                             battle_complete = true;
                             stalemate = true;
                             break;
                         }
                         else{
                             yield return StartCoroutine(set_battle_text(p.name + " couldn't run", .3f, true, true));
+
+                            while (setting_battle_text)
+                            {
+                                yield return null;
+                            }
                         }
                         //}
                     }
@@ -395,10 +434,21 @@ public class BattleHandler : MonoBehaviour
                                 yield return StartCoroutine(set_battle_text(process_monster_name(m.gameObject.name) + " missed", .3f, true, true));
                             else
                                 yield return StartCoroutine(set_battle_text(process_monster_name(m.gameObject.name) + " does " + damage + " damage to " + m.target.gameObject.name, .3f, true, true));
+
+                            while (setting_battle_text)
+                            {
+                                yield return null;
+                            }
                         }
                         
                         if(m.action == "run"){
                             yield return StartCoroutine(set_battle_text(process_monster_name(m.gameObject.name) + " ran away", .3f, true, true));
+
+                            while (setting_battle_text)
+                            {
+                                yield return null;
+                            }
+
                             Destroy(m.gameObject);
                             remove_from_array(ref monsters, x);
                         }
@@ -407,6 +457,11 @@ public class BattleHandler : MonoBehaviour
                         {
 
                             yield return StartCoroutine(set_battle_text(m.target.gameObject.name + " was slain", .3f, true, true));
+
+                            while (setting_battle_text)
+                            {
+                                yield return null;
+                            }
                         }
                     }
                 }
