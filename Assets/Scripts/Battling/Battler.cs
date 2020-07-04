@@ -92,40 +92,56 @@ public class Battler : MonoBehaviour
         else{
             damage_rating = (float)(attack.strength / 2) + (float)weapon_damage(attack.weapon);
         }
-        
+
         float damage = 0f;
-        
-        if((int)UnityEngine.Random.Range(0f, 100f) <= (int)(100f * weapon_crit(attack.weapon))){
-            float range = UnityEngine.Random.Range(damage_rating, 2f * damage_rating);
-            damage = range + range - (float)defend.absorb;
-        }
-        else{
-            damage = UnityEngine.Random.Range(damage_rating, 2f * damage_rating) - (float)defend.absorb;
-        }
         
         float chance_to_hit = 168f + attack.hit - defend.evade;
         
         if(Array.Exists(conditions_array, condition => condition=="blind")){
             chance_to_hit -= 40f;
         }
-        if(Array.Exists(conditions_array, condition => condition=="blind")){
-            chance_to_hit += 40f;
-        }
         
         if(damage < 1f){
             damage = 1f;
         }
-        
-        if(UnityEngine.Random.Range(0f, 200f) <= chance_to_hit){
+
+        float crit_hit_chance = UnityEngine.Random.Range(0f, 200f);
+
+
+        if (crit_hit_chance <= chance_to_hit){
+
+            bool crit = false;
+
+            if (UnityEngine.Random.Range(0f, 100f) <= weapon_crit(attack.weapon))
+            {
+                float range = UnityEngine.Random.Range(damage_rating, 2f * damage_rating);
+                damage = range + range - (float)defend.absorb;
+                crit = true;
+            }
+            else
+            {
+                damage = UnityEngine.Random.Range(damage_rating, 2f * damage_rating) - (float)defend.absorb;
+            }
+
+            if (damage < 1f)
+            {
+                damage = 1f;
+            }
+
             defend.HP -= (int)damage;
 
             if (defend.HP < 0)
                 defend.HP = 0;
 
+            if (crit)
+            {
+                return -(int)damage;
+            }
+
             return (int)damage;
         }
         else{
-            return -1;
+            return -9999999;
         }
     }
     

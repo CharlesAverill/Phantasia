@@ -25,35 +25,44 @@ public class CursorController : MonoBehaviour
     public int frame = 0;
     
     // Start is called before the first frame update
-    void Start()
+    void OnEnable()
     {
+        GetComponent<SpriteRenderer>().enabled = false;
+
         active = 0;
         if(monster_mode){
             active_array = monsters;
-            //monsters = transform.parent.GetComponentsInChildren<Monster>();
+            buttons = monsters;
+
+            for(int i = buttons.Length - 1; i > -1; i--)
+            {
+                if(buttons[i].GetComponent<Monster>().HP > 0)
+                    active = i;
+            }
         }
         else{
             active_array = buttons;
         }
 
         active_list = active_array.OfType<GameObject>().ToList();
-    }
 
-    void OnEnable()
-    {
         for (int i = 0; i < buttons.Length; i++)
         {
-            if (shop_mode && buttons[i].active == false)
+            if (buttons[i].active == false)
             {
                 remove_from_list(buttons[i]);
             }
         }
+
+        active_list = active_array.OfType<GameObject>().ToList();
+
+        move();
+        GetComponent<SpriteRenderer>().enabled = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
         if(monster_mode){
             List<GameObject> to_remove = new List<GameObject>();
             foreach(GameObject obj in active_list){
@@ -99,39 +108,64 @@ public class CursorController : MonoBehaviour
                 frame = 35;
             }
             
-            float xoffset = 0f;
-            float yoffset = 0f;
-            
-            if(monster_mode){
-                xoffset = -3.5f;
-                yoffset = -0.4f;
-            }
-            else if (shop_mode && buy_cursor_mode)
+            if(ver != 0)
             {
-                xoffset = -.45f;
-                yoffset = 0f;
+                move();
             }
-            else if (shop_mode)
-            {
-                xoffset = -2.725f;
-                yoffset = -1.05f;
-            }
-            else{
-                xoffset = -4.5f;
-                yoffset = -0.4f;
-            }
-            
-            
-            transform.position = new Vector3(active_list[active].transform.position.x + xoffset, active_list[active].transform.position.y + yoffset, 1f);
         }
+    }
+
+    void move()
+    {
+        float xoffset = 0f;
+        float yoffset = 0f;
+
+        if (monster_mode)
+        {
+            xoffset = -3.5f;
+            yoffset = -0.4f;
+        }
+        else if (shop_mode && buy_cursor_mode)
+        {
+            xoffset = -.45f;
+            yoffset = 0f;
+        }
+        else if (shop_mode)
+        {
+            xoffset = -2.725f;
+            yoffset = -1.05f;
+        }
+        else
+        {
+            xoffset = -4.5f;
+            yoffset = -0.4f;
+        }
+
+        transform.position = new Vector3(active_list[active].transform.position.x + xoffset, active_list[active].transform.position.y + yoffset, 1f);
     }
     
     public void remove_from_list(GameObject obj){
-        active = 0;
+        if (monster_mode)
+        {
+            for (int i = buttons.Length - 1; i > -1; i--)
+            {
+                if (buttons[i].GetComponent<Monster>().HP > 0)
+                    active = i;
+            }
+        }
+        else
+        {
+            active = 0;
+        }
         active_list.Remove(obj);
     }
     
     public Monster get_monster(){
+        for (int i = active_list.Count - 1; i > -1; i--)
+        {
+            if (active_list[i].GetComponent<Monster>().HP > 0)
+                active = i;
+        }
         return active_list[active].GetComponent<Monster>();
     }
     

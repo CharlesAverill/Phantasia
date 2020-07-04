@@ -379,6 +379,7 @@ public class PartyMember : Battler
         while(is_moving()){
             yield return null;
         }
+        bsc.change_state("idle");
         
         action = act;
     }
@@ -402,7 +403,7 @@ public class PartyMember : Battler
 
         bsc.change_state("walk");
         move_point = new Vector3(1.66f, transform.position.y, transform.position.z);
-        while(is_moving()){
+        while(is_moving() && is_playing_animation()){
             yield return null;
         }
 
@@ -417,9 +418,11 @@ public class PartyMember : Battler
 
         bsc.change_state("walk");
         move_point = new Vector3(3.66f, transform.position.y, transform.position.z);
-        while(is_moving()){
+        while(is_playing_animation() || is_moving()){
             yield return null;
         }
+        bsc.change_state("idle");
+
         done_showing = true;
     }
     
@@ -458,7 +461,7 @@ public class PartyMember : Battler
         monster_cursor = bh.monster_cursor;
         menu_cursor = bh.menu_cursor;
         
-        menu_cursor.gameObject.SetActive(true);
+        menu_cursor.gameObject.SetActive(false);
         monster_cursor.gameObject.SetActive(false);
 
         bsc = GetComponent<BattleSpriteController>();
@@ -477,7 +480,7 @@ public class PartyMember : Battler
             bsc.change_state("dead");
         }
 
-        if(transform.position == move_point && bsc.get_state() != "idle")
+        if(transform.position == move_point && bsc.get_state() != "idle" && HP > 0)
         {
             bsc.change_state("idle");
         }

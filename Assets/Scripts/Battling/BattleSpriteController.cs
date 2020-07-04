@@ -54,6 +54,8 @@ public class BattleSpriteController : MonoBehaviour
                 break;
             case "dead":
                 sr.sprite = dead;
+                GetComponent<PartyMember>().move_point = new Vector3(sr.gameObject.transform.position.x - .66f, sr.gameObject.transform.position.y, sr.gameObject.transform.position.z);
+                //sr.gameObject.transform.position = new Vector3(sr.gameObject.transform.position.x - .66f, sr.gameObject.transform.position.y, sr.gameObject.transform.position.z);
                 break;
             case "run":
                 sr.sprite = idle;
