@@ -140,8 +140,8 @@ public class Equips
 
     void setup_items()
     {
-        items.Add(new Item("HEAL Potion", 60));
-        items.Add(new Item("PURE Potion", 75));
+        items.Add(new Item("Potion", 60));
+        items.Add(new Item("Gold Needle", 75));
         items.Add(new Item("Tent", 75));
     }
 

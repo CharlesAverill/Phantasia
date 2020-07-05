@@ -213,6 +213,8 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 13588}
     - Class: 114
+      Script: {instanceID: 13658}
+    - Class: 114
       Script: {instanceID: 13734}
     - Class: 114
       Script: {instanceID: 13802}
@@ -645,7 +647,7 @@ ScriptsOnlyBuild:
     className: AnimationPlayableAsset
   - hash:
       serializedVersion: 2
-      Hash: 39aab753ee32834e0bb3b234db3a1bcd
+      Hash: 1a38fa1f555e62d7122a87ceae9a4444
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: TitleScreenHandler
@@ -825,7 +827,7 @@ ScriptsOnlyBuild:
     className: RawImage
   - hash:
       serializedVersion: 2
-      Hash: b009f520fad5c8644bcf74b41e871bef
+      Hash: b59601a042295bf1d6caff77c9cd0c40
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: MusicHandler

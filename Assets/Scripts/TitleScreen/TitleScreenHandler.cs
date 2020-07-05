@@ -13,11 +13,13 @@ public class TitleScreenHandler : MonoBehaviour
     
     public AudioSource classic;
     public AudioSource remaster;
+    public AudioSource GBA;
     
     private string[] names;
     
     public GameObject title;
     public GameObject char_select;
+    public GameObject settings_container;
     
     public InputField[] fields;
     public SpriteController[] sprite_controllers;
@@ -27,6 +29,10 @@ public class TitleScreenHandler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
+        title.SetActive(true);
+        char_select.SetActive(false);
+        settings_container.SetActive(false);
     
         string bin_path = Application.persistentDataPath + "/party.bin";
         
@@ -40,12 +46,21 @@ public class TitleScreenHandler : MonoBehaviour
         }
         
         if(SaveSystem.GetBool("classic_music")){
-             classic.volume = 1f;
+            classic.volume = 1f;
             remaster.volume = 0f;
+            GBA.volume = 0f;
         }
-        else{
+        else if (SaveSystem.GetBool("remaster_music"))
+        {
             remaster.volume = 1f;
             classic.volume = 0f;
+            GBA.volume = 0f;
+        }
+        else
+        {
+            GBA.volume = 1f;
+            classic.volume = 0f;
+            remaster.volume = 0f;
         }
         
         title.SetActive(true);
@@ -102,26 +117,46 @@ public class TitleScreenHandler : MonoBehaviour
                 Debug.Log("Healed your party");
             }
             */
-            
-            if(Input.GetKeyDown("m") && frames_since_music_switch >= 15){
-                SaveSystem.SetBool("classic_music", !SaveSystem.GetBool("classic_music"));
-                if(SaveSystem.GetBool("classic_music")){
-                    classic.volume = 1f;
-                    remaster.volume = 0f;
-                }
-                else{
-                    remaster.volume = 1f;
-                    classic.volume = 0f;
-                }
-                
-                Debug.Log("Music switched");
-                
-                frames_since_music_switch = 0;
-            }
         }
         
     }
-    
+
+    public void set_classic_music()
+    {
+        classic.volume = 1f;
+        remaster.volume = 0f;
+        GBA.volume = 0f;
+
+        SaveSystem.SetBool("classic_music", true);
+        SaveSystem.SetBool("remaster_music", false);
+
+        classic.Play();
+    }
+
+    public void set_gba_music()
+    {
+        classic.volume = 0f;
+        remaster.volume = 0f;
+        GBA.volume = 1f;
+
+        SaveSystem.SetBool("classic_music", false);
+        SaveSystem.SetBool("remaster_music", false);
+
+        GBA.Play();
+    }
+
+    public void set_remastered_music()
+    {
+        classic.volume = 0f;
+        remaster.volume = 1f;
+        GBA.volume = 0f;
+
+        SaveSystem.SetBool("classic_music", false);
+        SaveSystem.SetBool("remaster_music", true);
+
+        remaster.Play();
+    }
+
     public void exit(){
         #if UNITY_EDITOR
             // Application.Quit() does not work in the editor so
@@ -143,6 +178,22 @@ public class TitleScreenHandler : MonoBehaviour
         input_allowed = false;
         title.SetActive(false);
         char_select.SetActive(true);
+    }
+
+    public void settings()
+    {
+        if (!settings_container.active)
+        {
+            input_allowed = false;
+            title.SetActive(false);
+            settings_container.SetActive(true);
+        }
+        else
+        {
+            input_allowed = true;
+            title.SetActive(true);
+            settings_container.SetActive(false);
+        }
     }
     
     public void new_game_start(){

@@ -55,6 +55,7 @@ public class SpriteController : MonoBehaviour
     {
         character_index = index;
         active_character = characters[character_index];
+        sr.sprite = active_character.down1;
     }
     
     private int frames_since_last_increment;
