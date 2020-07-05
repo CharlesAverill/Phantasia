@@ -40,7 +40,10 @@ public class RandomEncounterHandler : MonoBehaviour
     
         int countLoaded = SceneManager.sceneCount;
         if(countLoaded == 1){
+
             player.can_move = false;
+            player.multiplier = 0f;
+
             while(player.transform.position != player.move_point.position){
                 yield return null;
             }
@@ -77,6 +80,7 @@ public class RandomEncounterHandler : MonoBehaviour
         }
         
         player.can_move = true;
+        player.multiplier = 2f;
 
         gen_seed();
         SaveSystem.SetInt("reh_seed", seed);

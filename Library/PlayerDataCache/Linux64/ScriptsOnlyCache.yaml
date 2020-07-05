@@ -66,6 +66,7 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.GraphicRaycaster
     - UnityEngine.UI.Image
     - UnityEngine.UI.InputField
+    - UnityEngine.UI.Slider
     - UnityEngine.UI.Text
   sceneClasses:
     Assets/Scenes/Battle.unity:
@@ -392,6 +393,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 14352}
     - Class: 114
       Script: {instanceID: 14356}
+    - Class: 114
+      Script: {instanceID: 14398}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -647,7 +650,7 @@ ScriptsOnlyBuild:
     className: AnimationPlayableAsset
   - hash:
       serializedVersion: 2
-      Hash: 1a38fa1f555e62d7122a87ceae9a4444
+      Hash: fa5ba956cda2c5d08fff9475b79b0a4d
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: TitleScreenHandler
@@ -833,7 +836,7 @@ ScriptsOnlyBuild:
     className: MusicHandler
   - hash:
       serializedVersion: 2
-      Hash: 18ac4c92fa07d9ae24e86af7226e6d5a
+      Hash: 379fc624b9f6d3c2871972272d9e80ca
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PlayerController

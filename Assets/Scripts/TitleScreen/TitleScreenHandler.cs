@@ -23,6 +23,9 @@ public class TitleScreenHandler : MonoBehaviour
     
     public InputField[] fields;
     public SpriteController[] sprite_controllers;
+
+    public Slider battle_speed_slider;
+    public Text bss_text;
     
     private bool new_save = false;
 
@@ -62,9 +65,8 @@ public class TitleScreenHandler : MonoBehaviour
             classic.volume = 0f;
             remaster.volume = 0f;
         }
-        
-        title.SetActive(true);
-        char_select.SetActive(false);
+
+        battle_speed_slider.value = SaveSystem.GetFloat("battle_speed");
     }
     
     public void init_save_file(){
@@ -131,6 +133,8 @@ public class TitleScreenHandler : MonoBehaviour
         SaveSystem.SetBool("remaster_music", false);
 
         classic.Play();
+
+        SaveSystem.SaveToDisk();
     }
 
     public void set_gba_music()
@@ -143,6 +147,8 @@ public class TitleScreenHandler : MonoBehaviour
         SaveSystem.SetBool("remaster_music", false);
 
         GBA.Play();
+
+        SaveSystem.SaveToDisk();
     }
 
     public void set_remastered_music()
@@ -155,6 +161,8 @@ public class TitleScreenHandler : MonoBehaviour
         SaveSystem.SetBool("remaster_music", true);
 
         remaster.Play();
+
+        SaveSystem.SaveToDisk();
     }
 
     public void exit(){
@@ -194,6 +202,13 @@ public class TitleScreenHandler : MonoBehaviour
             title.SetActive(true);
             settings_container.SetActive(false);
         }
+    }
+
+    public void battle_speed_set()
+    {
+        SaveSystem.SetFloat("battle_speed", battle_speed_slider.value);
+        bss_text.text = "" + (int)(battle_speed_slider.value * 1000f);
+        SaveSystem.SaveToDisk();
     }
     
     public void new_game_start(){

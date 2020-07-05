@@ -29,10 +29,21 @@ public class BattleSpriteController : MonoBehaviour
 
         sr.sprite = idle;
     }
+
+    void Update()
+    {
+        if(state == "idle")
+        {
+            if(sr.sprite != idle)
+            {
+                sr.sprite = idle;
+            }
+        }
+    }
     
     public void change_state(string st, WeaponSprite ws=null){
         state = st;
-        switch (state)
+        switch (st)
         {
             case "idle":
                 sr.sprite = idle;
@@ -54,12 +65,16 @@ public class BattleSpriteController : MonoBehaviour
                 break;
             case "dead":
                 sr.sprite = dead;
-                GetComponent<PartyMember>().move_point = new Vector3(sr.gameObject.transform.position.x - .66f, sr.gameObject.transform.position.y, sr.gameObject.transform.position.z);
+                //GetComponent<PartyMember>().move_point = new Vector3(sr.gameObject.transform.position.x - .66f, sr.gameObject.transform.position.y, sr.gameObject.transform.position.z);
                 //sr.gameObject.transform.position = new Vector3(sr.gameObject.transform.position.x - .66f, sr.gameObject.transform.position.y, sr.gameObject.transform.position.z);
                 break;
             case "run":
                 sr.sprite = idle;
                 sr.flipX = true;
+                break;
+            case "victory":
+                sr.sprite = idle;
+                StartCoroutine(victory());
                 break;
         }
     }
@@ -84,6 +99,27 @@ public class BattleSpriteController : MonoBehaviour
         yield return new WaitForSeconds(wait);
 
         is_walking = false;
+
+        yield return null;
+    }
+
+    bool is_victory;
+    public IEnumerator victory()
+    {
+        float wait = .25f;
+        is_victory = true;
+
+        for(int i = 0; i < 5; i++)
+        {
+            sr.sprite = magic_victory1;
+            yield return new WaitForSeconds(wait);
+            sr.sprite = magic_victory2;
+            yield return new WaitForSeconds(wait);
+        }
+
+        sr.sprite = idle;
+
+        is_victory = false;
 
         yield return null;
     }

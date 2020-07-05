@@ -382,6 +382,9 @@ public class PartyMember : Battler
         bsc.change_state("idle");
         
         action = act;
+
+        monster_cursor.gameObject.SetActive(false);
+        menu_cursor.gameObject.SetActive(false);
     }
     
     public void walk_back(){
@@ -480,7 +483,7 @@ public class PartyMember : Battler
             bsc.change_state("dead");
         }
 
-        if(transform.position == move_point && bsc.get_state() != "idle" && HP > 0)
+        if(transform.position == move_point && bsc.get_state() != "idle" && bsc.get_state() != "victory" && HP > 0)
         {
             bsc.change_state("idle");
         }

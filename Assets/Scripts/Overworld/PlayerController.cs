@@ -83,6 +83,8 @@ public class PlayerController : MonoBehaviour
         timer = -1f;
     }
 
+    public float multiplier = 2f;
+
     // Update is called once per frame
     void Update()
     {
@@ -112,12 +114,29 @@ public class PlayerController : MonoBehaviour
         if(can_move){
             if(Vector3.Distance(transform.position, move_point.position) <= .025f){
                 
-                float multiplier = 2f;
-                
                 float hor = Input.GetAxisRaw("Horizontal") * multiplier;
                 float ver = Input.GetAxisRaw("Vertical") * multiplier;
-            
-                if(Mathf.Abs(hor) == 1f * multiplier){
+
+                if (hor == 0f && ver == 0f && transform.position == move_point.position)
+                {
+                    switch (sc.get_direction())
+                    {
+                        case "up":
+                            sc.change_direction("up");
+                            break;
+                        case "down":
+                            sc.change_direction("down");
+                            break;
+                        case "left":
+                            sc.change_direction("left");
+                            break;
+                        case "right":
+                            sc.change_direction("right");
+                            break;
+                    }
+                }
+
+                else if (Mathf.Abs(hor) == 1f * multiplier){
                     RaycastHit2D hit = Physics2D.Raycast(transform.position, new Vector3(hor, 0f, 0f), 1f * multiplier, collision | water | river);
                     if(hor == 1f * multiplier){
                          sc.change_direction("right");

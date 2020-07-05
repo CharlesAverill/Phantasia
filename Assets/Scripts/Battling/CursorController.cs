@@ -64,6 +64,7 @@ public class CursorController : MonoBehaviour
     void Update()
     {
         if(monster_mode){
+            /*
             List<GameObject> to_remove = new List<GameObject>();
             foreach(GameObject obj in active_list){
                 if(obj.GetComponent<Monster>().HP <= 0){
@@ -77,12 +78,14 @@ public class CursorController : MonoBehaviour
                 remove_from_list(to_remove[i]);
                 x = to_remove.Count;
             }
+            */
         }
 
-        if(active < active_list.Count)
+        if (active < active_list.Count && active >= 0)
         {
             event_system.SetSelectedGameObject(active_list[active]);
         }
+
         frame = frame + 1;
         if(frame >= 20){
         
@@ -90,17 +93,43 @@ public class CursorController : MonoBehaviour
             
             if(ver == 1f){
                 active = active - 1;
-                if(active < 0){
+
+                if (active < 0)
+                {
                     active = active_list.Count - 1;
                 }
+
+                while (monster_mode && get_monster().HP <= 0)
+                {
+                    active -= 1;
+
+                    if (active < 0)
+                    {
+                        active = active_list.Count - 1;
+                    }
+                }
+
                 frame = 0;
             }
             
             else if(ver == -1f){
                 active = active + 1;
-                if(active >= active_list.Count){
+
+                if (active >= active_list.Count)
+                {
                     active = 0;
                 }
+
+                while (monster_mode && get_monster().HP <= 0)
+                {
+                    active += 1;
+
+                    if (active >= active_list.Count)
+                    {
+                        active = 0;
+                    }
+                }
+
                 frame = 0;
             }
             
@@ -161,11 +190,6 @@ public class CursorController : MonoBehaviour
     }
     
     public Monster get_monster(){
-        for (int i = active_list.Count - 1; i > -1; i--)
-        {
-            if (active_list[i].GetComponent<Monster>().HP > 0)
-                active = i;
-        }
         return active_list[active].GetComponent<Monster>();
     }
     

@@ -168,6 +168,8 @@ public class BattleHandler : MonoBehaviour
 
     IEnumerator battle() {
 
+        float text_delay = SaveSystem.GetFloat("battle_speed");
+
         battle_text.text = "";
 
         int gold_won = 0;
@@ -210,7 +212,7 @@ public class BattleHandler : MonoBehaviour
             encounter_text += s + ", ";
         encounter_text = encounter_text.Substring(0, encounter_text.Length - 2) + "!";
 
-        yield return StartCoroutine(set_battle_text(encounter_text, .6f, true, true));
+        yield return StartCoroutine(set_battle_text(encounter_text, text_delay, true, true));
 
         accept_input = false;
 
@@ -274,7 +276,7 @@ public class BattleHandler : MonoBehaviour
                 if(p.HP > 0){
                     active_party_member = p;
 
-                    yield return StartCoroutine(set_battle_text(txt, 0f, false, false));
+                    yield return StartCoroutine(set_battle_text(txt, .05f, false, false));
 
                     p.turn();
                     
@@ -283,14 +285,6 @@ public class BattleHandler : MonoBehaviour
                             break;
                         yield return null;
                     }
-                    /*
-                    if(p.target){
-                        Debug.Log(p.name + " " + p.action + " -> " + p.target.name);
-                    }
-                    else{
-                        Debug.Log(p.name + " -> " + p.action);
-                    }
-                    */
                 }
             }
             
@@ -306,7 +300,6 @@ public class BattleHandler : MonoBehaviour
                         lose = true;
                         break;
                     }
-                    //Debug.Log(m.name + " " + m.action + "->" + m.target.name);
                 }
             }
 
@@ -385,15 +378,15 @@ public class BattleHandler : MonoBehaviour
                         
                         int damage = p.GetComponent<Battler>().fight(p, p.target.GetComponent<Monster>());
                         if(damage == -9999999)
-                            yield return StartCoroutine(set_battle_text(p.gameObject.name + " missed", .3f, true, true));
+                            yield return StartCoroutine(set_battle_text(p.gameObject.name + " missed", text_delay, true, true));
                         else if(damage > 0)
                         {
-                            yield return StartCoroutine(set_battle_text(p.gameObject.name + " does " + damage + " damage to " + process_monster_name(p.target.gameObject.name), .3f, true, true));
+                            yield return StartCoroutine(set_battle_text(p.gameObject.name + " does " + damage + " damage to " + process_monster_name(p.target.gameObject.name), text_delay, true, true));
                         }
                         else
                         {
-                            yield return StartCoroutine(set_battle_text("Critical hit!", .3f, true, true));
-                            yield return StartCoroutine(set_battle_text(p.gameObject.name + " does " + (-damage) + " damage to " + process_monster_name(p.target.gameObject.name), .3f, true, true));
+                            yield return StartCoroutine(set_battle_text("Critical hit!", text_delay, true, true));
+                            yield return StartCoroutine(set_battle_text(p.gameObject.name + " does " + (-damage) + " damage to " + process_monster_name(p.target.gameObject.name), text_delay, true, true));
                         }
 
                         while (setting_battle_text)
@@ -406,7 +399,7 @@ public class BattleHandler : MonoBehaviour
                             gold_won += p.target.GetComponent<Monster>().gold;
                             exp_won += p.target.GetComponent<Monster>().exp;
 
-                            yield return StartCoroutine(set_battle_text(process_monster_name(p.target.gameObject.name) + " was slain", .3f, true, true));
+                            yield return StartCoroutine(set_battle_text(process_monster_name(p.target.gameObject.name) + " was slain", text_delay, true, true));
 
                             while (setting_battle_text)
                             {
@@ -425,7 +418,7 @@ public class BattleHandler : MonoBehaviour
                         int run_seed = UnityEngine.Random.Range(0, p.level + 15);
                         if(p.luck > run_seed){
 
-                            yield return StartCoroutine(set_battle_text(p.gameObject.name + " ran away", .3f, true, true));
+                            yield return StartCoroutine(set_battle_text(p.gameObject.name + " ran away", text_delay, true, true));
 
                             while (setting_battle_text)
                             {
@@ -443,7 +436,7 @@ public class BattleHandler : MonoBehaviour
                             break;
                         }
                         else{
-                            yield return StartCoroutine(set_battle_text(p.name + " couldn't run", .3f, true, true));
+                            yield return StartCoroutine(set_battle_text(p.name + " couldn't run", text_delay, true, true));
 
                             while (setting_battle_text)
                             {
@@ -467,9 +460,9 @@ public class BattleHandler : MonoBehaviour
 
                             int damage = m.GetComponent<Battler>().fight(m, m.target.GetComponent<PartyMember>());
                             if (damage == -1)
-                                yield return StartCoroutine(set_battle_text(process_monster_name(m.gameObject.name) + " missed", .3f, true, true));
+                                yield return StartCoroutine(set_battle_text(process_monster_name(m.gameObject.name) + " missed", text_delay, true, true));
                             else
-                                yield return StartCoroutine(set_battle_text(process_monster_name(m.gameObject.name) + " does " + damage + " damage to " + m.target.gameObject.name, .3f, true, true));
+                                yield return StartCoroutine(set_battle_text(process_monster_name(m.gameObject.name) + " does " + damage + " damage to " + m.target.gameObject.name, text_delay, true, true));
 
                             while (setting_battle_text)
                             {
@@ -477,8 +470,8 @@ public class BattleHandler : MonoBehaviour
                             }
                         }
                         
-                        if(m.action == "run"){
-                            yield return StartCoroutine(set_battle_text(process_monster_name(m.gameObject.name) + " ran away", .3f, true, true));
+                        else if(m.action == "run"){
+                            yield return StartCoroutine(set_battle_text(process_monster_name(m.gameObject.name) + " ran away", text_delay, true, true));
 
                             while (setting_battle_text)
                             {
@@ -492,7 +485,7 @@ public class BattleHandler : MonoBehaviour
                         if (m.target.GetComponent<PartyMember>().HP <= 0)
                         {
                             m.target.GetComponent<PartyMember>().bsc.change_state("dead");
-                            yield return StartCoroutine(set_battle_text(m.target.gameObject.name + " was slain", .3f, true, true));
+                            yield return StartCoroutine(set_battle_text(m.target.gameObject.name + " was slain", text_delay, true, true));
                             
                             while (setting_battle_text)
                             {
@@ -545,6 +538,7 @@ public class BattleHandler : MonoBehaviour
         {
             foreach (PartyMember p in party)
             {
+                p.bsc.change_state("victory");
                 p.save_player();
             }
 
@@ -552,9 +546,14 @@ public class BattleHandler : MonoBehaviour
             victory_music.gameObject.SetActive(true);
             victory_music.get_active().Play();
 
-            yield return StartCoroutine(set_battle_text("Victory!", 1f, true, true));
+            yield return StartCoroutine(set_battle_text("Victory!", text_delay, true, false));
 
-            yield return StartCoroutine(set_battle_text("Obtained " + gold_won + " gold", .25f, true, true));
+            while (victory_music.get_active().time <= victory_music.get_active().gameObject.GetComponent<IntroLoop>().loop_start_seconds / 2f)
+            {
+                yield return null;
+            }
+
+            yield return StartCoroutine(set_battle_text("Obtained " + gold_won + " gold", text_delay, true, true));
             SaveSystem.SetInt("gil", SaveSystem.GetInt("gil") + gold_won);
 
             int living = 0;
@@ -567,7 +566,7 @@ public class BattleHandler : MonoBehaviour
             }
 
             int exp_each = exp_won / living;
-            yield return StartCoroutine(set_battle_text("Obtained " + exp_each + " exp", .25f, true, false));
+            yield return StartCoroutine(set_battle_text("Obtained " + exp_each + " exp", text_delay, true, false));
 
             foreach (PartyMember m in party)
             {
@@ -576,18 +575,13 @@ public class BattleHandler : MonoBehaviour
                 {
                     List<string> stats = m.level_up();
 
-                    yield return StartCoroutine(set_battle_text(m.gameObject.name + " leveled up!", .3f, true, true));
+                    yield return StartCoroutine(set_battle_text(m.gameObject.name + " leveled up!", text_delay, true, true));
 
                     foreach (string s in stats)
                     {
-                        yield return StartCoroutine(set_battle_text(s + " up", .2f, true, false));
+                        yield return StartCoroutine(set_battle_text(s + " up", text_delay, true, false));
                     }
                 }
-            }
-
-
-            while (victory_music.get_active().time <= victory_music.get_active().gameObject.GetComponent<IntroLoop>().loop_start_seconds){
-                yield return null;
             }
 
             while (Input.GetAxis("Submit") == 0){
@@ -596,7 +590,7 @@ public class BattleHandler : MonoBehaviour
         }
         else if (lose)
         {
-            yield return StartCoroutine(set_battle_text("Game over...", .5f, true, false));
+            yield return StartCoroutine(set_battle_text("Game over...", text_delay, true, false));
 
             SceneManager.LoadSceneAsync("Title Screen");
             SceneManager.UnloadScene("Overworld");
@@ -674,12 +668,13 @@ public class BattleHandler : MonoBehaviour
         
         monster_party = (GameObject)Instantiate(GlobalControl.instance.monster_party, new Vector3(0f, 0f, 1f), Quaternion.identity);
         monster_party.SetActive(true);
-
-        menu_cursor.gameObject.SetActive(false);
         
         monster_cursor = monster_party.GetComponentInChildren<CursorController>();
         monster_cursor.event_system = es;
-    
+
+        menu_cursor.gameObject.SetActive(false);
+        monster_cursor.gameObject.SetActive(false);
+
         battle_complete = false;
         win = false;
         lose = false;
