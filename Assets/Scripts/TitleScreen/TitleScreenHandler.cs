@@ -14,6 +14,8 @@ public class TitleScreenHandler : MonoBehaviour
     public AudioSource classic;
     public AudioSource remaster;
     public AudioSource GBA;
+
+    public AudioSource button_hover;
     
     private string[] names;
     
@@ -99,6 +101,11 @@ public class TitleScreenHandler : MonoBehaviour
 
         SaveSystem.SaveToDisk();
         Debug.Log("Done initializing");
+    }
+
+    public void hover_sound()
+    {
+        button_hover.Play();
     }
     
     int frames_since_music_switch = 15;

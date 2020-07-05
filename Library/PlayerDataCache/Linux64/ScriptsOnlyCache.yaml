@@ -60,6 +60,7 @@ ScriptsOnlyBuild:
     - UnityEditor.TestTools.TestRunner.TestRun.TestJobDataHolder
     UnityEngine.UI.dll:
     - UnityEngine.EventSystems.EventSystem
+    - UnityEngine.EventSystems.EventTrigger
     - UnityEngine.EventSystems.StandaloneInputModule
     - UnityEngine.UI.Button
     - UnityEngine.UI.CanvasScaler
@@ -219,6 +220,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 13734}
     - Class: 114
       Script: {instanceID: 13802}
+    - Class: 114
+      Script: {instanceID: 14284}
     - Class: 114
       Script: {instanceID: 14352}
     - Class: 115
@@ -390,6 +393,8 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 14020}
     - Class: 114
+      Script: {instanceID: 14284}
+    - Class: 114
       Script: {instanceID: 14352}
     - Class: 114
       Script: {instanceID: 14356}
@@ -470,7 +475,7 @@ ScriptsOnlyBuild:
     className: GroupTrack
   - hash:
       serializedVersion: 2
-      Hash: ca0a070232ec78519b3da06241e03f3d
+      Hash: 3a643bb9e2942bdc644d8e6f2312498e
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PauseMenuHandler
@@ -650,7 +655,7 @@ ScriptsOnlyBuild:
     className: AnimationPlayableAsset
   - hash:
       serializedVersion: 2
-      Hash: fa5ba956cda2c5d08fff9475b79b0a4d
+      Hash: 1a40ee18c21d8022f981115ffd04a6ff
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: TitleScreenHandler

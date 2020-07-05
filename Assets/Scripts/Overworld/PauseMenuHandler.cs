@@ -21,7 +21,10 @@ public class PauseMenuHandler : MonoBehaviour
     public Text[] HPs;
     public Text[] MPs;
 
+    public AudioSource button_hover;
+
     public GameObject bag_obj;
+    public GameObject bag_btn;
     public Text[] bag_items;
 
     public Text[] give_names;
@@ -55,6 +58,17 @@ public class PauseMenuHandler : MonoBehaviour
     public Text status_abs;
     public Text status_hit;
     public Text status_evade;
+
+    public Text hover_text;
+
+    public void hover_sound()
+    {
+        if (bag_obj.active)
+        {
+
+        }
+        button_hover.Play();
+    }
 
     Dictionary<int, int> get_level_chart()
     {
@@ -275,17 +289,20 @@ public class PauseMenuHandler : MonoBehaviour
         foreach(Text t in bag_items)
         {
             t.text = "";
+            t.gameObject.transform.parent.gameObject.SetActive(false);
         }
 
         int i = 0;
 
         foreach(KeyValuePair<string, int> kvp in items)
         {
+            bag_items[i].gameObject.transform.parent.gameObject.SetActive(true);
             bag_items[i].text = kvp.Key + " x" + kvp.Value;
             i += 1;
         }
 
         bag_obj.SetActive(true);
+        bag_btn.SetActive(false);
     }
 
     string status_player_n;
@@ -649,6 +666,7 @@ public class PauseMenuHandler : MonoBehaviour
         foreach(Text t in status_bag_items)
         {
             t.text = "";
+            t.gameObject.transform.parent.gameObject.SetActive(false);
         }
 
         List<string> weapons = SaveSystem.GetStringList(status_player_n + "weapons_inventory");
@@ -659,6 +677,7 @@ public class PauseMenuHandler : MonoBehaviour
             if (SaveSystem.GetString(status_player_n + "weapon") == weapons[i])
                 prefix = "E- ";
             status_bag_items[i - 1].text = prefix + weapons[i];
+            status_bag_items[i-1].gameObject.transform.parent.gameObject.SetActive(true);
         }
 
         status_bag.SetActive(true);
@@ -943,6 +962,7 @@ public class PauseMenuHandler : MonoBehaviour
         else if(bag_obj.active)
         {
             bag_obj.SetActive(false);
+            bag_btn.SetActive(true);
         }
         else
         {
