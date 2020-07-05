@@ -50,13 +50,13 @@ Download the repo as a zip file (green button at the top right). Open the "Build
   - Title screen
   - Screen transitions
   - Enter/Exit battle
-  - Music (Classic + remastered)
+  - Music (classic, remastered, GBA)
   - Collision
   - NPC Movement, Dialogue
   - Indoor rooms
   - All Overworld sprites
   - Buying items, weapons, armor, magic from shops. Learning/using magic not supported.
   - Saving + Healing at Inns
-  - Earning gil upon battle win
+  - Earning gil, exp upon battle win
   - Battle UI
   - Experience/Leveling system
