@@ -427,7 +427,8 @@ public class BattleHandler : MonoBehaviour
 
                             foreach (PartyMember pm in party)
                             {
-                                pm.bsc.change_state("run");
+                                if(pm.HP > 0)
+                                    pm.bsc.change_state("run");
                                 yield return new WaitForSeconds(.26f);
                             }
 
@@ -538,7 +539,8 @@ public class BattleHandler : MonoBehaviour
         {
             foreach (PartyMember p in party)
             {
-                p.bsc.change_state("victory");
+                if(p.HP > 0)
+                    p.bsc.change_state("victory");
                 p.save_player();
             }
 
@@ -570,16 +572,19 @@ public class BattleHandler : MonoBehaviour
 
             foreach (PartyMember m in party)
             {
-                m.experience += exp_each;
-                while(get_level_from_exp(m.experience) > m.level)
+                if(m.HP > 0)
                 {
-                    List<string> stats = m.level_up();
-
-                    yield return StartCoroutine(set_battle_text(m.gameObject.name + " leveled up!", text_delay, true, true));
-
-                    foreach (string s in stats)
+                    m.experience += exp_each;
+                    while (get_level_from_exp(m.experience) > m.level)
                     {
-                        yield return StartCoroutine(set_battle_text(s + " up", text_delay, true, false));
+                        List<string> stats = m.level_up();
+
+                        yield return StartCoroutine(set_battle_text(m.gameObject.name + " leveled up!", text_delay, true, true));
+
+                        foreach (string s in stats)
+                        {
+                            yield return StartCoroutine(set_battle_text(s + " up", text_delay, true, false));
+                        }
                     }
                 }
             }

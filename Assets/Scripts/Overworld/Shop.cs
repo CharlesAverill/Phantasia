@@ -46,6 +46,8 @@ public class Shop : MonoBehaviour
 
     int buy_index;
 
+    List<int> dead_players;
+
     void setup()
     {
         foreach (product_text t in product_Texts)
@@ -104,23 +106,7 @@ public class Shop : MonoBehaviour
             }
             if(shopmode == "clinic")
             {
-                int dead = 0;
-
-                for(int i = 0; i < 4; i++)
-                {
-                    if (SaveSystem.GetInt("player" + (i + 1) + "_HP") <= 0)
-                        dead += 1;
-                }
-
-                if (dead > 0)
-                {
-                    prompt_text.text = "A party member of yours has fallen. Would you like to revive them for " + inn_clinic_price + "G?";
-                }
-                else {
-                    prompt_text.text = "You do not need my help right now.";
-                    yes_no.SetActive(false);
-                    only_quit.SetActive(true);
-                }
+                clinic_setup();
             }
         }
 
@@ -212,6 +198,29 @@ public class Shop : MonoBehaviour
         gil_display_text.text = "G: " + player_gil;
     }
 
+    void clinic_setup()
+    {
+        dead_players = new List<int>();
+
+        for (int i = 0; i < 4; i++)
+        {
+            if (SaveSystem.GetInt("player" + (i + 1) + "_HP") <= 0)
+                dead_players.Add(i);
+        }
+
+        if (dead_players.Count > 0)
+        {
+            prompt_text.text = "It seems " + SaveSystem.GetString("player" + (dead_players[0] + 1) + "_name") + " has fallen. Would you like me to revive them for " + inn_clinic_price + "G?";
+            yes_no.SetActive(true);
+        }
+        else
+        {
+            prompt_text.text = "You do not need my help right now.";
+            yes_no.SetActive(false);
+            only_quit.SetActive(true);
+        }
+    }
+
     public void yes_true()
     {
         yes = true;
@@ -267,18 +276,28 @@ public class Shop : MonoBehaviour
             else if (yes)
             {
                 SaveSystem.SetInt("gil", player_gil - inn_clinic_price);
-                for(int i = 0; i < 4; i++)
+                if(shopmode == "inn")
                 {
-                    if(SaveSystem.GetInt("player" + (i + 1) + "_HP") > 0)
-                        SaveSystem.SetInt("player" + (i + 1) + "_HP", SaveSystem.GetInt("player" + (i + 1) + "_maxHP"));
+                    for (int i = 0; i < 4; i++)
+                    {
+                        if (SaveSystem.GetInt("player" + (i + 1) + "_HP") > 0)
+                            SaveSystem.SetInt("player" + (i + 1) + "_HP", SaveSystem.GetInt("player" + (i + 1) + "_maxHP"));
+                    }
+
+                    GlobalControl.instance.player.map_handler.save_inn();
+
+                    SaveSystem.SaveToDisk();
+
+                    exit_shop();
                 }
-
-                GlobalControl.instance.player.map_handler.save_inn();
-
-                SaveSystem.SaveToDisk();
+                else
+                {
+                    SaveSystem.SetInt("player" + (dead_players[0] + 1) + "_HP", 1);
+                    yes = false;
+                    no = false;
+                    clinic_setup();
+                }
             }
-
-            exit_shop();
         }
     }
 
