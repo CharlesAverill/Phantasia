@@ -88,10 +88,18 @@ public class CursorController : MonoBehaviour
 
         frame = frame + 1;
         if(frame >= 20){
-        
-            float ver = Input.GetAxisRaw("Vertical");
-            
-            if(ver == 1f){
+
+            bool up = Input.GetKey(CustomInputManager.cim.up);
+            bool down = Input.GetKey(CustomInputManager.cim.down);
+
+            float ver = 0f;
+
+            if (up)
+                ver = 1f;
+            if (down)
+                ver = -1f;
+
+            if (ver == 1f){
                 active = active - 1;
 
                 if (active < 0)

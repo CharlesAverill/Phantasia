@@ -368,7 +368,7 @@ public class PartyMember : Battler
 
         yield return new WaitForSeconds(.2f);
 
-        while (Input.GetAxis("Submit") == 0){
+        while (!Input.GetKey(CustomInputManager.cim.select)){
             yield return null;
         }
         

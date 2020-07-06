@@ -92,19 +92,6 @@ public class PlayerController : MonoBehaviour
         if(reh.gameObject.active == false){
             reh.gameObject.SetActive(true);
         }
-        /*
-        if(Input.GetKeyDown("i") && can_move && reh.seed > 0){
-            Debug.Log("Saving...");
-            SaveSystem.SetInt("reh_seed", reh.seed);
-            map_handler.save_position();
-        }
-        */
-
-        /*
-        if(Input.GetKeyDown("c") && can_move && reh.seed > 0){
-            sc.increment_character();
-        }
-        */
     
         //Movement
         transform.rotation = Quaternion.identity;
@@ -113,11 +100,28 @@ public class PlayerController : MonoBehaviour
         
         if(can_move){
             if(Vector3.Distance(transform.position, move_point.position) <= .025f){
-                
-                float hor = Input.GetAxisRaw("Horizontal") * multiplier;
-                float ver = Input.GetAxisRaw("Vertical") * multiplier;
 
-                if (hor == 0f && ver == 0f && transform.position == move_point.position)
+                bool up = Input.GetKey(CustomInputManager.cim.up);
+                bool down = Input.GetKey(CustomInputManager.cim.down);
+                bool left = Input.GetKey(CustomInputManager.cim.left);
+                bool right = Input.GetKey(CustomInputManager.cim.right);
+
+                float ver = 0f;
+                float hor = 0f;
+
+                if (up)
+                    ver = 1f;
+                else if (down)
+                    ver = -1f;
+                else if (left)
+                    hor = -1f;
+                else if (right)
+                    hor = 1f;
+
+                hor *= multiplier;
+                ver *= multiplier;
+
+                if (!up && !down && !left && !right && transform.position == move_point.position)
                 {
                     switch (sc.get_direction())
                     {
@@ -189,12 +193,11 @@ public class PlayerController : MonoBehaviour
         }
         
         //Interaction
-        if(Input.GetAxisRaw("Submit") != 0 && can_move && frames_since_last_interact > 30){
-            can_move = false;
+        if(Input.GetKey(CustomInputManager.cim.select) && can_move && frames_since_last_interact > 30){
             
             Vector3 direction = get_direction_facing();
             
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, 2f, NPC);
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, 1.5f, NPC);
             if(hit.collider){
                 GameObject obj = hit.collider.gameObject;
                 NPC inter_npc = obj.GetComponent<NPC>();

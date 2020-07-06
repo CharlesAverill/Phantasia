@@ -123,6 +123,7 @@ public class NPC : Interactable
 
                 last_direction = direction;
             }
+            /*
             else if (is_player_within_radius(2.5f) && move_away_frames > 90)
             {
                 Collider2D[] player = Physics2D.OverlapCircleAll(transform.position, 2.5f, 1 << LayerMask.NameToLayer("Player"));
@@ -156,6 +157,7 @@ public class NPC : Interactable
 
                 move_away_frames = 0;
             }
+            */
         }
         
         hor *= multiplier;
@@ -205,9 +207,10 @@ public class NPC : Interactable
     public IEnumerator interact(PlayerController p){
         interacting = true;
 
-        if (is_player_within_radius(2.5f))
+        if ((is_player_within_radius(2.5f) && transform.position == move_point.position) || immobile_npc)
         {
             can_move = false;
+            p.can_move = false;
 
             Vector3 p_pos = p.gameObject.transform.position;
 
@@ -238,13 +241,12 @@ public class NPC : Interactable
             display_textbox(location);
 
             yield return new WaitForSeconds(.6f);
-            while (Input.GetAxisRaw("Submit") == 0)
+            while (!Input.GetKey(CustomInputManager.cim.select))
             {
                 yield return null;
             }
 
             hide_textbox();
-            p.can_move = true;
 
             p.frames_since_last_interact = 0;
         }
@@ -254,6 +256,8 @@ public class NPC : Interactable
             can_move = true;
             sc.walk_animation = false;
         }
+        p.can_move = true;
+        can_move = true;
     }
 
     IEnumerator look_in_direction(string dir)

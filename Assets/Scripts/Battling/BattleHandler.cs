@@ -152,7 +152,7 @@ public class BattleHandler : MonoBehaviour
         yield return new WaitForSeconds(wait);
         if (wait_for_input)
         {
-            while (Input.GetAxis("Submit") == 0)
+            while (!Input.GetKey(CustomInputManager.cim.select))
             {
                 yield return null;
             }
@@ -221,7 +221,7 @@ public class BattleHandler : MonoBehaviour
         menu_cursor.gameObject.SetActive(false);
         monster_cursor.gameObject.SetActive(false);
 
-        while (Input.GetKey("return"))
+        while (Input.GetKey(CustomInputManager.cim.select))
         {
             Debug.Log("Get off");
             menu_cursor.gameObject.SetActive(false);
@@ -589,7 +589,8 @@ public class BattleHandler : MonoBehaviour
                 }
             }
 
-            while (Input.GetAxis("Submit") == 0){
+            while (!Input.GetKey(CustomInputManager.cim.select))
+            {
                 yield return null;
             }
         }

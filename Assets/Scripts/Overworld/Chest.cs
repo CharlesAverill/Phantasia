@@ -68,7 +68,7 @@ public class Chest : Interactable
         display_textbox(location);
 
         yield return new WaitForSeconds(.8f);
-        while (Input.GetAxisRaw("Submit") == 0)
+        while (!Input.GetKey(CustomInputManager.cim.select))
         {
             yield return null;
         }
