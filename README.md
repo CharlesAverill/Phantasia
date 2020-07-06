@@ -9,9 +9,6 @@ Download the repo as a zip file (green button at the top right). Open the "Build
 - Windows - Run Phantasia.exe
 - Linux - Run Phantasia.x86_64
 
-## Button Layout
-![Button layout](Assets/misc/button_layout.png)
-
 ## What's Supported
 
 ### Overworld
@@ -51,6 +48,7 @@ Download the repo as a zip file (green button at the top right). Open the "Build
   - Screen transitions
   - Enter/Exit battle
   - Music (classic, remastered, GBA)
+  - Input Customization
   - Collision
   - NPC Movement, Dialogue
   - Indoor rooms
