@@ -60,25 +60,21 @@ public class CursorController : MonoBehaviour
         GetComponent<SpriteRenderer>().enabled = true;
     }
 
+    int frames_since_select = 0;
+
     // Update is called once per frame
     void Update()
     {
-        if(monster_mode){
-            /*
-            List<GameObject> to_remove = new List<GameObject>();
-            foreach(GameObject obj in active_list){
-                if(obj.GetComponent<Monster>().HP <= 0){
-                    to_remove.Add(obj);
-                }
-            }
 
-            int x = to_remove.Count;
-            for(int i = 0; i < x; i++)
+        frames_since_select += 1;
+
+        if (Input.GetKeyDown(CustomInputManager.cim.select) && frames_since_select > 20)
+        {
+            if (!monster_mode)
             {
-                remove_from_list(to_remove[i]);
-                x = to_remove.Count;
+                buttons[active].GetComponent<Button>().onClick.Invoke();
             }
-            */
+            frames_since_select = 0;
         }
 
         if (active < active_list.Count && active >= 0)
