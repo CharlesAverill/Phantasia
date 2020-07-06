@@ -371,17 +371,23 @@ public class PartyMember : Battler
         while (!Input.GetKey(CustomInputManager.cim.select)){
             yield return null;
         }
-        
+
+        yield return StartCoroutine(end_turn());
+
         target = monster_cursor.get_monster().gameObject;
 
+        action = act;
+    }
+
+    public IEnumerator end_turn()
+    {
         bsc.change_state("walk");
         walk_back();
-        while(is_moving()){
+        while (is_moving())
+        {
             yield return null;
         }
         bsc.change_state("idle");
-        
-        action = act;
 
         monster_cursor.gameObject.SetActive(false);
         menu_cursor.gameObject.SetActive(false);

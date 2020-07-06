@@ -260,6 +260,19 @@ public class Shop : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if (Input.GetKeyDown(CustomInputManager.cim.back))
+        {
+            if (buy_sell_quit.active || (shopmode == "clinic" || shopmode == "inn"))
+            {
+                exit_shop();
+            }
+            else if(buy_container.active)
+            {
+                setup();
+            }
+        }
+
         if(player_gil != SaveSystem.GetInt("gil"))
         {
             player_gil = SaveSystem.GetInt("gil");

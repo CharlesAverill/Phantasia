@@ -272,7 +272,10 @@ public class BattleHandler : MonoBehaviour
                 txt += s + "  ";
 
             //Party selection
-            foreach (PartyMember p in party){
+            for(int i = 0; i < party.Length; i++){
+
+                PartyMember p = party[i];
+
                 if(p.HP > 0){
                     active_party_member = p;
 
@@ -281,6 +284,23 @@ public class BattleHandler : MonoBehaviour
                     p.turn();
                     
                     while(p.action == "" || p.target == null){
+
+                        if (Input.GetKeyDown(CustomInputManager.cim.back))
+                        {
+                            if(i > 0)
+                            {
+                                i -= 2;
+                                yield return StartCoroutine(p.end_turn());
+                                break;
+                            }
+                            else
+                            {
+                                i = -1;
+                                yield return StartCoroutine(p.end_turn());
+                                break;
+                            }
+                        }
+
                         if(p.action == "run")
                             break;
                         yield return null;
