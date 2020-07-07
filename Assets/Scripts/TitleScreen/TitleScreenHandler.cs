@@ -69,11 +69,12 @@ public class TitleScreenHandler : MonoBehaviour
         }
 
         battle_speed_slider.value = SaveSystem.GetFloat("battle_speed");
+
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
     
     public void init_save_file(){
-        //SaveSystem.SetBool("classic_music", true);
-        
         SaveSystem.SetBool("in_submap", false);
         SaveSystem.SetBool("inside_of_room", false);
 

@@ -28,6 +28,7 @@ ScriptsOnlyBuild:
     - PlayerController
     - RandomEncounterHandler
     - RoomHandler
+    - SaveGameFabricator
     - SaveSystemSetup
     - ScreenTransition
     - Shop
@@ -92,29 +93,29 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 618}
     - Class: 114
-      Script: {instanceID: 11210}
+      Script: {instanceID: 11208}
     - Class: 114
-      Script: {instanceID: 11500}
+      Script: {instanceID: 11498}
     - Class: 114
-      Script: {instanceID: 11554}
+      Script: {instanceID: 11552}
     - Class: 114
-      Script: {instanceID: 12240}
+      Script: {instanceID: 12238}
     - Class: 114
-      Script: {instanceID: 12442}
+      Script: {instanceID: 12440}
     - Class: 114
-      Script: {instanceID: 12794}
+      Script: {instanceID: 12792}
     - Class: 114
-      Script: {instanceID: 12960}
+      Script: {instanceID: 12958}
     - Class: 114
-      Script: {instanceID: 13072}
+      Script: {instanceID: 13070}
     - Class: 114
-      Script: {instanceID: 13342}
+      Script: {instanceID: 13340}
     - Class: 114
-      Script: {instanceID: 13664}
+      Script: {instanceID: 13662}
     - Class: 114
-      Script: {instanceID: 13740}
+      Script: {instanceID: 13738}
     - Class: 114
-      Script: {instanceID: 14358}
+      Script: {instanceID: 14356}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -167,65 +168,69 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 618}
     - Class: 114
-      Script: {instanceID: 11188}
+      Script: {instanceID: 11186}
     - Class: 114
-      Script: {instanceID: 11210}
+      Script: {instanceID: 11208}
     - Class: 114
-      Script: {instanceID: 11468}
+      Script: {instanceID: 11466}
     - Class: 114
-      Script: {instanceID: 11500}
+      Script: {instanceID: 11498}
     - Class: 114
-      Script: {instanceID: 11554}
+      Script: {instanceID: 11552}
     - Class: 114
-      Script: {instanceID: 11594}
+      Script: {instanceID: 11592}
     - Class: 114
-      Script: {instanceID: 11658}
+      Script: {instanceID: 11656}
     - Class: 114
-      Script: {instanceID: 11746}
+      Script: {instanceID: 11744}
     - Class: 114
-      Script: {instanceID: 11778}
+      Script: {instanceID: 11776}
     - Class: 114
-      Script: {instanceID: 12024}
+      Script: {instanceID: 11928}
     - Class: 114
-      Script: {instanceID: 12240}
+      Script: {instanceID: 12022}
     - Class: 114
-      Script: {instanceID: 12298}
+      Script: {instanceID: 12238}
     - Class: 114
-      Script: {instanceID: 12304}
+      Script: {instanceID: 12296}
+    - Class: 114
+      Script: {instanceID: 12302}
+    - Class: 114
+      Script: {instanceID: 12498}
     - Class: 114
       Script: {instanceID: 12500}
     - Class: 114
-      Script: {instanceID: 12502}
+      Script: {instanceID: 12764}
     - Class: 114
-      Script: {instanceID: 12766}
+      Script: {instanceID: 12792}
     - Class: 114
-      Script: {instanceID: 12794}
+      Script: {instanceID: 12958}
     - Class: 114
-      Script: {instanceID: 12960}
+      Script: {instanceID: 13070}
     - Class: 114
       Script: {instanceID: 13072}
     - Class: 114
-      Script: {instanceID: 13074}
+      Script: {instanceID: 13104}
     - Class: 114
-      Script: {instanceID: 13106}
+      Script: {instanceID: 13274}
     - Class: 114
-      Script: {instanceID: 13276}
+      Script: {instanceID: 13342}
     - Class: 114
-      Script: {instanceID: 13344}
+      Script: {instanceID: 13506}
     - Class: 114
-      Script: {instanceID: 13508}
+      Script: {instanceID: 13592}
     - Class: 114
-      Script: {instanceID: 13594}
+      Script: {instanceID: 13662}
     - Class: 114
-      Script: {instanceID: 13664}
+      Script: {instanceID: 13738}
     - Class: 114
-      Script: {instanceID: 13740}
+      Script: {instanceID: 13806}
     - Class: 114
-      Script: {instanceID: 13808}
+      Script: {instanceID: 13812}
     - Class: 114
-      Script: {instanceID: 14290}
+      Script: {instanceID: 14288}
     - Class: 114
-      Script: {instanceID: 14358}
+      Script: {instanceID: 14356}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -252,6 +257,59 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 1839735485
       Script: {instanceID: 0}
+    Assets/Scenes/Save Game Fabricator.unity:
+    - Class: 1
+      Script: {instanceID: 0}
+    - Class: 4
+      Script: {instanceID: 0}
+    - Class: 20
+      Script: {instanceID: 0}
+    - Class: 21
+      Script: {instanceID: 0}
+    - Class: 28
+      Script: {instanceID: 0}
+    - Class: 48
+      Script: {instanceID: 0}
+    - Class: 81
+      Script: {instanceID: 0}
+    - Class: 104
+      Script: {instanceID: 0}
+    - Class: 114
+      Script: {instanceID: 11208}
+    - Class: 114
+      Script: {instanceID: 11498}
+    - Class: 114
+      Script: {instanceID: 11552}
+    - Class: 114
+      Script: {instanceID: 12238}
+    - Class: 114
+      Script: {instanceID: 12958}
+    - Class: 114
+      Script: {instanceID: 13256}
+    - Class: 114
+      Script: {instanceID: 13738}
+    - Class: 114
+      Script: {instanceID: 13812}
+    - Class: 114
+      Script: {instanceID: 14356}
+    - Class: 114
+      Script: {instanceID: 19414}
+    - Class: 115
+      Script: {instanceID: 0}
+    - Class: 128
+      Script: {instanceID: 0}
+    - Class: 157
+      Script: {instanceID: 0}
+    - Class: 196
+      Script: {instanceID: 0}
+    - Class: 213
+      Script: {instanceID: 0}
+    - Class: 222
+      Script: {instanceID: 0}
+    - Class: 223
+      Script: {instanceID: 0}
+    - Class: 224
+      Script: {instanceID: 0}
     Assets/Scenes/Shop.unity:
     - Class: 1
       Script: {instanceID: 0}
@@ -276,29 +334,29 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 618}
     - Class: 114
-      Script: {instanceID: 11210}
+      Script: {instanceID: 11208}
     - Class: 114
-      Script: {instanceID: 11500}
+      Script: {instanceID: 11498}
     - Class: 114
-      Script: {instanceID: 11554}
+      Script: {instanceID: 11552}
     - Class: 114
-      Script: {instanceID: 12038}
+      Script: {instanceID: 12036}
     - Class: 114
-      Script: {instanceID: 12240}
+      Script: {instanceID: 12238}
     - Class: 114
-      Script: {instanceID: 12766}
+      Script: {instanceID: 12764}
     - Class: 114
-      Script: {instanceID: 12794}
+      Script: {instanceID: 12792}
     - Class: 114
-      Script: {instanceID: 12960}
+      Script: {instanceID: 12958}
     - Class: 114
-      Script: {instanceID: 13072}
+      Script: {instanceID: 13070}
     - Class: 114
-      Script: {instanceID: 13740}
+      Script: {instanceID: 13738}
     - Class: 114
-      Script: {instanceID: 13814}
+      Script: {instanceID: 13812}
     - Class: 114
-      Script: {instanceID: 14358}
+      Script: {instanceID: 14356}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -353,59 +411,59 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 618}
     - Class: 114
-      Script: {instanceID: 11210}
+      Script: {instanceID: 11208}
     - Class: 114
-      Script: {instanceID: 11500}
+      Script: {instanceID: 11498}
     - Class: 114
-      Script: {instanceID: 11554}
+      Script: {instanceID: 11552}
     - Class: 114
-      Script: {instanceID: 11654}
+      Script: {instanceID: 11652}
     - Class: 114
-      Script: {instanceID: 11930}
+      Script: {instanceID: 11928}
     - Class: 114
-      Script: {instanceID: 11982}
+      Script: {instanceID: 11980}
     - Class: 114
-      Script: {instanceID: 12010}
+      Script: {instanceID: 12008}
     - Class: 114
-      Script: {instanceID: 12240}
+      Script: {instanceID: 12238}
     - Class: 114
-      Script: {instanceID: 12292}
+      Script: {instanceID: 12290}
     - Class: 114
-      Script: {instanceID: 12438}
+      Script: {instanceID: 12436}
     - Class: 114
-      Script: {instanceID: 12502}
+      Script: {instanceID: 12500}
     - Class: 114
-      Script: {instanceID: 12766}
+      Script: {instanceID: 12764}
     - Class: 114
-      Script: {instanceID: 12794}
+      Script: {instanceID: 12792}
     - Class: 114
-      Script: {instanceID: 12960}
+      Script: {instanceID: 12958}
     - Class: 114
-      Script: {instanceID: 13060}
+      Script: {instanceID: 13058}
     - Class: 114
-      Script: {instanceID: 13258}
+      Script: {instanceID: 13256}
     - Class: 114
-      Script: {instanceID: 13316}
+      Script: {instanceID: 13314}
     - Class: 114
-      Script: {instanceID: 13334}
+      Script: {instanceID: 13332}
     - Class: 114
-      Script: {instanceID: 13740}
+      Script: {instanceID: 13738}
     - Class: 114
-      Script: {instanceID: 13814}
+      Script: {instanceID: 13812}
     - Class: 114
-      Script: {instanceID: 13900}
+      Script: {instanceID: 13898}
     - Class: 114
-      Script: {instanceID: 14020}
+      Script: {instanceID: 14018}
     - Class: 114
-      Script: {instanceID: 14026}
+      Script: {instanceID: 14024}
     - Class: 114
-      Script: {instanceID: 14290}
+      Script: {instanceID: 14288}
     - Class: 114
-      Script: {instanceID: 14358}
+      Script: {instanceID: 14356}
     - Class: 114
-      Script: {instanceID: 14362}
+      Script: {instanceID: 14360}
     - Class: 114
-      Script: {instanceID: 14404}
+      Script: {instanceID: 14402}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -943,7 +1001,7 @@ ScriptsOnlyBuild:
     className: Physics2DRaycaster
   - hash:
       serializedVersion: 2
-      Hash: 530cdeaf2ab93d9d20a013d451dee147
+      Hash: e30a2aa360c5aae22071a230a05efed9
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: BattleHandler
@@ -1145,10 +1203,17 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: SaveGameFabricator
   platform: 24
   scenePathNames:
   - Assets/Scenes/Title Screen.unity
   - Assets/Scenes/Overworld.unity
   - Assets/Scenes/Battle.unity
   - Assets/Scenes/Shop.unity
+  - Assets/Scenes/Save Game Fabricator.unity
   playerPath: /Users/matthewaverill/UnityProjects/Phantasia/Builds/Linux/Phantasia.x86_64

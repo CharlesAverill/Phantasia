@@ -30,6 +30,7 @@ public class BattleHandler : MonoBehaviour
     
     public MusicHandler battle_music;
     public MusicHandler victory_music;
+    public MusicHandler death_music;
     
     public PartyMember active_party_member;
     
@@ -315,19 +316,22 @@ public class BattleHandler : MonoBehaviour
             foreach(Monster m in monsters){
                 if(m.HP > 0){
                     m.turn();
-                    
+                    /*
                     if(m.target == null){
                         lose = true;
                         break;
                     }
+                    */
                 }
             }
 
+            /*
             if (lose)
             {
                 battle_complete = true;
                 break;
             }
+            */
 
             //Scheduling
             //Debug.Log("Scheduling...");
@@ -471,7 +475,7 @@ public class BattleHandler : MonoBehaviour
                     GameObject b = battlers[x];
                     Monster m = b.GetComponent<Monster>();
                     
-                    if(m.HP > 0){
+                    if(m.HP > 0 && m.target != null){
                         if(m.action == "fight"){
 
                             while (m.target.GetComponent<PartyMember>().HP <= 0)
@@ -616,10 +620,19 @@ public class BattleHandler : MonoBehaviour
         }
         else if (lose)
         {
-            yield return StartCoroutine(set_battle_text("Game over...", text_delay, true, false));
+            battle_music.get_active().Stop();
+            death_music.gameObject.SetActive(true);
+            death_music.get_active().Play();
 
-            SceneManager.LoadSceneAsync("Title Screen");
+            foreach (PartyMember p in party)
+            {
+                p.bsc.change_state("dead");
+            }
+
+            yield return StartCoroutine(set_battle_text("Game over...", text_delay * 2f, true, false));
+
             SceneManager.UnloadScene("Overworld");
+            SceneManager.LoadSceneAsync("Title Screen");
         }
 
         Destroy(monster_party);

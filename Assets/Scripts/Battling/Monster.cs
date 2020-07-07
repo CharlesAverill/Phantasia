@@ -31,41 +31,66 @@ public class Monster : Battler
     void choose_player(){
         PartyMember[] party = bh.party;
 
-        List<int> tried = new List<int>();
+        PartyMember t = party[0];
 
-        bool found_target = false;
-        int count = 0;
-        while (!found_target)
+        int n = Random.Range(1, 8);
+        int original_n = n;
+
+        if (n >= 1 && n <= 4)
         {
-            count += 1;
-            int n = Random.Range(1, 8);
-            tried.Add(n);
+            t = party[0];
+            target = party[0].gameObject;
+        }
+        if (n == 5 || n == 6)
+        {
+            t = party[1];
+            target = party[1].gameObject;
+        }
+        if (n == 7)
+        {
+            t = party[2];
+            target = party[2].gameObject;
+        }
+        if (n == 8)
+        {
+            t = party[3];
+            target = party[3].gameObject;
+        }
+
+        while (t.HP <= 0)
+        {
+            n++;
 
             if (n >= 1 && n <= 4)
             {
+                t = party[0];
                 target = party[0].gameObject;
             }
             if (n == 5 || n == 6)
             {
+                t = party[1];
                 target = party[1].gameObject;
             }
             if (n == 7)
             {
+                t = party[2];
                 target = party[2].gameObject;
             }
             if (n == 8)
             {
+                t = party[3];
                 target = party[3].gameObject;
             }
-            if(target.GetComponent<PartyMember>().HP > 0)
-            {
-                found_target = true;
-            }
 
-            if(count >= 8)
+            if(n == original_n)
             {
                 target = null;
                 break;
+            }
+
+            if(n > 8)
+            {
+                n = 0;
             }
         }
     }
