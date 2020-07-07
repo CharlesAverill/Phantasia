@@ -12,7 +12,7 @@ Download the repo as a zip file (green button at the top right). Open the "Build
 ## What's Supported
 
 ### Overworld
-- Corneria, Corneria Castle (Downstairs)
+- Corneria, Corneria Castle
 - Temple of Fiends
 ### Battling
 - Actions
