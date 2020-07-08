@@ -10,8 +10,8 @@ public class MapHandler : MonoBehaviour
     public GameObject grids;
     public GameObject active_map;
     
-    float overworldX;
-    float overworldY;
+    public float overworldX;
+    public float overworldY;
     
     float submapX;
     float submapY;
@@ -169,7 +169,7 @@ public class MapHandler : MonoBehaviour
         
         st.unfilling = true;
         
-        while(player.warp_sound.isPlaying){
+        while(player.warp_sound.isPlaying || st.unfilling){
             yield return null;
         }
         

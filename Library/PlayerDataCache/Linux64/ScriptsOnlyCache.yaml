@@ -5,6 +5,8 @@ ScriptsOnlyBuild:
     - BattleSpriteController
     - BlinkText
     - Boss
+    - BridgeTitleHandler
+    - BridgeTrigger
     - CameraController
     - Chest
     - ControlsHandler
@@ -147,6 +149,65 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 1839735485
       Script: {instanceID: 0}
+    Assets/Scenes/BridgeTitle.unity:
+    - Class: 1
+      Script: {instanceID: 0}
+    - Class: 4
+      Script: {instanceID: 0}
+    - Class: 20
+      Script: {instanceID: 0}
+    - Class: 21
+      Script: {instanceID: 0}
+    - Class: 28
+      Script: {instanceID: 0}
+    - Class: 48
+      Script: {instanceID: 0}
+    - Class: 81
+      Script: {instanceID: 0}
+    - Class: 82
+      Script: {instanceID: 0}
+    - Class: 83
+      Script: {instanceID: 0}
+    - Class: 104
+      Script: {instanceID: 0}
+    - Class: 114
+      Script: {instanceID: 11208}
+    - Class: 114
+      Script: {instanceID: 11498}
+    - Class: 114
+      Script: {instanceID: 11928}
+    - Class: 114
+      Script: {instanceID: 12238}
+    - Class: 114
+      Script: {instanceID: 13072}
+    - Class: 114
+      Script: {instanceID: 13666}
+    - Class: 114
+      Script: {instanceID: 13742}
+    - Class: 114
+      Script: {instanceID: 13816}
+    - Class: 114
+      Script: {instanceID: 14360}
+    - Class: 114
+      Script: {instanceID: 761896}
+    - Class: 115
+      Script: {instanceID: 0}
+    - Class: 128
+      Script: {instanceID: 0}
+    - Class: 157
+      Script: {instanceID: 0}
+    - Class: 196
+      Script: {instanceID: 0}
+    - Class: 212
+      Script: {instanceID: 0}
+    - Class: 213
+      Script: {instanceID: 0}
+    - Class: 222
+      Script: {instanceID: 0}
+    - Class: 223
+      Script: {instanceID: 0}
+    - Class: 224
+      Script: {instanceID: 0}
     Assets/Scenes/Overworld.unity:
     - Class: 1
       Script: {instanceID: 0}
@@ -240,6 +301,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 14360}
     - Class: 114
       Script: {instanceID: 157368}
+    - Class: 114
+      Script: {instanceID: 784528}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -662,7 +725,7 @@ ScriptsOnlyBuild:
     className: SignalAsset
   - hash:
       serializedVersion: 2
-      Hash: cbb88cac0950216d43727267188e871d
+      Hash: 8936f8b15652bcb468144738ba7364a6
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: OverworldUpdate
@@ -1040,7 +1103,7 @@ ScriptsOnlyBuild:
     className: BattleHandler
   - hash:
       serializedVersion: 2
-      Hash: ffa9b0b3fe1606427352883cd54ef362
+      Hash: d372cc6416ff7cd99d8870d89973cac5
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: NPC
@@ -1058,7 +1121,7 @@ ScriptsOnlyBuild:
     className: Map
   - hash:
       serializedVersion: 2
-      Hash: 19dae06549eda5476852848a8d00e644
+      Hash: f08bd8edd5d69b0f0161e73bfae44a08
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: MapHandler
@@ -1242,6 +1305,18 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Boss
+  - hash:
+      serializedVersion: 2
+      Hash: cbac630e13430b96d5b5e86afaaffe3d
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: BridgeTitleHandler
+  - hash:
+      serializedVersion: 2
+      Hash: c0ec26968fc82e65d0fac9d29a3dcb57
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: BridgeTrigger
   platform: 24
   scenePathNames:
   - Assets/Scenes/Title Screen.unity
@@ -1249,4 +1324,5 @@ ScriptsOnlyBuild:
   - Assets/Scenes/Battle.unity
   - Assets/Scenes/Shop.unity
   - Assets/Scenes/Save Game Fabricator.unity
+  - Assets/Scenes/BridgeTitle.unity
   playerPath: /Users/matthewaverill/UnityProjects/Phantasia/Builds/Linux/Phantasia.x86_64

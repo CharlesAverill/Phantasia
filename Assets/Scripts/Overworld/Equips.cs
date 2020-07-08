@@ -56,11 +56,13 @@ public class Equips
     {
         public string name;
         public int cost;
+        public bool key_item;
 
-        public Item(string n, int c)
+        public Item(string n, int c, bool k)
         {
             name = n;
             cost = c;
+            key_item = k;
         }
     }
 
@@ -140,9 +142,10 @@ public class Equips
 
     void setup_items()
     {
-        items.Add(new Item("Potion", 60));
-        items.Add(new Item("Gold Needle", 75));
-        items.Add(new Item("Tent", 75));
+        items.Add(new Item("Potion", 60, false));
+        items.Add(new Item("Gold Needle", 75, false));
+        items.Add(new Item("Tent", 75, false));
+        items.Add(new Item("Lute", 0, true));
     }
 
     void setup_spells()

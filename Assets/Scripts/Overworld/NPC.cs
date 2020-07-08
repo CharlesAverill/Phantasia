@@ -1,12 +1,35 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class NPC : Interactable
 {
     // Start is called before the first frame update
+
+    [Serializable]
+    public class FlagCheck
+    {
+        public string name;
+        public bool flagValToShow;
+        public GameObject replacementNPC;
+
+        public bool check()
+        {
+            return SaveSystem.GetBool(name) == flagValToShow;
+        }
+    }
     
     public Transform move_point;
+
+    public bool onlyAppearIfFlag;
+    public FlagCheck[] flags;
+
+    public bool give_item;
+    public string item_to_give;
+
+    public GameObject map_to_teleport_to;
+    public Vector3 overworldPosTeleport;
     
     public LayerMask collision;
     public LayerMask water;
@@ -28,13 +51,21 @@ public class NPC : Interactable
     
     private BoxCollider2D cld;
     
-    void Awake()
+    void Start()
     {
+        if (onlyAppearIfFlag)
+        {
+            foreach(FlagCheck fc in flags)
+            {
+                if (!fc.check())
+                    gameObject.SetActive(false);
+            }
+        }
         move_point.parent = transform.parent;
         
         cld = GetComponent<BoxCollider2D>();
         
-        frames_until_move = Random.Range(30, 300);
+        frames_until_move = UnityEngine.Random.Range(30, 300);
         frame_count = 0;
         last_direction = 1f;
         
@@ -66,9 +97,9 @@ public class NPC : Interactable
         if(frame_count >= frames_until_move && can_move && !immobile_npc){
             if (!is_player_within_radius(5f))
             {
-                float direction = Random.Range(0, 3);
+                float direction = UnityEngine.Random.Range(0, 3);
 
-                float continue_from_last_direction = Random.Range(0, 3);
+                float continue_from_last_direction = UnityEngine.Random.Range(0, 3);
                 if (continue_from_last_direction == 1f)
                 {
                     direction = last_direction;
@@ -119,7 +150,7 @@ public class NPC : Interactable
                     }
                 }
                 frame_count = 0;
-                frames_until_move = Random.Range(120, 300);
+                frames_until_move = UnityEngine.Random.Range(120, 300);
 
                 last_direction = direction;
             }
@@ -177,7 +208,7 @@ public class NPC : Interactable
                 move_point.position += new Vector3(hor, 0f, 0f);
             }
             else{
-                last_direction = Random.Range(0, 3);
+                last_direction = UnityEngine.Random.Range(0, 3);
             }
         }
         
@@ -196,7 +227,7 @@ public class NPC : Interactable
                 move_point.position += new Vector3(0f, ver, 0f);
             }
             else{
-                last_direction = Random.Range(0, 3);
+                last_direction = UnityEngine.Random.Range(0, 3);
             }
         }
         transform.position = Vector3.MoveTowards(transform.position, move_point.position, move_speed * Time.deltaTime);
@@ -248,6 +279,25 @@ public class NPC : Interactable
 
             hide_textbox();
 
+            if (give_item && !SaveSystem.GetBool(gameObject.name + "_item_give_" + item_to_give))
+            {
+                Dictionary<string, int> items = SaveSystem.GetStringIntDict("items");
+                if (items.ContainsKey(item_to_give))
+                    items[item_to_give] = items[item_to_give] + 1;
+                else
+                    items.Add(item_to_give, 1);
+                SaveSystem.SetStringIntDict("items", items);
+
+                SaveSystem.SetBool(gameObject.name + "_item_give_" + item_to_give, true);
+            }
+
+            if (gameObject.name == "Princess_TOF")
+                princess_in_TOF(p);
+            if (gameObject.name == "KingAfterRescue")
+                KingAfterRescue();
+            if (gameObject.name == "Princess_Castle")
+                Princess_Castle();
+
             p.frames_since_last_interact = 0;
         }
         interacting = false;
@@ -258,6 +308,53 @@ public class NPC : Interactable
         }
         p.can_move = true;
         can_move = true;
+    }
+
+    void princess_in_TOF(PlayerController p)
+    {
+        SaveSystem.SetBool("princess_in_temple_of_fiends", true);
+        p.map_handler.overworldX = overworldPosTeleport.x;
+        p.map_handler.overworldY = overworldPosTeleport.y;
+        StartCoroutine(change_map(map_to_teleport_to, p));
+    }
+
+    void KingAfterRescue()
+    {
+        SaveSystem.SetBool("king_mentioned_bridge", true);
+        flags[1].replacementNPC.SetActive(true);
+        Destroy(gameObject);
+    }
+
+    void Princess_Castle()
+    {
+        SaveSystem.SetBool("princess_gave_lute", true);
+        flags[1].replacementNPC.SetActive(true);
+        Destroy(gameObject);
+    }
+
+    IEnumerator change_map(GameObject map, PlayerController p)
+    {
+        p.can_move = false;
+
+        p.pause_menu_container.SetActive(false);
+
+        while (p.transform.position != p.move_point.position)
+        {
+            yield return null;
+        }
+
+        p.map_handler.change_maps(map);
+
+        while (!p.map_handler.done_changing)
+        {
+            yield return null;
+        }
+
+        p.travel_mode = p.map_handler.active_map.GetComponent<Map>().travel_mode;
+
+        p.can_move = true;
+
+        p.pause_menu_container.SetActive(true);
     }
 
     IEnumerator look_in_direction(string dir)

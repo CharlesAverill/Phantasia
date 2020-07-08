@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Save Game Fabricator.unity
     guid: 7978e085cbf924c93b9e6714d97b67f8
+  - enabled: 1
+    path: Assets/Scenes/BridgeTitle.unity
+    guid: 05f5273cb16904d54b3c952cb0273081
   m_configObjects: {}

@@ -316,9 +316,11 @@ public class PlayerController : MonoBehaviour
         
         map_handler.change_maps(map);
         
-        while(!map_handler.done_changing){
+        while(!map_handler.done_changing || map_handler.st.unfilling){
             yield return null;
         }
+
+        
 
         travel_mode = map_handler.active_map.GetComponent<Map>().travel_mode;
         

@@ -130,8 +130,8 @@ public class RandomEncounterHandler : MonoBehaviour
             GlobalControl.instance.overworld_scene_container.SetActive(false);
             GlobalControl.instance.bossmode = true;
 
-            AudioSource source = GetComponent<AudioSource>();
-            source.Play();
+            //AudioSource source = GetComponent<AudioSource>();
+            //source.Play();
             //yield return new WaitForSeconds(1.127f);
 
             SceneManager.LoadScene("Battle", LoadSceneMode.Additive);
