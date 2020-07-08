@@ -150,17 +150,7 @@ public class PlayerController : MonoBehaviour
                     }
                     if(hit.collider == null || hit.collider.gameObject.layer == 0 || hit.collider.isTrigger){
                         move_point.position += new Vector3(hor, 0f, 0f);
-                        switch(travel_mode){
-                            case "walking":
-                                reh.decrement(6);
-                                break;
-                            case "walking_dungeon":
-                                reh.decrement(5);
-                                break;
-                            case "sailing":
-                                reh.decrement(2);
-                                break;
-                        }
+                        StartCoroutine(reh_decrement());
                         StartCoroutine(sc.walk());
                     }
                 }
@@ -175,17 +165,7 @@ public class PlayerController : MonoBehaviour
                     }
                     if(hit.collider == null || hit.collider.gameObject.layer == 0){
                         move_point.position += new Vector3(0f, ver, 0f);
-                        switch(travel_mode){
-                            case "walking":
-                                reh.decrement(6);
-                                break;
-                            case "walking_dungeon":
-                                reh.decrement(5);
-                                break;
-                            case "sailing":
-                                reh.decrement(2);
-                                break;
-                        }
+                        StartCoroutine(reh_decrement());
                         StartCoroutine(sc.walk());
                     }
                 }
@@ -269,6 +249,28 @@ public class PlayerController : MonoBehaviour
         else if(map_handler.done_changing)
         {
             can_move = true;
+        }
+    }
+
+    IEnumerator reh_decrement()
+    {
+
+        yield return new WaitForSeconds(.2f);
+
+        if(map_handler.active_map.name == "Overworld")
+        {
+            switch (travel_mode)
+            {
+                case "walking":
+                    reh.decrement(6);
+                    break;
+                case "walking_dungeon":
+                    reh.decrement(5);
+                    break;
+                case "sailing":
+                    reh.decrement(2);
+                    break;
+            }
         }
     }
     

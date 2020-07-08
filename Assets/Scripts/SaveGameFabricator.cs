@@ -105,4 +105,16 @@ public class SaveGameFabricator : MonoBehaviour
             SaveSystem.SetInt("player4_HP", val);
         }
     }
+
+    public void Gold(Text t)
+    {
+        int val;
+
+        bool success = Int32.TryParse(t.text, out val);
+
+        if (success)
+        {
+            SaveSystem.SetInt("gil", val);
+        }
+    }
 }

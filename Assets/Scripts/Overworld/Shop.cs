@@ -35,6 +35,10 @@ public class Shop : MonoBehaviour
     public GameObject buy_sell_quit;
     public GameObject only_quit;
 
+    public FadeOut fadeOut;
+    public MusicHandler shop_music;
+    public MusicHandler inn_music;
+
     private bool yes;
     private bool no;
     private bool sell;
@@ -301,7 +305,14 @@ public class Shop : MonoBehaviour
 
                     SaveSystem.SaveToDisk();
 
-                    exit_shop();
+                    prompt_text.text = "Thank you for staying the night! Sleep well!";
+
+                    yes_no.SetActive(false);
+
+                    StartCoroutine(inn_sleep());
+
+                    yes = false;
+                    no = false;
                 }
                 else
                 {
@@ -312,6 +323,29 @@ public class Shop : MonoBehaviour
                 }
             }
         }
+    }
+
+    IEnumerator inn_sleep()
+    {
+
+        shop_music.get_active().Stop();
+        inn_music.get_active().Play();
+
+        fadeOut.start_fade(true);
+
+        yield return new WaitForSeconds(.5f);
+
+        while (fadeOut.is_fading())
+            yield return null;
+
+        fadeOut.start_fade(false);
+
+        yield return new WaitForSeconds(.5f);
+
+        while (inn_music.get_active().isPlaying)
+            yield return null;
+
+        exit_shop();
     }
 
     public void buy_1()

@@ -12,6 +12,7 @@ ScriptsOnlyBuild:
     - ControlsHandler
     - CursorController
     - CustomInputManager
+    - FadeOut
     - GlobalControl
     - IntroLoop
     - LoadingCircle
@@ -359,6 +360,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 13812}
     - Class: 114
       Script: {instanceID: 14356}
+    - Class: 114
+      Script: {instanceID: 350926}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -739,7 +742,7 @@ ScriptsOnlyBuild:
     className: OverworldGrid
   - hash:
       serializedVersion: 2
-      Hash: e98c48c6482a44ef75f8db945862c630
+      Hash: d229f7c3f2f427a9656f4dec047a62b1
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Shop
@@ -1211,6 +1214,12 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: SaveGameFabricator
+  - hash:
+      serializedVersion: 2
+      Hash: 6fabbccce2076d56136f141895ea5df0
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: FadeOut
   platform: 2
   scenePathNames:
   - Assets/Scenes/Title Screen.unity
