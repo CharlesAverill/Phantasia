@@ -218,6 +218,12 @@ public class TitleScreenHandler : MonoBehaviour
         bss_text.text = "" + (int)(battle_speed_slider.value * 1000f);
         SaveSystem.SaveToDisk();
     }
+
+    public void new_game_back()
+    {
+        title.SetActive(true);
+        char_select.SetActive(false);
+    }
     
     public void new_game_start(){
         for(int i = 0; i < fields.Length; i++){
