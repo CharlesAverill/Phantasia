@@ -31,6 +31,7 @@ public class BattleHandler : MonoBehaviour
     public MusicHandler battle_music;
     public MusicHandler victory_music;
     public MusicHandler death_music;
+    public MusicHandler boss_music;
     
     public PartyMember active_party_member;
     
@@ -167,6 +168,8 @@ public class BattleHandler : MonoBehaviour
 
     bool accept_input;
 
+    public bool party_selecting = false;
+
     IEnumerator battle() {
 
         float text_delay = SaveSystem.GetFloat("battle_speed");
@@ -220,13 +223,15 @@ public class BattleHandler : MonoBehaviour
         yield return new WaitForSeconds(.3f);
 
         menu_cursor.gameObject.SetActive(false);
-        monster_cursor.gameObject.SetActive(false);
+        if(!GlobalControl.instance.bossmode)
+            monster_cursor.gameObject.SetActive(false);
 
         while (Input.GetKey(CustomInputManager.cim.select))
         {
             Debug.Log("Get off");
             menu_cursor.gameObject.SetActive(false);
-            monster_cursor.gameObject.SetActive(false);
+            if (!GlobalControl.instance.bossmode)
+                monster_cursor.gameObject.SetActive(false);
             yield return null;
         }
 
@@ -273,6 +278,7 @@ public class BattleHandler : MonoBehaviour
                 txt += s + "  ";
 
             //Party selection
+            party_selecting = true;
             for(int i = 0; i < party.Length; i++){
 
                 PartyMember p = party[i];
@@ -283,6 +289,8 @@ public class BattleHandler : MonoBehaviour
                     yield return StartCoroutine(set_battle_text(txt, .05f, false, false));
 
                     p.turn();
+
+                    menu_cursor.gameObject.SetActive(true);
                     
                     while(p.action == "" || p.target == null){
 
@@ -308,8 +316,9 @@ public class BattleHandler : MonoBehaviour
                     }
                 }
             }
-            
-            monster_cursor.gameObject.SetActive(false);
+            party_selecting = false;
+            if (!GlobalControl.instance.bossmode)
+                monster_cursor.gameObject.SetActive(false);
             menu_cursor.gameObject.SetActive(false);
             
             //Monster selection
@@ -568,7 +577,12 @@ public class BattleHandler : MonoBehaviour
                 p.save_player();
             }
 
-            battle_music.get_active().Stop();
+            if (GlobalControl.instance.bossmode)
+            {
+                boss_music.get_active().Stop();
+            }
+            else
+                battle_music.get_active().Stop();
             victory_music.gameObject.SetActive(true);
             victory_music.get_active().Play();
 
@@ -617,6 +631,8 @@ public class BattleHandler : MonoBehaviour
             {
                 yield return null;
             }
+
+
         }
         else if (lose)
         {
@@ -645,6 +661,8 @@ public class BattleHandler : MonoBehaviour
             Destroy(p.gameObject);
         }
 
+        if(win && GlobalControl.instance.bossmode)
+            GlobalControl.instance.bossvictory = true;
         SceneManager.UnloadScene("Battle");
 
     }
@@ -659,7 +677,7 @@ public class BattleHandler : MonoBehaviour
         active_party_member.walk_back();
     }
     
-    private GameObject monster_party;
+    public GameObject monster_party;
 
     public void load_party()
     {
@@ -704,21 +722,41 @@ public class BattleHandler : MonoBehaviour
         active_party_member = party[0];
 
         level_up_chart = get_level_chart();
-        
-        monster_party = (GameObject)Instantiate(GlobalControl.instance.monster_party, new Vector3(0f, 0f, 1f), Quaternion.identity);
-        monster_party.SetActive(true);
-        
-        monster_cursor = monster_party.GetComponentInChildren<CursorController>();
-        monster_cursor.event_system = es;
+
+        if (GlobalControl.instance.bossmode)
+        {
+            battle_music.gameObject.SetActive(false);
+        }
+        else
+        {
+            boss_music.gameObject.SetActive(false);
+        }
+
+        if (!GlobalControl.instance.bossmode)
+        {
+            monster_party = (GameObject)Instantiate(GlobalControl.instance.monster_party, new Vector3(0f, 0f, 1f), Quaternion.identity);
+            monster_party.SetActive(true);
+
+            monster_cursor = monster_party.GetComponentInChildren<CursorController>();
+            monster_cursor.event_system = es;
+            monster_cursor.gameObject.SetActive(false);
+
+            monsters = (from m in monster_cursor.monsters select m.GetComponent<Monster>()).ToArray();
+        }
+
+        else
+        {
+            monster_party = (GameObject)Instantiate(GlobalControl.instance.monster_party, new Vector3(-10.415f, 2.1f, 1f), Quaternion.identity);
+            monster_party.SetActive(true);
+
+            monsters = new Monster[] { monster_party.GetComponent<Monster>() };
+        }
 
         menu_cursor.gameObject.SetActive(false);
-        monster_cursor.gameObject.SetActive(false);
 
         battle_complete = false;
         win = false;
         lose = false;
-        
-        monsters = (from m in monster_cursor.monsters select m.GetComponent<Monster>()).ToArray();
         
         StartCoroutine(battle());
     }

@@ -35,6 +35,21 @@ TextureImporter:
   - first:
       213: -6546070771089995561
     second: Ghoul
+  - first:
+      213: 1904355317838143106
+    second: Garland
+  - first:
+      213: 2464811035559190332
+    second: Lich
+  - first:
+      213: 8844051248698050782
+    second: Kraken
+  - first:
+      213: -7439663157641025031
+    second: Warmech
+  - first:
+      213: 4856094035428964695
+    second: Chaos
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -233,7 +248,7 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -254,7 +269,7 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -275,7 +290,7 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -296,7 +311,7 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -317,7 +332,7 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -338,7 +353,7 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -346,6 +361,111 @@ TextureImporter:
       bones: []
       spriteID: 7d80d96f05fa725a0800000000000000
       internalID: -6546070771089995561
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Garland
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 218
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 28e5ed56211ad6a10800000000000000
+      internalID: 1904355317838143106
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lich
+      rect:
+        serializedVersion: 2
+        x: 155
+        y: 211
+        width: 48
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c3fd7f4e394c43220800000000000000
+      internalID: 2464811035559190332
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Kraken
+      rect:
+        serializedVersion: 2
+        x: 328
+        y: 208
+        width: 60
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ed84ffdb0c16cba70800000000000000
+      internalID: 8844051248698050782
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Warmech
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 148
+        width: 43
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9f9ee3076c101c890800000000000000
+      internalID: -7439663157641025031
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chaos
+      rect:
+        serializedVersion: 2
+        x: 170
+        y: 108
+        width: 112
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 759f2a9ebcf446340800000000000000
+      internalID: 4856094035428964695
       vertices: []
       indices: 
       edges: []

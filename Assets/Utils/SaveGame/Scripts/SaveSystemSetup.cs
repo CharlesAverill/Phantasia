@@ -8,7 +8,7 @@ public class SaveSystemSetup : MonoBehaviour {
 
     void Awake()
 	{
-		SaveSystem.Initialize(fileName);
+        SaveSystem.Initialize(fileName);
 		if(dontDestroyOnLoad) DontDestroyOnLoad(transform.gameObject);
 	}
 

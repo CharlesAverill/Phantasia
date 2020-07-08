@@ -50,6 +50,8 @@ public class Chest : Interactable
                 }
                 else
                     items.Add(item_val, 1);
+
+                SaveSystem.SetStringIntDict("items", items);
             }
 
             SaveSystem.SetBool("chest_" + ID, true);

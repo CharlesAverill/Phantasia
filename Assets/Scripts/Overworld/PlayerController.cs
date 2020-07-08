@@ -183,6 +183,7 @@ public class PlayerController : MonoBehaviour
                 NPC inter_npc = obj.GetComponent<NPC>();
                 Chest inter_chest = obj.GetComponent<Chest>();
                 LockedDoor lockedDoor = obj.GetComponent<LockedDoor>();
+                Boss inter_boss = obj.GetComponent<Boss>();
                 
                 if(inter_npc){
                     if(inter_npc.move_point.position == inter_npc.transform.position)
@@ -195,6 +196,10 @@ public class PlayerController : MonoBehaviour
                 else if (lockedDoor)
                 {
                     StartCoroutine(lockedDoor.interact(this));
+                }
+                else if (inter_boss)
+                {
+                    StartCoroutine(inter_boss.interact(this));
                 }
             }
             else{
@@ -256,21 +261,19 @@ public class PlayerController : MonoBehaviour
     {
 
         yield return new WaitForSeconds(.2f);
-
-        if(map_handler.active_map.name == "Overworld")
+        switch (travel_mode)
         {
-            switch (travel_mode)
-            {
-                case "walking":
-                    reh.decrement(6);
-                    break;
-                case "walking_dungeon":
-                    reh.decrement(5);
-                    break;
-                case "sailing":
-                    reh.decrement(2);
-                    break;
-            }
+            case "walking":
+                reh.decrement(6);
+                break;
+            case "walking_dungeon":
+                reh.decrement(5);
+                break;
+            case "sailing":
+                reh.decrement(2);
+                break;
+            case "none":
+                break;
         }
     }
     
@@ -316,6 +319,8 @@ public class PlayerController : MonoBehaviour
         while(!map_handler.done_changing){
             yield return null;
         }
+
+        travel_mode = map_handler.active_map.GetComponent<Map>().travel_mode;
         
         can_move = true;
 

@@ -7,6 +7,8 @@ public class Map : MonoBehaviour
     
     public Transform entry_position;
 
+    public string travel_mode;
+
     public bool use_stairs;
 
     public Transform stair_entry_position;

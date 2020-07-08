@@ -34,15 +34,17 @@ public class RandomEncounterHandler : MonoBehaviour
     
     IEnumerator initiate_encounter(){
 
+        player.can_move = false;
+
+        battling = true;
+
         while (player.transform.position != player.move_point.position)
         {
             yield return null;
         }
 
-        if (player.map_handler.active_map.name == "Overworld")
+        if (player.travel_mode != "none")
         {
-
-            battling = true;
 
             player.pause_menu_container.SetActive(false);
 
@@ -78,6 +80,7 @@ public class RandomEncounterHandler : MonoBehaviour
                 {
                     yield return null;
                 }
+
                 GlobalControl.instance.overworld_scene_container.SetActive(true);
             }
 
@@ -92,9 +95,6 @@ public class RandomEncounterHandler : MonoBehaviour
             player.can_move = true;
             player.multiplier = 2f;
 
-            gen_seed();
-            SaveSystem.SetInt("reh_seed", seed);
-
             player.pause_menu_container.SetActive(true);
 
             player.map_handler.save_position();
@@ -107,7 +107,46 @@ public class RandomEncounterHandler : MonoBehaviour
         
         yield return null;
     }
-    
+
+    bool won_boss_battle;
+
+    public IEnumerator start_boss_battle(PlayerController player, GameObject boss, string flag, bool flagval, GameObject overworld_boss)
+    {
+
+        player.can_move = false;
+
+        battling = true;
+        player.pause_menu_container.SetActive(false);
+
+        GlobalControl.instance.monster_party = boss;
+
+        int countLoaded = SceneManager.sceneCount;
+        if (countLoaded == 1)
+        {
+            player.multiplier = 0f;
+
+            cam.transform.parent = gameObject.transform;
+
+            GlobalControl.instance.overworld_scene_container.SetActive(false);
+            GlobalControl.instance.bossmode = true;
+
+            AudioSource source = GetComponent<AudioSource>();
+            source.Play();
+            //yield return new WaitForSeconds(1.127f);
+
+            SceneManager.LoadScene("Battle", LoadSceneMode.Additive);
+
+            while (SceneManager.sceneCount > 1)
+            {
+                yield return null;
+            }
+        }
+
+        
+
+        yield return null;
+    }
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -122,6 +161,9 @@ public class RandomEncounterHandler : MonoBehaviour
         if(seed <= 0 && !battling){
             Debug.Log("Random encounter initiated");
             StartCoroutine(initiate_encounter());
+
+            gen_seed();
+            SaveSystem.SetInt("reh_seed", seed);
         }
     }
 }

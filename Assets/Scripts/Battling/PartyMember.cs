@@ -361,22 +361,36 @@ public class PartyMember : Battler
     
     public IEnumerator choose_monster(string act){
 
-        monster_cursor.gameObject.SetActive(true);
-        monster_cursor.GetComponent<SpriteRenderer>().enabled = false;
-        menu_cursor.gameObject.SetActive(false);
-        monster_cursor.GetComponent<SpriteRenderer>().enabled = true;
+        if (GlobalControl.instance.bossmode)
+        {
+            target = bh.monster_party;
+            menu_cursor.gameObject.SetActive(true);
+            action = act;
 
-        yield return new WaitForSeconds(.2f);
+            yield return StartCoroutine(end_turn());
+        }
+        else
+        {
+            monster_cursor.gameObject.SetActive(true);
+            monster_cursor.GetComponent<SpriteRenderer>().enabled = false;
+            menu_cursor.gameObject.SetActive(false);
+            monster_cursor.GetComponent<SpriteRenderer>().enabled = true;
 
-        while (!Input.GetKey(CustomInputManager.cim.select)){
-            yield return null;
+            yield return new WaitForSeconds(.2f);
+
+            while (!Input.GetKey(CustomInputManager.cim.select))
+            {
+                yield return null;
+            }
+
+            yield return StartCoroutine(end_turn());
+
+            target = monster_cursor.get_monster().gameObject;
+
+            action = act;
         }
 
-        yield return StartCoroutine(end_turn());
-
-        target = monster_cursor.get_monster().gameObject;
-
-        action = act;
+        yield return null;
     }
 
     public IEnumerator end_turn()
@@ -389,7 +403,8 @@ public class PartyMember : Battler
         }
         bsc.change_state("idle");
 
-        monster_cursor.gameObject.SetActive(false);
+        if(!GlobalControl.instance.bossmode)
+            monster_cursor.gameObject.SetActive(false);
         menu_cursor.gameObject.SetActive(false);
     }
     
@@ -405,7 +420,7 @@ public class PartyMember : Battler
         return bsc.is_casting || bsc.is_fighting || bsc.is_walking;
     }
     
-    public bool done_showing;
+    public bool done_showing = true;
     
     public IEnumerator show_battle(){
         done_showing = false;
@@ -436,7 +451,7 @@ public class PartyMember : Battler
     }
     
     private void check_load(){
-        if(!monster_cursor)
+        if(!monster_cursor && !GlobalControl.instance.bossmode)
             monster_cursor = bh.monster_cursor;
         if(!bsc)
             bsc = GetComponent<BattleSpriteController>();
@@ -446,11 +461,14 @@ public class PartyMember : Battler
     
     public void turn(){
         check_load();
-    
+
+        menu_cursor.gameObject.SetActive(true);
+
         action = "";
         target = null;
-        
-        monster_cursor.gameObject.SetActive(false);
+
+        if(!GlobalControl.instance.bossmode)
+            monster_cursor.gameObject.SetActive(false);
 
         bsc.change_state("walk");
         
@@ -467,11 +485,13 @@ public class PartyMember : Battler
         done_set_up = false;
         
         move_point = transform.position;
-        monster_cursor = bh.monster_cursor;
+        if(!GlobalControl.instance.bossmode)
+            monster_cursor = bh.monster_cursor;
         menu_cursor = bh.menu_cursor;
         
         menu_cursor.gameObject.SetActive(false);
-        monster_cursor.gameObject.SetActive(false);
+        if (!GlobalControl.instance.bossmode)
+            monster_cursor.gameObject.SetActive(false);
 
         bsc = GetComponent<BattleSpriteController>();
 
@@ -479,6 +499,8 @@ public class PartyMember : Battler
         weapon_sprite.set_sprite(bh.mwsh.get_weapon(weapon));
         
         done_set_up = true;
+
+        done_showing = true;
     }
 
     // Update is called once per frame
@@ -492,6 +514,11 @@ public class PartyMember : Battler
         if(transform.position == move_point && bsc.get_state() != "idle" && bsc.get_state() != "victory" && HP > 0)
         {
             bsc.change_state("idle");
+        }
+
+        if(bh.party_selecting && GlobalControl.instance.bossmode)
+        {
+            menu_cursor.gameObject.SetActive(true);
         }
 
         transform.position = Vector3.MoveTowards(transform.position, move_point, 8 * Time.deltaTime);

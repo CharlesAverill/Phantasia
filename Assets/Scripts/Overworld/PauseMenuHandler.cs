@@ -943,6 +943,7 @@ public class PauseMenuHandler : MonoBehaviour
         {
             pausemenu_container.SetActive(true);
             bag_obj.SetActive(false);
+            bag_btn.SetActive(true);
             give.SetActive(false);
             givedrop.SetActive(false);
             status_container.SetActive(false);
