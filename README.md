@@ -37,6 +37,18 @@ Download the repo as a zip file (green button at the top right). Open the "Build
   - Wolf
   - WrWolf
   - Zombie
+### Weapons
+  - Wooden Nunchuck
+  - Small Dagger
+  - Wooden Staff
+  - Rapier
+  - Iron Hammer
+### Armor
+  - Cloth
+  - Cap
+  - Wooden Armor
+  - Chain Armor
+  - Iron Armor
 ### Pause Menu
   - Orb Display
   - Gil Display
