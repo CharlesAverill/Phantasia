@@ -4,7 +4,7 @@ Multiplatform Final Fantasy 1 port in Unity
 ![Phantasia](Assets/misc/title_screen.png)
 
 ## Installation
-Download the repo as a zip file (green button at the top right). Open the "Builds" folder.
+Download the repo as a zip file (green button at the top right). Open the "Builds" folder. <b>When you start the game, you might want to customize your controls in the Settings menu. My defaults might be a bit niche</b>
 - Mac - Run Phantasia.app
 - Windows - Run Phantasia.exe
 - Linux - Run Phantasia.x86_64
