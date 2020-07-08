@@ -37,6 +37,8 @@ Download the repo as a zip file (green button at the top right). Open the "Build
   - Wolf
   - WrWolf
   - Zombie
+- Bosses
+  - Garland
 ### Weapons
   - Wooden Nunchuck
   - Small Dagger
