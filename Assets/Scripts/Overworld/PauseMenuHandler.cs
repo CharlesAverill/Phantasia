@@ -28,10 +28,13 @@ public class PauseMenuHandler : MonoBehaviour
     public Text[] bag_items;
 
     public Text[] give_names;
+    public Text[] use_names;
     public GameObject givedrop;
+    public GameObject usedrop;
     public GameObject equipparty;
 
     public GameObject give;
+    public GameObject use_on;
 
     public GameObject areyousure;
     public Text areyousuretext;
@@ -60,6 +63,8 @@ public class PauseMenuHandler : MonoBehaviour
     public Text status_evade;
 
     public Text hover_text;
+
+    Equips equips;
 
     public void hover_sound()
     {
@@ -159,6 +164,10 @@ public class PauseMenuHandler : MonoBehaviour
         give.SetActive(false);
         givedrop.SetActive(false);
         equipparty.SetActive(false);
+        usedrop.SetActive(false);
+        use_on.SetActive(false);
+
+        equips = new Equips();
     }
 
     void OnEnable()
@@ -263,24 +272,9 @@ public class PauseMenuHandler : MonoBehaviour
         }
     }
 
-    public void status_1()
+    public void status_n(int n)
     {
-        status(0);
-    }
-
-    public void status_2()
-    {
-        status(1);
-    }
-
-    public void status_3()
-    {
-        status(2);
-    }
-
-    public void status_4()
-    {
-        status(3);
+        status(n);
     }
 
     public void bag()
@@ -390,131 +384,11 @@ public class PauseMenuHandler : MonoBehaviour
 
     int item_select_index;
 
-    public void select_item_1()
+    public void select_item_n(int n)
     {
         if (bag_items[0].text == "")
             return;
-        item_select_index = 0;
-        select();
-    }
-
-    public void select_item_2()
-    {
-        if (bag_items[1].text == "")
-            return;
-        item_select_index = 1;
-        select();
-    }
-
-    public void select_item_3()
-    {
-        if (bag_items[2].text == "")
-            return;
-        item_select_index = 2;
-        select();
-    }
-
-    public void select_item_4()
-    {
-        if (bag_items[3].text == "")
-            return;
-        item_select_index = 3;
-        select();
-    }
-
-    public void select_item_5()
-    {
-        if (bag_items[4].text == "")
-            return;
-        item_select_index = 4;
-        select();
-    }
-
-    public void select_item_6()
-    {
-        if (bag_items[5].text == "")
-            return;
-        item_select_index = 5;
-        select();
-    }
-
-    public void select_item_7()
-    {
-        if (bag_items[6].text == "")
-            return;
-        item_select_index = 6;
-        select();
-    }
-
-    public void select_item_8()
-    {
-        if (bag_items[7].text == "")
-            return;
-        item_select_index = 7;
-        select();
-    }
-
-    public void select_item_9()
-    {
-        if (bag_items[8].text == "")
-            return;
-        item_select_index = 8;
-        select();
-    }
-
-    public void select_item_10()
-    {
-        if (bag_items[9].text == "")
-            return;
-        item_select_index = 9;
-        select();
-    }
-
-    public void select_item_11()
-    {
-        if (bag_items[10].text == "")
-            return;
-        item_select_index = 10;
-        select();
-    }
-
-    public void select_item_12()
-    {
-        if (bag_items[11].text == "")
-            return;
-        item_select_index = 11;
-        select();
-    }
-
-    public void select_item_13()
-    {
-        if (bag_items[12].text == "")
-            return;
-        item_select_index = 12;
-        select();
-    }
-
-    public void select_item_14()
-    {
-        if (bag_items[13].text == "")
-            return;
-        item_select_index = 13;
-        select();
-    }
-
-    public void select_item_15()
-    {
-        if (bag_items[14].text == "")
-            return;
-        item_select_index = 14;
-        select();
-    }
-
-    public void select_item_16()
-    {
-        if (bag_items[15].text == "")
-            return;
-        item_select_index = 15;
+        item_select_index = n;
         select();
     }
 
@@ -523,8 +397,17 @@ public class PauseMenuHandler : MonoBehaviour
         for(int i = 0; i < 4; i++)
         {
             give_names[i].text = SaveSystem.GetString("player" + (i + 1) + "_name");
+            use_names[i].text = SaveSystem.GetString("player" + (i + 1) + "_name");
         }
-        givedrop.SetActive(true);
+
+        string item_name = bag_items[item_select_index].text.Substring(0, bag_items[item_select_index].text.IndexOf(" x"));
+
+        string category = equips.item_category(item_name);
+
+        if (category == "weapon" || category == "armor")
+            givedrop.SetActive(true);
+        else if (category == "item")
+            usedrop.SetActive(true);
     }
 
     public void drop()
@@ -554,7 +437,7 @@ public class PauseMenuHandler : MonoBehaviour
             yield return null;
         }
 
-        if (areyousure_yes)
+        if (areyousure_yes && !(equips.get_item(bag_items[item_select_index].text.Substring(0, bag_items[item_select_index].text.IndexOf(" x"))).key_item))
         {
             string name = bag_items[item_select_index].text.Substring(0, bag_items[item_select_index].text.IndexOf(" x"));
 
@@ -581,26 +464,88 @@ public class PauseMenuHandler : MonoBehaviour
         StartCoroutine(give_to_player());
     }
 
-    int give_index = -1;
-
-    public void give_to_player_1()
+    public void use_button()
     {
-        give_index = 0;
+        string item_name = bag_items[item_select_index].text.Substring(0, bag_items[item_select_index].text.IndexOf(" x"));
+
+        if (equips.get_item(item_name).single_use)
+        {
+            use_on.SetActive(true);
+            StartCoroutine(use_on_player());
+        }
+        else
+        {
+            use_on_party();
+        }
     }
 
-    public void give_to_player_2()
+    public int use_index = -1;
+
+    public void select_use_index(int n)
     {
-        give_index = 1;
+        use_index = n;
     }
 
-    public void give_to_player_3()
+    IEnumerator use_on_player()
     {
-        give_index = 2;
+        usedrop.SetActive(false);
+
+        while (use_index == -1)
+        {
+            yield return null;
+        }
+
+        string item_name = bag_items[item_select_index].text.Substring(0, bag_items[item_select_index].text.IndexOf(" x"));
+
+        if(equips.use_item(item_name, use_index))
+        {
+            Dictionary<string, int> party_items = SaveSystem.GetStringIntDict("items");
+            int count = party_items[item_name];
+            if (count == 1)
+                party_items.Remove(item_name);
+            else
+                party_items[item_name] = party_items[item_name] - 1;
+            SaveSystem.SetStringIntDict("items", party_items);
+
+            setup();
+        }
+
+        use_on.SetActive(false);
+        usedrop.SetActive(false);
+
+        bag();
+
+        give_index = -1;
     }
 
-    public void give_to_player_4()
+    void use_on_party()
     {
-        give_index = 3;
+        usedrop.SetActive(false);
+
+        string item_name = bag_items[item_select_index].text.Substring(0, bag_items[item_select_index].text.IndexOf(" x"));
+
+        if (equips.use_item(item_name, -1))
+        {
+            Dictionary<string, int> party_items = SaveSystem.GetStringIntDict("items");
+            int count = party_items[item_name];
+            if (count == 1)
+                party_items.Remove(item_name);
+            else
+                party_items[item_name] = party_items[item_name] - 1;
+            SaveSystem.SetStringIntDict("items", party_items);
+        }
+
+        use_on.SetActive(false);
+        usedrop.SetActive(false);
+
+        bag();
+    }
+
+    public int give_index = -1;
+
+    public void select_give_index(int i)
+    {
+        give_index = i;
     }
 
     IEnumerator give_to_player()
@@ -614,7 +559,7 @@ public class PauseMenuHandler : MonoBehaviour
 
         string item_name = bag_items[item_select_index].text.Substring(0, bag_items[item_select_index].text.IndexOf(" x"));
 
-        string category = new Equips().item_category(item_name);
+        string category = equips.item_category(item_name);
 
         switch (category)
         {
@@ -695,11 +640,9 @@ public class PauseMenuHandler : MonoBehaviour
 
         List<string> armor = SaveSystem.GetStringList(status_player_n + "armor_inventory");
 
-        Equips eq = new Equips();
-
         for (int i = 1; i < armor.Count; i++)
         {
-            string category = eq.get_armor(armor[i]).category;
+            string category = equips.get_armor(armor[i]).category;
             string prefix = "";
 
             if (SaveSystem.GetString(status_player_n + category) == armor[i])
@@ -713,36 +656,10 @@ public class PauseMenuHandler : MonoBehaviour
 
     int item_select_status_index;
 
-    public void select_status_item_1()
+    public void select_status_item_n(int n)
     {
-        item_select_status_index = 0;
-        string name = status_bag_items[0].text;
-        if (name == "")
-            return;
-        equipparty.SetActive(true);
-    }
-
-    public void select_status_item_2()
-    {
-        item_select_status_index = 1;
-        string name = status_bag_items[1].text;
-        if (name == "")
-            return;
-        equipparty.SetActive(true);
-    }
-
-    public void select_status_item_3()
-    {
-        item_select_status_index = 2;
-        string name = status_bag_items[2].text;
-        if (name == "")
-            return;
-        equipparty.SetActive(true);
-    }
-    public void select_status_item_4()
-    {
-        item_select_status_index = 3;
-        string name = status_bag_items[3].text;
+        item_select_status_index = n;
+        string name = status_bag_items[n].text;
         if (name == "")
             return;
         equipparty.SetActive(true);
@@ -750,18 +667,16 @@ public class PauseMenuHandler : MonoBehaviour
 
     public void equip()
     {
-        Equips eq = new Equips();
-
         string name = status_bag_items[item_select_status_index].text;
-        string category = eq.item_category(name);
+        string category = equips.item_category(name);
 
         if(name.Contains("E- "))
         {
-            category = eq.item_category(name.Substring(3));
+            category = equips.item_category(name.Substring(3));
             switch (category)
             {
                 case "armor":
-                    string armor_type = eq.get_armor(name).category;
+                    string armor_type = equips.get_armor(name).category;
 
                     switch (armor_type)
                     {
@@ -793,11 +708,11 @@ public class PauseMenuHandler : MonoBehaviour
             switch (category)
             {
                 case "armor":
-                    string armor_type = eq.get_armor(name).category;
+                    string armor_type = equips.get_armor(name).category;
 
                     string player_class = SaveSystem.GetString(status_player_n + "class");
 
-                    if (eq.can_equip_armor(eq.get_armor(name), player_class))
+                    if (equips.can_equip_armor(equips.get_armor(name), player_class))
                     {
 
                         if (SaveSystem.GetString(status_player_n + armor_type) != "")
@@ -834,7 +749,7 @@ public class PauseMenuHandler : MonoBehaviour
                     break;
                 case "weapon":
                     string player_class1 = SaveSystem.GetString(status_player_n + "class");
-                    if(eq.can_equip_weapon(eq.get_weapon(name), player_class1))
+                    if(equips.can_equip_weapon(equips.get_weapon(name), player_class1))
                     {
                         if (SaveSystem.GetString(status_player_n + "weapon") != "")
                         {
@@ -860,14 +775,12 @@ public class PauseMenuHandler : MonoBehaviour
 
     public void send_to_party()
     {
-        Equips eq = new Equips();
-
         string name = status_bag_items[item_select_status_index].text;
         if (name == "")
             return;
         if (name.Contains("E- "))
             name = name.Substring(3);
-        string category = eq.item_category(name);
+        string category = equips.item_category(name);
 
         //Unequip
         switch (category)

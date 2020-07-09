@@ -7,6 +7,8 @@ public class GlobalControl : MonoBehaviour
 
     public static GlobalControl instance;
 
+    public MapHandler mh;
+
     public Boss boss;
     public bool bossvictory;
 

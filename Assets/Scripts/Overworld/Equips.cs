@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Equips
 {
@@ -57,12 +58,14 @@ public class Equips
         public string name;
         public int cost;
         public bool key_item;
+        public bool single_use;
 
-        public Item(string n, int c, bool k)
+        public Item(string n, int c, bool k, bool s)
         {
             name = n;
             cost = c;
             key_item = k;
+            single_use = s;
         }
     }
 
@@ -142,10 +145,10 @@ public class Equips
 
     void setup_items()
     {
-        items.Add(new Item("Potion", 60, false));
-        items.Add(new Item("Gold Needle", 75, false));
-        items.Add(new Item("Tent", 75, false));
-        items.Add(new Item("Lute", 0, true));
+        items.Add(new Item("Potion", 60, false, true));
+        items.Add(new Item("Gold Needle", 75, false, true));
+        items.Add(new Item("Tent", 75, false, false));
+        items.Add(new Item("Lute", 0, true, false));
     }
 
     void setup_spells()
@@ -193,6 +196,16 @@ public class Equips
         {
             if (w.name == name)
                 return w;
+        }
+        return null;
+    }
+
+    public Item get_item(string name)
+    {
+        foreach (Item i in items)
+        {
+            if (i.name == name)
+                return i;
         }
         return null;
     }
@@ -290,5 +303,59 @@ public class Equips
         }
 
         return false;
+    }
+
+    public bool use_item(string name, int i)
+    {
+        bool success = true;
+
+        switch (name)
+        {
+            case "Potion":
+                SaveSystem.SetInt("player" + (i + 1) + "_HP", Mathf.Min(SaveSystem.GetInt("player" + (i + 1) + "_HP") + 30, SaveSystem.GetInt("player" + (i + 1) + "_maxHP")));
+                break;
+            case "Gold Needle":
+                if(SaveSystem.GetBool("player" + (i + 1) + "poison"))
+                {
+                    SaveSystem.SetBool("player" + (i + 1) + "poison", false);
+                }
+                else
+                {
+                    success = false;
+                }
+                break;
+            case "Tent":
+
+                if(GlobalControl.instance.mh.active_map.name != "Overworld")
+                {
+                    success = false;
+                    break;
+                }
+
+                for(int n = 0; n < 4; n++)
+                {
+                    SaveSystem.SetInt("player" + (n + 1) + "_HP", Mathf.Min(SaveSystem.GetInt("player" + (n + 1) + "_HP") + 30, SaveSystem.GetInt("player" + (n + 1) + "_maxHP")));
+                }
+
+                Dictionary<string, int> party_items = SaveSystem.GetStringIntDict("items");
+                int count = party_items["Tent"];
+                if (count == 1)
+                    party_items.Remove("Tent");
+                else
+                    party_items["Tent"] = party_items["Tent"] - 1;
+                SaveSystem.SetStringIntDict("items", party_items);
+
+                GlobalControl.instance.mh.save_position();
+
+                SaveSystem.SaveToDisk();
+                SceneManager.LoadScene("Title Screen");
+
+                break;
+            case "Lute":
+                success = false;
+                break;
+        }
+
+        return success;
     }
 }
