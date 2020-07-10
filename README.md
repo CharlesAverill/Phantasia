@@ -72,3 +72,11 @@ Download the repo as a zip file (green button at the top right). Open the "Build
   - Earning gil, exp upon battle win
   - Battle UI
   - Experience/Leveling system
+  
+## Screenshots
+![Overworld](media/overworld.png)
+![Coneria](media/coneria.png)
+![Battle](media/battle.png)
+![Garland](media/garland.png)
+![Settings](media/settings.png)
+![New Game](media/new_game.png)
