@@ -1111,7 +1111,7 @@ ScriptsOnlyBuild:
     className: BattleHandler
   - hash:
       serializedVersion: 2
-      Hash: d372cc6416ff7cd99d8870d89973cac5
+      Hash: c5466f65832c9c7b1e16f99abd499817
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: NPC

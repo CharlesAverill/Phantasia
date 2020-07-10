@@ -22,7 +22,6 @@ public class NPC : Interactable
     
     public Transform move_point;
 
-    public bool onlyAppearIfFlag;
     public FlagCheck[] flags;
 
     public bool give_item;
@@ -53,13 +52,12 @@ public class NPC : Interactable
     
     void Start()
     {
-        if (onlyAppearIfFlag)
+        foreach(FlagCheck fc in flags)
         {
-            foreach(FlagCheck fc in flags)
-            {
-                if (!fc.check())
-                    gameObject.SetActive(false);
-            }
+            if (!fc.check())
+                gameObject.SetActive(false);
+            else
+                gameObject.SetActive(true);
         }
         move_point.parent = transform.parent;
         
