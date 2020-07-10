@@ -56,6 +56,16 @@ public class CursorController : MonoBehaviour
 
         active_list = active_array.OfType<GameObject>().ToList();
 
+        while ((monster_mode && get_monster().HP <= 0) || (!monster_mode && active_list[active].active == false))
+        {
+            active += 1;
+
+            if (active >= active_list.Count)
+            {
+                active = 0;
+            }
+        }
+
         move();
         GetComponent<SpriteRenderer>().enabled = true;
     }
@@ -83,7 +93,7 @@ public class CursorController : MonoBehaviour
         }
 
         frame = frame + 1;
-        if(frame >= 20){
+        if(frame >= 15){
 
             bool up = Input.GetKey(CustomInputManager.cim.up);
             bool down = Input.GetKey(CustomInputManager.cim.down);
@@ -103,7 +113,7 @@ public class CursorController : MonoBehaviour
                     active = active_list.Count - 1;
                 }
 
-                while (monster_mode && get_monster().HP <= 0)
+                while ((monster_mode && get_monster().HP <= 0) || (!monster_mode && active_list[active].active == false))
                 {
                     active -= 1;
 
@@ -124,7 +134,7 @@ public class CursorController : MonoBehaviour
                     active = 0;
                 }
 
-                while (monster_mode && get_monster().HP <= 0)
+                while ((monster_mode && get_monster().HP <= 0) || (!monster_mode && active_list[active].active == false))
                 {
                     active += 1;
 
@@ -140,11 +150,8 @@ public class CursorController : MonoBehaviour
             else{
                 frame = 35;
             }
-            
-            if(ver != 0)
-            {
-                move();
-            }
+
+            move();
         }
     }
 

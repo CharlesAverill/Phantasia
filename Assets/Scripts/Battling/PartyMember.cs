@@ -393,6 +393,65 @@ public class PartyMember : Battler
         yield return null;
     }
 
+    public void choose_drink()
+    {
+        foreach (GameObject g in bh.medicine_buttons)
+            g.SetActive(false);
+
+        Dictionary<string, int> items = SaveSystem.GetStringIntDict("items");
+
+        if (items.ContainsKey("Potion"))
+            bh.medicine_buttons[0].SetActive(true);
+        if (items.ContainsKey("Antidote"))
+            bh.medicine_buttons[1].SetActive(true);
+        if (items.ContainsKey("Gold Needle"))
+            bh.medicine_buttons[2].SetActive(true);
+
+        bh.medicineContainer.SetActive(true);
+        StartCoroutine(drink());
+    }
+
+    IEnumerator drink()
+    {
+        while (bh.drk == "")
+            yield return null;
+
+        Dictionary<string, int> items = SaveSystem.GetStringIntDict("items");
+
+        bool success = true;
+
+        switch (bh.drk)
+        {
+            case "Potion":
+                if (items["Potion"] == 1)
+                    items.Remove("Potion");
+                else
+                    items["Potion"] = items["Potion"] - 1;
+
+                int healed = (int)UnityEngine.Random.Range(16f, 32f);
+
+                HP = Mathf.Min(HP + healed, maxHP);
+
+                yield return StartCoroutine(bh.set_battle_text(name + " regained " + healed + " HP.", SaveSystem.GetFloat("battle_speed"), true, true));
+
+                break;
+            case "Antidote":
+                if (items["Antidote"] == 1)
+                    items.Remove("Antidote");
+                else
+                    items["Antidote"] = items["Antidote"] - 1;
+                break;
+            case "Gold Needle":
+                if (items["Gold Needle"] == 1)
+                    items.Remove("Gold Needle");
+                else
+                    items["Gold Needle"] = items["Gold Needle"] - 1;
+                break;
+        }
+
+        bh.medicineContainer.SetActive(false);
+    }
+
     public IEnumerator end_turn()
     {
         bsc.change_state("walk");

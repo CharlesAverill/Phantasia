@@ -22,7 +22,8 @@ public class BattleHandler : MonoBehaviour
     private List<GameObject> battlers;
 
     public MagicWeaponSpriteHandler mwsh;
-    
+
+    public GameObject medicineContainer;
     public CursorController monster_cursor;
     public CursorController menu_cursor;
     public EventSystem es;
@@ -146,7 +147,7 @@ public class BattleHandler : MonoBehaviour
 
     bool setting_battle_text;
 
-    IEnumerator set_battle_text(string t, float wait, bool wait_for_input, bool clear_on_finish)
+    public IEnumerator set_battle_text(string t, float wait, bool wait_for_input, bool clear_on_finish)
     {
         setting_battle_text = true;
         battle_text.text = t;
@@ -449,7 +450,7 @@ public class BattleHandler : MonoBehaviour
                         else{
                         */
                         int run_seed = UnityEngine.Random.Range(0, p.level + 15);
-                        if(p.luck > run_seed){
+                        if(p.luck > run_seed && p.can_run){
 
                             yield return StartCoroutine(set_battle_text(p.gameObject.name + " ran away", text_delay, true, true));
 
@@ -574,6 +575,8 @@ public class BattleHandler : MonoBehaviour
             {
                 if(p.HP > 0)
                     p.bsc.change_state("victory");
+                if (GlobalControl.instance.bossmode)
+                    p.can_run = false;
                 p.save_player();
             }
 
@@ -665,6 +668,23 @@ public class BattleHandler : MonoBehaviour
             GlobalControl.instance.bossvictory = true;
         SceneManager.UnloadScene("Battle");
 
+    }
+
+    public string drk = "";
+
+    public GameObject[] medicine_buttons;
+
+    public void medicine_choose()
+    {
+        if (!accept_input)
+            return;
+        menu_cursor.gameObject.SetActive(false);
+        active_party_member.choose_drink();
+    }
+
+    public void select_drink(string dr)
+    {
+        drk = dr;
     }
     
     public void fight_choose(){

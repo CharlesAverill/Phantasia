@@ -59,13 +59,15 @@ public class Equips
         public int cost;
         public bool key_item;
         public bool single_use;
+        public bool is_drink;
 
-        public Item(string n, int c, bool k, bool s)
+        public Item(string n, int c, bool k, bool s, bool i)
         {
             name = n;
             cost = c;
             key_item = k;
             single_use = s;
+            is_drink = i;
         }
     }
 
@@ -145,10 +147,10 @@ public class Equips
 
     void setup_items()
     {
-        items.Add(new Item("Potion", 60, false, true));
-        items.Add(new Item("Gold Needle", 75, false, true));
-        items.Add(new Item("Tent", 75, false, false));
-        items.Add(new Item("Lute", 0, true, false));
+        items.Add(new Item("Potion", 60, false, true, true));
+        items.Add(new Item("Antidote", 75, false, true, true));
+        items.Add(new Item("Tent", 75, false, false, false));
+        items.Add(new Item("Lute", 0, true, false, false));
     }
 
     void setup_spells()
@@ -314,7 +316,7 @@ public class Equips
             case "Potion":
                 SaveSystem.SetInt("player" + (i + 1) + "_HP", Mathf.Min(SaveSystem.GetInt("player" + (i + 1) + "_HP") + 30, SaveSystem.GetInt("player" + (i + 1) + "_maxHP")));
                 break;
-            case "Gold Needle":
+            case "Antidote":
                 if(SaveSystem.GetBool("player" + (i + 1) + "poison"))
                 {
                     SaveSystem.SetBool("player" + (i + 1) + "poison", false);

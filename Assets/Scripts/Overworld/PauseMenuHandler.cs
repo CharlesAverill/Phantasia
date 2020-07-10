@@ -279,6 +279,10 @@ public class PauseMenuHandler : MonoBehaviour
 
     public void bag()
     {
+
+        givedrop.SetActive(false);
+        usedrop.SetActive(false);
+
         Dictionary<string, int> items = SaveSystem.GetStringIntDict("items");
         foreach(Text t in bag_items)
         {
@@ -386,7 +390,7 @@ public class PauseMenuHandler : MonoBehaviour
 
     public void select_item_n(int n)
     {
-        if (bag_items[0].text == "")
+        if (bag_items[n].text == "")
             return;
         item_select_index = n;
         select();
@@ -403,6 +407,8 @@ public class PauseMenuHandler : MonoBehaviour
         string item_name = bag_items[item_select_index].text.Substring(0, bag_items[item_select_index].text.IndexOf(" x"));
 
         string category = equips.item_category(item_name);
+
+        Debug.Log(item_name);
 
         if (category == "weapon" || category == "armor")
             givedrop.SetActive(true);

@@ -69,10 +69,11 @@ public class Shop : MonoBehaviour
             string prod_name = GlobalControl.instance.shop_products.ElementAt(i).Key;
             int prod_cost = GlobalControl.instance.shop_products.ElementAt(i).Value;
 
-            product_Texts[i].name.transform.parent.gameObject.SetActive(true);
-
             product_Texts[i].name.text = prod_name;
             product_Texts[i].cost.text = "" + prod_cost;
+
+            if(prod_name.Length > 1)
+                product_Texts[i].name.transform.parent.gameObject.SetActive(true);
         }
         prompt_text.text = "What do you need?";
     }

@@ -73,6 +73,19 @@ public class TitleScreenHandler : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
     }
+
+    void flags()
+    {
+        SaveSystem.SetBool("earth_orb", false);
+        SaveSystem.SetBool("fire_orb", false);
+        SaveSystem.SetBool("water_orb", false);
+        SaveSystem.SetBool("wind_orb", false);
+
+        SaveSystem.SetBool("garland_battle", false);
+        SaveSystem.SetBool("princess_in_temple_of_fiends", false);
+        SaveSystem.SetBool("king_mentioned_bridge", false);
+        SaveSystem.SetBool("princess_gave_lute", false);
+    }
     
     public void init_save_file(){
         SaveSystem.SetBool("in_submap", false);
@@ -95,10 +108,7 @@ public class TitleScreenHandler : MonoBehaviour
 
         SaveSystem.SetStringIntDict("items", new Dictionary<string, int>());
 
-        SaveSystem.SetBool("earth_orb", false);
-        SaveSystem.SetBool("fire_orb", false);
-        SaveSystem.SetBool("water_orb", false);
-        SaveSystem.SetBool("wind_orb", false);
+        flags();
 
         SaveSystem.SaveToDisk();
         Debug.Log("Done initializing");
