@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PartyMember : Battler
 {
@@ -401,26 +402,103 @@ public class PartyMember : Battler
         Dictionary<string, int> items = SaveSystem.GetStringIntDict("items");
 
         if (items.ContainsKey("Potion"))
+        {
             bh.medicine_buttons[0].SetActive(true);
+            bh.medicine_buttons[0].GetComponentInChildren<Text>().text = "Potion x" + items["Potion"];
+        }
         if (items.ContainsKey("Antidote"))
+        {
             bh.medicine_buttons[1].SetActive(true);
+            bh.medicine_buttons[1].GetComponentInChildren<Text>().text = "Antidote x" + items["Antidote"];
+        }
         if (items.ContainsKey("Gold Needle"))
+        {
             bh.medicine_buttons[2].SetActive(true);
+            bh.medicine_buttons[2].GetComponentInChildren<Text>().text = "G. Needle x" + items["Gold Needle"];
+        }
 
         bh.medicineContainer.SetActive(true);
         StartCoroutine(drink());
     }
 
+    string drink_chosen;
+
+    bool choosing = false;
+
     IEnumerator drink()
     {
+        choosing = true;
         while (bh.drk == "")
+        {
+            if (Input.GetKeyDown(CustomInputManager.cim.back))
+            {
+                action = "";
+                target = null;
+
+                bh.medicineContainer.SetActive(false);
+                menu_cursor.gameObject.SetActive(true);
+
+                choosing = false;
+            }
             yield return null;
+        }
+
+        if (choosing)
+        {
+            bool success = false;
+
+            switch (bh.drk)
+            {
+                case "Potion":
+                    if (maxHP != HP)
+                        success = true;
+                    drink_chosen = "Potion";
+                    break;
+                case "Antidote":
+                    if (conditions.Contains("poison"))
+                        success = true;
+                    drink_chosen = "Antidote";
+                    break;
+                case "Gold Needle":
+                    if (conditions.Contains("stone"))
+                        success = true;
+                    drink_chosen = "Gold Needle";
+                    break;
+            }
+
+            if (success)
+            {
+
+                action = "drink";
+                target = this.gameObject;
+
+                bh.medicineContainer.SetActive(false);
+                menu_cursor.gameObject.SetActive(true);
+            }
+            else
+            {
+                drink_chosen = "";
+                target = null;
+
+                bh.medicineContainer.SetActive(false);
+                menu_cursor.gameObject.SetActive(true);
+            }
+        }
+
+        choosing = false;
+        end_turn();
+
+        bh.drk = "";
+    }
+
+    public string drink_action()
+    {
+
+        string output = "";
 
         Dictionary<string, int> items = SaveSystem.GetStringIntDict("items");
 
-        bool success = true;
-
-        switch (bh.drk)
+        switch (drink_chosen)
         {
             case "Potion":
                 if (items["Potion"] == 1)
@@ -432,24 +510,29 @@ public class PartyMember : Battler
 
                 HP = Mathf.Min(HP + healed, maxHP);
 
-                yield return StartCoroutine(bh.set_battle_text(name + " regained " + healed + " HP.", SaveSystem.GetFloat("battle_speed"), true, true));
-
+                output = name + " drank a potion and regained " + healed + " HP.";
                 break;
             case "Antidote":
                 if (items["Antidote"] == 1)
                     items.Remove("Antidote");
                 else
                     items["Antidote"] = items["Antidote"] - 1;
+                conditions.Remove("poison");
+                output = name + " recovered from poison";
                 break;
             case "Gold Needle":
                 if (items["Gold Needle"] == 1)
                     items.Remove("Gold Needle");
                 else
                     items["Gold Needle"] = items["Gold Needle"] - 1;
+                conditions.Remove("stone");
+                output = name + " recovered from stone";
                 break;
         }
 
-        bh.medicineContainer.SetActive(false);
+        SaveSystem.SetStringIntDict("items", items);
+
+        return output;
     }
 
     public IEnumerator end_turn()

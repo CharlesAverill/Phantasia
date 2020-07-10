@@ -315,6 +315,8 @@ public class BattleHandler : MonoBehaviour
                             break;
                         yield return null;
                     }
+
+                    yield return StartCoroutine(p.end_turn());
                 }
             }
             party_selecting = false;
@@ -441,8 +443,15 @@ public class BattleHandler : MonoBehaviour
                             }
                         }
                     }
+
+                    else if(p.action == "drink")
+                    {
+                        string drink_text = p.drink_action();
+
+                        yield return StartCoroutine(set_battle_text(drink_text, text_delay, true, true));
+                    }
                     
-                    if(p.action == "run") {
+                    else if(p.action == "run") {
                         /*
                         if(!p.can_run){
                             Debug.Log("Can't run!");
