@@ -27,8 +27,6 @@ public class RandomEncounterHandler : MonoBehaviour
             seed -= d;
         }
     }
-
-
     
     public bool battling;
     
@@ -148,11 +146,24 @@ public class RandomEncounterHandler : MonoBehaviour
     }
 
     // Start is called before the first frame update
-    void Awake()
+    void Start()
     {
         if(!player == null)
             encounters = player.map_handler.active_map.GetComponent<Map>().encounters;
         seed = SaveSystem.GetInt("reh_seed");
+        /*
+        GameObject[] NPCs = FindObjectsOfType<NPC>();
+        foreach(GameObject g in NPCs)
+        {
+            foreach (FlagCheck fc in g.GetComponent<NPC>().flags)
+            {
+                if (!fc.check())
+                    g.SetActive(false);
+                else
+                    gameObject.SetActive(true);
+            }
+        }
+        */
     }
 
     // Update is called once per frame
