@@ -76,6 +76,7 @@ public class Equips
         public string name;
         public string type;
         public int level;
+        public int mp;
         public int power;
         public float hit;
         public bool multi_target;
@@ -86,11 +87,12 @@ public class Equips
         public int cost;
         public string[] learn_by;
 
-        public Spell(string n, string t, int l, int p, float h, bool m, bool ha, bool sf, string s, string e, int cst, string[] lb)
+        public Spell(string n, string t, int m_p, int l, int p, float h, bool m, bool ha, bool sf, string s, string e, int cst, string[] lb)
         {
             name = n;
             type = t;
             level = l;
+            mp = m_p;
             power = p;
             hit = h;
             multi_target = m;
@@ -160,15 +162,15 @@ public class Equips
         string[] white_broad_large = new string[] { "white_mage", "white_wizard", "red_mage", "red_wizard", "knight" };
         string[] white_only = new string[] { "white_mage", "white_wizard" };
 
-        spells.Add(new Spell("LIT", "black", 1, 20, .96f, false, false, false, "", "lightning", 100, black_broad));
-        spells.Add(new Spell("FIRE", "black", 1, 20, .96f, false, false, false, "", "fire", 100, black_broad));
-        spells.Add(new Spell("LOCK", "black", 1, 0, 1.15f, false, false, false, "", "", 100, black_broad));
-        spells.Add(new Spell("SLEP", "black", 1, 0, .96f, true, false, false, "Sleep", "status", 100, black_broad));
+        spells.Add(new Spell("LIT", "black", 4, 1, 20, .96f, false, false, false, "", "lightning", 100, black_broad));
+        spells.Add(new Spell("FIRE", "black", 3, 1, 20, .96f, false, false, false, "", "fire", 100, black_broad));
+        spells.Add(new Spell("LOCK", "black", 8, 1, 0, 1.15f, false, false, false, "", "", 100, black_broad));
+        spells.Add(new Spell("SLEP", "black", 5, 1, 0, .96f, true, false, false, "Sleep", "status", 100, black_broad));
 
-        spells.Add(new Spell("RUSE", "white", 1, 0, -1f, false, false, true, "", "", 100, white_broad_small));
-        spells.Add(new Spell("CURE", "white", 1, 0, -1f, false, true, false, "", "", 100, white_broad_large));
-        spells.Add(new Spell("HARM", "white", 1, 40, .96f, true, false, false, "", "", 100, white_only));
-        spells.Add(new Spell("FOG", "white", 1, 0, -1f, false, false, true, "", "", 100, white_broad_large));
+        spells.Add(new Spell("RUSE", "white", 3, 1, 0, -1f, false, false, true, "", "", 100, white_broad_small));
+        spells.Add(new Spell("CURE", "white", 5, 1, 0, -1f, false, true, false, "", "", 100, white_broad_large));
+        spells.Add(new Spell("HARM", "white", 8, 1, 40, .96f, true, false, false, "", "", 100, white_only));
+        spells.Add(new Spell("FOG", "white", 5, 1, 0, -1f, false, false, true, "", "", 100, white_broad_large));
     }
 
     public void communal_to_personal(string type, string equip_name, int p_index)
@@ -208,6 +210,16 @@ public class Equips
         {
             if (i.name == name)
                 return i;
+        }
+        return null;
+    }
+
+    public Spell get_spell(string name)
+    {
+        foreach (Spell s in spells)
+        {
+            if (s.name == name)
+                return s;
         }
         return null;
     }

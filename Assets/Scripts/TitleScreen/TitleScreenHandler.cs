@@ -106,6 +106,24 @@ public class TitleScreenHandler : MonoBehaviour
         SaveSystem.SetString("player3_name", names[2]);
         SaveSystem.SetString("player4_name", names[3]);
 
+        for(int i = 0; i < 4; i++)
+        {
+            string player_n = "player" + (i + 1) + "_";
+
+            SaveSystem.SetInt(player_n + "magic_level", 1);
+
+            List<string> empty = new List<string>();
+
+            SaveSystem.SetStringList(player_n + "level_1_spells", empty);
+            SaveSystem.SetStringList(player_n + "level_2_spells", empty);
+            SaveSystem.SetStringList(player_n + "level_3_spells", empty);
+            SaveSystem.SetStringList(player_n + "level_4_spells", empty);
+            SaveSystem.SetStringList(player_n + "level_5_spells", empty);
+            SaveSystem.SetStringList(player_n + "level_6_spells", empty);
+            SaveSystem.SetStringList(player_n + "level_7_spells", empty);
+            SaveSystem.SetStringList(player_n + "level_8_spells", empty);
+        }
+
         SaveSystem.SetStringIntDict("items", new Dictionary<string, int>());
 
         flags();
@@ -259,6 +277,8 @@ public class TitleScreenHandler : MonoBehaviour
                     SaveSystem.SetFloat(player_n + "hit_percent", .1f);
                     SaveSystem.SetFloat(player_n + "magic_defense", .15f);
 
+                    SaveSystem.SetInt(player_n + "MP", 0);
+
                     character_index = 3;
 
                     break;
@@ -271,6 +291,8 @@ public class TitleScreenHandler : MonoBehaviour
                     SaveSystem.SetInt(player_n + "HP", 33);
                     SaveSystem.SetFloat(player_n + "hit_percent", .05f);
                     SaveSystem.SetFloat(player_n + "magic_defense", .1f);
+
+                    SaveSystem.SetInt(player_n + "MP", 0);
 
                     character_index = 0;
 
@@ -285,6 +307,8 @@ public class TitleScreenHandler : MonoBehaviour
                     SaveSystem.SetFloat(player_n + "hit_percent", .07f);
                     SaveSystem.SetFloat(player_n + "magic_defense", .2f);
 
+                    SaveSystem.SetInt(player_n + "MP", 10);
+
                     character_index = 7;
 
                     break;
@@ -297,6 +321,8 @@ public class TitleScreenHandler : MonoBehaviour
                     SaveSystem.SetInt(player_n + "HP", 30);
                     SaveSystem.SetFloat(player_n + "hit_percent", .05f);
                     SaveSystem.SetFloat(player_n + "magic_defense", .15f);
+
+                    SaveSystem.SetInt(player_n + "MP", 0);
 
                     character_index = 9;
 
@@ -311,6 +337,8 @@ public class TitleScreenHandler : MonoBehaviour
                     SaveSystem.SetFloat(player_n + "hit_percent", .05f);
                     SaveSystem.SetFloat(player_n + "magic_defense", .2f);
 
+                    SaveSystem.SetInt(player_n + "MP", 10);
+
                     character_index = 10;
 
                     break;
@@ -323,6 +351,8 @@ public class TitleScreenHandler : MonoBehaviour
                     SaveSystem.SetInt(player_n + "HP", 25);
                     SaveSystem.SetFloat(player_n + "hit_percent", .055f);
                     SaveSystem.SetFloat(player_n + "magic_defense", .2f);
+
+                    SaveSystem.SetInt(player_n + "MP", 10);
 
                     character_index = 1;
 

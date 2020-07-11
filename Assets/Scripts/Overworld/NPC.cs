@@ -52,13 +52,6 @@ public class NPC : Interactable
     
     void Start()
     {
-        foreach(FlagCheck fc in flags)
-        {
-            if (!fc.check())
-                gameObject.SetActive(false);
-            else
-                gameObject.SetActive(true);
-        }
         move_point.parent = transform.parent;
         
         cld = GetComponent<BoxCollider2D>();
@@ -420,6 +413,13 @@ public class NPC : Interactable
             can_move = true;
             interacting = false;
             sc.walk_animation = false;
+        }
+        foreach (FlagCheck fc in flags)
+        {
+            if (!fc.check())
+                gameObject.SetActive(false);
+            else
+                gameObject.SetActive(true);
         }
     }
 }

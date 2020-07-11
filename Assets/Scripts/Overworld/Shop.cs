@@ -31,6 +31,10 @@ public class Shop : MonoBehaviour
     public GameObject buy_cursor;
     public product_text[] product_Texts;
 
+    public GameObject learn_spell_container;
+    public GameObject learn_cursor;
+    public Text[] spell_party_names;
+
     public GameObject yes_no;
     public GameObject buy_sell_quit;
     public GameObject only_quit;
@@ -64,6 +68,9 @@ public class Shop : MonoBehaviour
         only_quit.SetActive(false);
         buy_container.SetActive(false);
 
+        learn_spell_container.SetActive(false);
+        learn_cursor.SetActive(false);
+
         for (int i = 0; i < GlobalControl.instance.shop_products.Count; i++)
         {
             string prod_name = GlobalControl.instance.shop_products.ElementAt(i).Key;
@@ -89,6 +96,7 @@ public class Shop : MonoBehaviour
         for (int i = 0; i < 4; i++)
         {
             party_names[i] = SaveSystem.GetString("player" + (i + 1) + "_name");
+            spell_party_names[i].text = SaveSystem.GetString("player" + (i + 1) + "_name");
         }
         
         //if (shopmode == null)
@@ -243,7 +251,11 @@ public class Shop : MonoBehaviour
         buy_container.SetActive(true);
         buy_cursor.SetActive(true);
         buy_sell_quit.SetActive(false);
-        prompt_text.text = "What would you like?";
+
+        if (shopmode == "b_magic" || shopmode == "w_magic")
+            prompt_text.text = "Which spell would you like to learn?";
+        else
+            prompt_text.text = "What would you like?";
     }
 
     public void sell_true()
@@ -349,33 +361,19 @@ public class Shop : MonoBehaviour
         exit_shop();
     }
 
-    public void buy_1()
+    public void buy_n(int n)
     {
-        StartCoroutine(buy_select(0));
-    }
-
-    public void buy_2()
-    {
-        StartCoroutine(buy_select(1));
-    }
-
-    public void buy_3()
-    {
-        StartCoroutine(buy_select(2));
-    }
-
-    public void buy_4()
-    {
-        StartCoroutine(buy_select(3));
-    }
-
-    public void buy_5()
-    {
-        StartCoroutine(buy_select(4));
+        if (shopmode == "w_magic" || shopmode == "b_magic")
+        {
+            StartCoroutine(learn_select(n));
+        }
+        else
+            StartCoroutine(buy_select(n));
     }
 
     IEnumerator buy_select(int index)
     {
+
         buy_cursor.SetActive(false);
 
         yes = false;
@@ -384,7 +382,7 @@ public class Shop : MonoBehaviour
         string p_name = product_Texts[index].name.text;
         int p_cost = Int32.Parse(product_Texts[index].cost.text);
 
-        prompt_text.text = "Is " + p_cost + " G for a " + p_name + " okay?";
+        prompt_text.text = "Is " + p_cost + "G for a " + p_name + " okay?";
         yes_no.SetActive(true);
 
         while (!yes && !no)
@@ -434,5 +432,97 @@ public class Shop : MonoBehaviour
         }
 
         setup();
+    }
+
+    int learn_index = -1;
+
+    public void learn_n(int n)
+    {
+        learn_index = n;
+    }
+
+    IEnumerator learn_select(int index)
+    {
+
+        prompt_text.text = "Who will learn this spell?";
+
+        buy_container.SetActive(false);
+        buy_cursor.SetActive(false);
+
+        learn_spell_container.SetActive(true);
+        learn_cursor.SetActive(true);
+
+        while(learn_index == -1){
+            yield return null;
+        }
+
+        if(!(new Equips().get_spell(product_Texts[index].name.text).learn_by).Contains(SaveSystem.GetString("player" + (learn_index + 1) + "_class")))
+        {
+            prompt_text.text = "They can't learn this spell!";
+            yield return new WaitForSeconds(1f);
+        }
+        else
+        {
+            buy_cursor.SetActive(false);
+
+            yes = false;
+            no = false;
+
+            string p_name = product_Texts[index].name.text;
+            int p_cost = Int32.Parse(product_Texts[index].cost.text);
+
+            prompt_text.text = "Is " + p_cost + "G for " + party_names[index] + " to learn " + p_name + " okay?";
+            yes_no.SetActive(true);
+
+            while (!yes && !no)
+                yield return null;
+
+            yes_no.SetActive(false);
+
+            if (yes)
+            {
+                if (player_gil >= p_cost)
+                {
+                    int level = new Equips().get_spell(product_Texts[index].name.text).level;
+                    List<string> level_n_spells = SaveSystem.GetStringList("player" + (learn_index + 1) + "_level_" + level + "_spells");
+
+
+                    if(level_n_spells.Count > 3)
+                    {
+                        prompt_text.text = "You have the maximum amount of level " + level + " spells";
+                        yield return new WaitForSeconds(2f);
+                    }
+                    else if (level_n_spells.Contains(p_name))
+                    {
+                        prompt_text.text = "You already know this spell!";
+                        yield return new WaitForSeconds(2f);
+                    }
+                    else if(level > SaveSystem.GetInt("player" + (learn_index + 1) + "_magic_level"))
+                    {
+                        prompt_text.text = "Your magic level is not yet high enough to learn this spell.";
+                        yield return new WaitForSeconds(2f);
+                    }
+                    else
+                    {
+                        level_n_spells.Add(p_name);
+                        SaveSystem.SetStringList("player" + (learn_index + 1) + "_level_" + level + "_spells", level_n_spells);
+                        SaveSystem.SetInt("gil", player_gil - p_cost);
+
+                        prompt_text.text = "Thank you!";
+                        yield return new WaitForSeconds(2f);
+                    }
+                }
+                else
+                {
+                    prompt_text.text = "You don't have enough money";
+                    yield return new WaitForSeconds(2f);
+                }
+            }
+        }
+
+        setup();
+        learn_index = -1;
+
+        yield return null;
     }
 }
